@@ -8,273 +8,263 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
- --green-deep: #0d1f0f;
- --green-dark: #132716;
- --green-mid: #1a3a1e;
- --green-rich: #1f4d24;
- --green-accent: #2d6b35;
- --green-bright: #3d8b47;
- --gold: #c9a84c;
- --gold-light: #e2c97e;
- --gold-pale: #f5e6c0;
- --cream: #f8f3ea;
- --text-muted: #8a9e8c;
- --border: rgba(201, 168, 76, 0.18);
+  --green-deep: #0d1f0f;
+  --green-dark: #132716;
+  --green-mid: #1a3a1e;
+  --green-rich: #1f4d24;
+  --green-accent: #2d6b35;
+  --green-bright: #3d8b47;
+  --gold: #c9a84c;
+  --gold-light: #e2c97e;
+  --gold-pale: #f5e6c0;
+  --cream: #f8f3ea;
+  --text-muted: #8a9e8c;
+  --border: rgba(201, 168, 76, 0.18);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
- font-family: 'DM Sans', Georgia, sans-serif;
- background-color: #0d1f0f;
- color: #f8f3ea;
- overflow-x: hidden;
+  font-family: 'DM Sans', Georgia, sans-serif;
+  background-color: #0d1f0f;
+  color: #f8f3ea;
+  overflow-x: hidden;
 }
 
-/* NAV */
 nav {
- position: fixed;
- top: 0; left: 0; right: 0;
- z-index: 100;
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 1.4rem 4rem;
- background: rgba(13,31,15,0.92);
- backdrop-filter: blur(18px);
- border-bottom: 1px solid var(--border);
- transition: padding 0.3s;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 4rem;
+  background: rgba(13,31,15,0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
 }
 .logo {
- font-family: 'Cinzel', Georgia, serif;
- font-size: 1rem;
- font-weight: 700;
- letter-spacing: 0.22em;
- color: var(--gold);
- text-decoration: none;
- text-transform: uppercase;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
 }
 .logo span { color: #f8f3ea; opacity: 0.7; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
- font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
- text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s;
 }
 .nav-links a:hover { color: var(--gold-light); }
 .nav-cta {
- font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
- text-transform: uppercase; color: #0d1f0f; background: var(--gold);
- padding: 0.65rem 1.6rem; text-decoration: none; transition: background 0.3s;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #0d1f0f; background: var(--gold);
+  padding: 0.65rem 1.6rem; text-decoration: none; transition: background 0.3s;
 }
 .nav-cta:hover { background: var(--gold-light); }
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all 0.3s; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
 
-/* HERO */
 .hero {
- min-height: 100vh;
- display: flex; align-items: center;
- position: relative; overflow: hidden;
- padding: 10rem 4rem 6rem;
- background: linear-gradient(160deg, #0d1f0f 0%, #0a1a0c 60%, #080f09 100%);
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 10rem 4rem 6rem;
+  background: linear-gradient(160deg, #0d1f0f 0%, #0a1a0c 60%, #080f09 100%);
 }
 .hero-glow {
- position: absolute; right: 5%; top: 20%;
- width: 700px; height: 700px; border-radius: 50%;
- background: radial-gradient(circle, rgba(45,107,53,0.22) 0%, transparent 65%);
- pointer-events: none;
+  position: absolute; right: 5%; top: 20%;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.22) 0%, transparent 65%);
+  pointer-events: none;
 }
 .hero-glow2 {
- position: absolute; left: -5%; bottom: 10%;
- width: 400px; height: 400px; border-radius: 50%;
- background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
- pointer-events: none;
+  position: absolute; left: -5%; bottom: 10%;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+  pointer-events: none;
 }
 .hero-grid {
- position: absolute; inset: 0;
- background-image: linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
- background-size: 80px 80px;
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 .hero-content { position: relative; z-index: 2; max-width: 820px; }
 .hero-eyebrow {
- font-size: 0.68rem; font-weight: 500; letter-spacing: 0.36em;
- text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
- display: flex; align-items: center; gap: 1rem;
- animation: fadeUp 0.8s ease both;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.36em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  animation: fadeUp 0.8s ease both;
 }
 .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
 h1 {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: clamp(3rem, 7vw, 6.2rem);
- font-weight: 300; line-height: 1.06; color: #f8f3ea;
- margin-bottom: 1.2rem;
- animation: fadeUp 0.8s 0.15s ease both;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 6.2rem);
+  font-weight: 300; line-height: 1.06; color: #f8f3ea;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.8s 0.15s ease both;
 }
 h1 em { font-style: italic; color: var(--gold-light); }
 .hero-tagline {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: clamp(1.05rem, 2vw, 1.45rem);
- font-weight: 300; font-style: italic; color: var(--text-muted);
- margin-bottom: 3rem; max-width: 560px; line-height: 1.65;
- animation: fadeUp 0.8s 0.3s ease both;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  font-weight: 300; font-style: italic; color: var(--text-muted);
+  margin-bottom: 3rem; max-width: 560px; line-height: 1.65;
+  animation: fadeUp 0.8s 0.3s ease both;
 }
 .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.45s ease both; }
 .hero-stats {
- position: absolute; right: 5rem; bottom: 5rem; z-index: 2;
- display: flex; flex-direction: column; gap: 2rem;
+  position: absolute; right: 5rem; bottom: 5rem; z-index: 2;
+  display: flex; flex-direction: column; gap: 2rem;
 }
 .stat { text-align: right; border-right: 2px solid var(--gold); padding-right: 1.4rem; }
 .stat-number {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: 2.4rem; font-weight: 300; color: var(--gold-light); line-height: 1;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.4rem; font-weight: 300; color: var(--gold-light); line-height: 1;
 }
 .stat-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
 
-/* BUTTONS */
 .btn-primary {
- font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
- color: #0d1f0f; background: var(--gold);
- padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
- transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #0d1f0f; background: var(--gold);
+  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.28); }
 .btn-secondary {
- font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
- color: #f8f3ea; border: 1px solid var(--border);
- padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
- transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f8f3ea; border: 1px solid var(--border);
+  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
 }
 .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
 
-/* DIVIDER */
 .divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 4rem; }
 .divider-line { flex: 1; height: 1px; background: var(--border); }
 .divider-mark { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
 
-/* SECTIONS */
 section { padding: 7rem 4rem; }
 .section-eyebrow {
- font-size: 0.68rem; font-weight: 500; letter-spacing: 0.32em;
- text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
- display: flex; align-items: center; gap: 1rem;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
 }
 .section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
 .section-title {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: clamp(2.2rem, 4vw, 3.6rem);
- font-weight: 300; line-height: 1.15; color: #f8f3ea; margin-bottom: 1.2rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 300; line-height: 1.15; color: #f8f3ea; margin-bottom: 1.2rem;
 }
 .section-title em { font-style: italic; color: var(--gold-light); }
 .section-body { font-size: 0.95rem; line-height: 1.78; color: var(--text-muted); max-width: 520px; }
 
-/* PILLARS */
 .pillars { background-color: #132716; position: relative; overflow: hidden; }
 .pillars-header { max-width: 600px; margin-bottom: 4rem; }
 .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .pillar { background: #132716; padding: 3rem 2.5rem; position: relative; transition: background 0.4s; overflow: hidden; }
 .pillar-bar {
- position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
- background: linear-gradient(90deg, var(--gold), transparent);
- transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 }
 .pillar:hover { background: #1a3a1e; }
 .pillar:hover .pillar-bar { transform: scaleX(1); }
 .pillar-number {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: 4rem; font-weight: 300; color: rgba(201,168,76,0.12); line-height: 1;
- margin-bottom: 1.2rem; transition: color 0.4s;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4rem; font-weight: 300; color: rgba(201,168,76,0.12); line-height: 1;
+  margin-bottom: 1.2rem; transition: color 0.4s;
 }
 .pillar:hover .pillar-number { color: rgba(201,168,76,0.22); }
 .pillar-title {
- font-family: 'Cinzel', Georgia, serif;
- font-size: 0.82rem; letter-spacing: 0.14em; color: var(--gold-light);
- margin-bottom: 1rem; text-transform: uppercase;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.82rem; letter-spacing: 0.14em; color: var(--gold-light);
+  margin-bottom: 1rem; text-transform: uppercase;
 }
 .pillar-body { font-size: 0.88rem; line-height: 1.72; color: var(--text-muted); }
 .pillar-features { margin-top: 1.4rem; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .pillar-features li { font-size: 0.78rem; color: var(--text-muted); padding-left: 1.2rem; position: relative; letter-spacing: 0.04em; }
 .pillar-features li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; }
 
-/* ECOSYSTEM */
 .ecosystem { background-color: #0d1f0f; }
 .ecosystem-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 4rem; }
 .platforms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .platform-card {
- border: 1px solid var(--border); padding: 2.5rem 2rem;
- transition: border-color 0.3s, transform 0.3s, background 0.3s; cursor: default;
+  border: 1px solid var(--border); padding: 2.5rem 2rem;
+  transition: border-color 0.3s, transform 0.3s, background 0.3s; cursor: default;
 }
 .platform-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); background: rgba(45,107,53,0.08); }
 .platform-name { font-family: 'Cinzel', Georgia, serif; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.4rem; }
 .platform-full { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-bright); margin-bottom: 1rem; }
 .platform-desc { font-size: 0.88rem; line-height: 1.68; color: var(--text-muted); }
 
-/* INVESTMENT */
 .investment { background-color: #1a3a1e; position: relative; overflow: hidden; }
 .investment-watermark {
- position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
- font-family: 'Cinzel', Georgia, serif; font-size: 13rem; font-weight: 700;
- color: rgba(255,255,255,0.025); letter-spacing: 0.1em;
- pointer-events: none; white-space: nowrap; user-select: none;
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Cinzel', Georgia, serif; font-size: 13rem; font-weight: 700;
+  color: rgba(255,255,255,0.025); letter-spacing: 0.1em;
+  pointer-events: none; white-space: nowrap; user-select: none;
 }
 .investment-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 1; }
 .pathways { display: flex; flex-direction: column; gap: 1.4rem; }
 .pathway {
- border-left: 2px solid var(--border); padding: 1.4rem 2rem;
- transition: border-color 0.3s, background 0.3s; cursor: default;
+  border-left: 2px solid var(--border); padding: 1.4rem 2rem;
+  transition: border-color 0.3s, background 0.3s; cursor: default;
 }
 .pathway:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
 .pathway-title { font-family: 'Cinzel', Georgia, serif; font-size: 0.78rem; letter-spacing: 0.12em; color: var(--gold-light); margin-bottom: 0.5rem; text-transform: uppercase; }
 .pathway-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.68; }
 
-/* EDUCATION */
 .education { background-color: #132716; }
 .edu-wrapper { text-align: center; max-width: 600px; margin: 0 auto; }
 .edu-card {
- border: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr;
- overflow: hidden; max-width: 860px; margin: 3.5rem auto 0; transition: border-color 0.3s;
+  border: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden; max-width: 860px; margin: 3.5rem auto 0; transition: border-color 0.3s;
 }
 .edu-card:hover { border-color: rgba(201,168,76,0.4); }
 .edu-content {
- padding: 3.5rem; display: flex; flex-direction: column;
- justify-content: center; gap: 1.4rem; background: #132716;
+  padding: 3.5rem; display: flex; flex-direction: column;
+  justify-content: center; gap: 1.4rem; background: #132716;
 }
 .edu-badge {
- font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase;
- color: var(--gold); border: 1px solid var(--border);
- padding: 0.4rem 0.9rem; display: inline-block; width: fit-content;
+  font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem; display: inline-block; width: fit-content;
 }
 .edu-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.85rem; font-weight: 400; color: #f8f3ea; line-height: 1.25; }
 .edu-body { font-size: 0.87rem; color: var(--text-muted); line-height: 1.72; }
 .edu-visual {
- background: linear-gradient(135deg, #1f4d24 0%, #2d6b35 100%);
- display: flex; align-items: center; justify-content: center;
- min-height: 300px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #1f4d24 0%, #2d6b35 100%);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 300px; position: relative; overflow: hidden;
 }
 .edu-visual-grid {
- position: absolute; inset: 0;
- background-image: linear-gradient(rgba(201,168,76,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.1) 1px, transparent 1px);
- background-size: 30px 30px;
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 .edu-price {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: 3.5rem; font-weight: 300; color: var(--gold-pale);
- position: relative; z-index: 1; text-align: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.5rem; font-weight: 300; color: var(--gold-pale);
+  position: relative; z-index: 1; text-align: center;
 }
 .edu-price-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,230,192,0.5); display: block; margin-top: 0.3rem; }
 
-/* CONTACT */
 .contact { background-color: #0d1f0f; text-align: center; position: relative; overflow: hidden; }
 .contact-glow {
- position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
- width: 600px; height: 600px; border-radius: 50%;
- background: radial-gradient(circle, rgba(45,107,53,0.2) 0%, transparent 70%); pointer-events: none;
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.2) 0%, transparent 70%); pointer-events: none;
 }
 .contact-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
 .contact-title {
- font-family: 'Cormorant Garamond', Georgia, serif;
- font-size: clamp(2.4rem, 5vw, 3.8rem);
- font-weight: 300; color: #f8f3ea; margin-bottom: 1rem; line-height: 1.15;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 300; color: #f8f3ea; margin-bottom: 1rem; line-height: 1.15;
 }
 .contact-title em { font-style: italic; color: var(--gold-light); }
 .contact-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 3rem; line-height: 1.72; }
@@ -283,29 +273,28 @@ section { padding: 7rem 4rem; }
 .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
 .form-label { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
 .form-input, .form-select, .form-textarea {
- background: rgba(255,255,255,0.05); border: 1px solid var(--border);
- color: #f8f3ea; font-family: inherit; font-size: 0.9rem;
- padding: 0.85rem 1rem; outline: none; transition: border-color 0.3s; width: 100%;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  color: #f8f3ea; font-family: inherit; font-size: 0.9rem;
+  padding: 0.85rem 1rem; outline: none; transition: border-color 0.3s; width: 100%;
 }
 .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
 .form-select { appearance: none; -webkit-appearance: none; cursor: pointer; }
 .form-select option { background: #0d1f0f; }
 .form-textarea { resize: vertical; min-height: 110px; }
 .form-submit {
- font-family: inherit; font-size: 0.72rem; font-weight: 500;
- letter-spacing: 0.18em; text-transform: uppercase;
- color: #0d1f0f; background: var(--gold); border: none;
- padding: 1.1rem 2.5rem; cursor: pointer;
- transition: background 0.3s, transform 0.2s;
- margin-top: 0.5rem; align-self: center; min-width: 200px;
+  font-family: inherit; font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #0d1f0f; background: var(--gold); border: none;
+  padding: 1.1rem 2.5rem; cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem; align-self: center; min-width: 200px;
 }
 .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
 
-/* FOOTER */
 footer {
- background: #070e08; padding: 2.5rem 4rem;
- border-top: 1px solid var(--border);
- display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+  background: #070e08; padding: 2.5rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
 }
 .footer-logo { font-family: 'Cinzel', Georgia, serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
 .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
@@ -313,38 +302,36 @@ footer {
 .footer-links a:hover { color: var(--gold-light); }
 .footer-copy { font-size: 0.68rem; color: rgba(138,158,140,0.4); letter-spacing: 0.05em; }
 
-/* ANIMATIONS */
 @keyframes fadeUp {
- from { opacity: 0; transform: translateY(24px); }
- to  { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* MOBILE */
 @media (max-width: 900px) {
- nav { padding: 1.1rem 1.5rem; }
- .nav-links, .nav-cta { display: none; }
- .hamburger { display: flex; }
- .nav-links.open {
- display: flex; flex-direction: column; position: fixed;
- top: 58px; left: 0; right: 0; background: #132716;
- padding: 2rem 1.5rem; gap: 1.5rem;
- border-bottom: 1px solid var(--border); z-index: 99;
- }
- .hero { padding: 8rem 1.5rem 4rem; }
- .hero-stats { display: none; }
- section { padding: 4.5rem 1.5rem; }
- .divider { padding: 0 1.5rem; }
- .pillars-grid { grid-template-columns: 1fr; }
- .ecosystem-intro { grid-template-columns: 1fr; gap: 2rem; }
- .platforms-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
- .investment-layout { grid-template-columns: 1fr; gap: 3rem; }
- .investment-watermark { display: none; }
- .edu-card { grid-template-columns: 1fr; }
- .edu-visual { min-height: 160px; }
- .form-row { grid-template-columns: 1fr; }
- footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 58px; left: 0; right: 0; background: #132716;
+    padding: 2rem 1.5rem; gap: 1.5rem;
+    border-bottom: 1px solid var(--border); z-index: 99;
+  }
+  .hero { padding: 8rem 1.5rem 4rem; }
+  .hero-stats { display: none; }
+  section { padding: 4.5rem 1.5rem; }
+  .divider { padding: 0 1.5rem; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .ecosystem-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .platforms-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .investment-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .investment-watermark { display: none; }
+  .edu-card { grid-template-columns: 1fr; }
+  .edu-visual { min-height: 160px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
 }
 @media (max-width: 540px) { .platforms-grid { grid-template-columns: 1fr; } }
 </style>
@@ -352,259 +339,259 @@ footer {
 <body>
 
 <nav id="navbar">
- <a href="#" class="logo">Suarez<span> Global</span></a>
- <ul class="nav-links" id="navLinks">
- <li><a href="https://www.suarezglobal.com/about-1">Solutions</a></li>
- <li><a href="https://www.suarezglobal.com/s-projects-side-by-side">Platforms</a></li>
- <li><a href="https://www.suarezglobal.com/services-4-1">Real Estate</a></li>
- <li><a href="https://www.suarezglobal.com/services-4">Partner</a></li>
- <li><a href="https://www.suarezglobal.com/education">Education</a></li>
- </ul>
- <a href="#contact" class="nav-cta">Start Your Journey</a>
- <button class="hamburger" id="hamburger" aria-label="Menu">
- <span></span><span></span><span></span>
- </button>
+  <a href="#" class="logo">Suarez<span> Global</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="https://www.suarezglobal.com/about-1">Solutions</a></li>
+    <li><a href="https://www.suarezglobal.com/s-projects-side-by-side">Platforms</a></li>
+    <li><a href="https://www.suarezglobal.com/services-4-1">Real Estate</a></li>
+    <li><a href="https://www.suarezglobal.com/services-4">Partner</a></li>
+    <li><a href="https://www.suarezglobal.com/education">Education</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Start Your Journey</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <section class="hero">
- <div class="hero-glow"></div>
- <div class="hero-glow2"></div>
- <div class="hero-grid"></div>
- <div class="hero-content">
- <div class="hero-eyebrow">The Suarez Organization</div>
- <h1>Where <em>Capital</em>Meets Conviction.</h1>
- <p class="hero-tagline">Institutional-grade real estate intelligence, proprietary technology, and strategic consulting — built to compound wealth across every market cycle.</p>
- <div class="hero-actions">
- <a href="https://www.suarezglobal.com/services-4" class="btn-primary">Partner With Us</a>
- <a href="https://www.suarezglobal.com/about-1" class="btn-secondary">Explore Solutions</a>
- </div>
- </div>
- <div class="hero-stats">
- <div class="stat"><div class="stat-number">5+</div><div class="stat-label">Proprietary Platforms</div></div>
- <div class="stat"><div class="stat-number">3</div><div class="stat-label">Core Verticals</div></div>
- <div class="stat"><div class="stat-number">360°</div><div class="stat-label">Lifecycle Coverage</div></div>
- </div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">The Suarez Organization</div>
+    <h1>Where <em>Capital</em><br>Meets Conviction.</h1>
+    <p class="hero-tagline">Institutional-grade real estate intelligence, proprietary technology, and strategic consulting — built to compound wealth across every market cycle.</p>
+    <div class="hero-actions">
+      <a href="https://www.suarezglobal.com/services-4" class="btn-primary">Partner With Us</a>
+      <a href="https://www.suarezglobal.com/about-1" class="btn-secondary">Explore Solutions</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-number">5+</div><div class="stat-label">Proprietary Platforms</div></div>
+    <div class="stat"><div class="stat-number">3</div><div class="stat-label">Core Verticals</div></div>
+    <div class="stat"><div class="stat-number">360°</div><div class="stat-label">Lifecycle Coverage</div></div>
+  </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
 <section class="pillars reveal">
- <div class="pillars-header">
- <div class="section-eyebrow">What We Do</div>
- <h2 class="section-title">Three Verticals.<em>One Unified Engine.</em></h2>
- <p class="section-body">We don't pick a lane — we own the infrastructure across real estate, technology, and consulting so our clients never need to look elsewhere.</p>
- </div>
- <div class="pillars-grid">
- <div class="pillar">
- <div class="pillar-bar"></div>
- <div class="pillar-number">01</div>
- <div class="pillar-title">Real Estate</div>
- <p class="pillar-body">Full lifecycle execution — acquisition, management, and disposition — across single family, multifamily, commercial, industrial, manufactured housing, and RV communities.</p>
- <ul class="pillar-features">
- <li>Precision acquisitions & off-market deals</li>
- <li>30-day close capability</li>
- <li>1031 Exchange support</li>
- <li>Portfolio optimization & NOI growth</li>
- </ul>
- </div>
- <div class="pillar">
- <div class="pillar-bar"></div>
- <div class="pillar-number">02</div>
- <div class="pillar-title">Technology & AI</div>
- <p class="pillar-body">Proprietary platforms that turn raw data into actionable intelligence — from underwriting to asset management to market prediction.</p>
- <ul class="pillar-features">
- <li>REAP: AI-powered acquisition protocol</li>
- <li>Altura IQ: real-time portfolio monitoring</li>
- <li>Custom software & AI solutions</li>
- <li>PropTech integration & deployment</li>
- </ul>
- </div>
- <div class="pillar">
- <div class="pillar-bar"></div>
- <div class="pillar-number">03</div>
- <div class="pillar-title">Strategic Consulting</div>
- <p class="pillar-body">Institutional-grade advisory that meets clients wherever they are — scaling portfolios, restructuring operations, or accessing capital markets.</p>
- <ul class="pillar-features">
- <li>Portfolio analysis & optimization</li>
- <li>Capital sourcing & deal structuring</li>
- <li>Private & alternative financing access</li>
- <li>Strategic partnerships & joint ventures</li>
- </ul>
- </div>
- </div>
+  <div class="pillars-header">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title">Three Verticals.<br><em>One Unified Engine.</em></h2>
+    <p class="section-body">We don't pick a lane — we own the infrastructure across real estate, technology, and consulting so our clients never need to look elsewhere.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-bar"></div>
+      <div class="pillar-number">01</div>
+      <div class="pillar-title">Real Estate</div>
+      <p class="pillar-body">Full lifecycle execution — acquisition, management, and disposition — across single family, multifamily, commercial, industrial, manufactured housing, and RV communities.</p>
+      <ul class="pillar-features">
+        <li>Precision acquisitions & off-market deals</li>
+        <li>30-day close capability</li>
+        <li>1031 Exchange support</li>
+        <li>Portfolio optimization & NOI growth</li>
+      </ul>
+    </div>
+    <div class="pillar">
+      <div class="pillar-bar"></div>
+      <div class="pillar-number">02</div>
+      <div class="pillar-title">Technology & AI</div>
+      <p class="pillar-body">Proprietary platforms that turn raw data into actionable intelligence — from underwriting to asset management to market prediction.</p>
+      <ul class="pillar-features">
+        <li>REAP: AI-powered acquisition protocol</li>
+        <li>Altura IQ: real-time portfolio monitoring</li>
+        <li>Custom software & AI solutions</li>
+        <li>PropTech integration & deployment</li>
+      </ul>
+    </div>
+    <div class="pillar">
+      <div class="pillar-bar"></div>
+      <div class="pillar-number">03</div>
+      <div class="pillar-title">Strategic Consulting</div>
+      <p class="pillar-body">Institutional-grade advisory that meets clients wherever they are — scaling portfolios, restructuring operations, or accessing capital markets.</p>
+      <ul class="pillar-features">
+        <li>Portfolio analysis & optimization</li>
+        <li>Capital sourcing & deal structuring</li>
+        <li>Private & alternative financing access</li>
+        <li>Strategic partnerships & joint ventures</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
 <section class="ecosystem reveal">
- <div class="ecosystem-intro">
- <div>
- <div class="section-eyebrow">Our Platforms</div>
- <h2 class="section-title">The Infrastructureof <em>Excellence.</em></h2>
- </div>
- <p class="section-body">We built our own tools because nothing on the market was built for the way we operate. Each platform is a force multiplier — independently powerful, exponentially stronger together.</p>
- </div>
- <div class="platforms-grid">
- <div class="platform-card">
- <div class="platform-name">REAP</div>
- <div class="platform-full">Real Estate Acquisition Protocol</div>
- <p class="platform-desc">Institutional-grade underwriting that eliminates human error. AI-driven market scanning with surgical precision to identify acquisition targets before the market moves.</p>
- </div>
- <div class="platform-card">
- <div class="platform-name">Altura IQ</div>
- <div class="platform-full">Asset Management Intelligence</div>
- <p class="platform-desc">Real-time portfolio monitoring for occupancy, NOI, and operational performance across every asset class in your portfolio.</p>
- </div>
- <div class="platform-card">
- <div class="platform-name">BuildCo</div>
- <div class="platform-full">Precision Construction & Development</div>
- <p class="platform-desc">In-house infrastructure and renovation management. Stabilizing assets to The Suarez Standard within 90 days of acquisition.</p>
- </div>
- <div class="platform-card">
- <div class="platform-name">EquityPath</div>
- <div class="platform-full">The Financial Roadmap</div>
- <p class="platform-desc">Aligning investor goals with tax-advantaged compounding growth through Freedom Launch and structured capital deployment strategies.</p>
- </div>
- </div>
+  <div class="ecosystem-intro">
+    <div>
+      <div class="section-eyebrow">Our Platforms</div>
+      <h2 class="section-title">The Infrastructure<br>of <em>Excellence.</em></h2>
+    </div>
+    <p class="section-body">We built our own tools because nothing on the market was built for the way we operate. Each platform is a force multiplier — independently powerful, exponentially stronger together.</p>
+  </div>
+  <div class="platforms-grid">
+    <div class="platform-card">
+      <div class="platform-name">REAP</div>
+      <div class="platform-full">Real Estate Acquisition Protocol</div>
+      <p class="platform-desc">Institutional-grade underwriting that eliminates human error. AI-driven market scanning with surgical precision to identify acquisition targets before the market moves.</p>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">Altura IQ</div>
+      <div class="platform-full">Asset Management Intelligence</div>
+      <p class="platform-desc">Real-time portfolio monitoring for occupancy, NOI, and operational performance across every asset class in your portfolio.</p>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">BuildCo</div>
+      <div class="platform-full">Precision Construction & Development</div>
+      <p class="platform-desc">In-house infrastructure and renovation management. Stabilizing assets to The Suarez Standard within 90 days of acquisition.</p>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">EquityPath</div>
+      <div class="platform-full">The Financial Roadmap</div>
+      <p class="platform-desc">Aligning investor goals with tax-advantaged compounding growth through Freedom Launch and structured capital deployment strategies.</p>
+    </div>
+  </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
 <section class="investment reveal">
- <div class="investment-watermark">INVEST</div>
- <div class="investment-layout">
- <div>
- <div class="section-eyebrow">Partnership</div>
- <h2 class="section-title">Legacy Wealth.<em>Institutional</em> Precision.</h2>
- <p class="section-body" style="margin-top:1.2rem;">We combine decades of operational expertise with proprietary AI to generate alpha while preserving capital. Our focus on the "Hidden Middle" — manufactured housing and RV communities — delivers recession-resilient returns most institutional players overlook.</p>
- </div>
- <div class="pathways">
- <div class="pathway">
- <div class="pathway-title">Equity Partnerships (LPs)</div>
- <p class="pathway-desc">Passive income for accredited investors seeking exposure to specialized, recession-resilient real estate with professional management.</p>
- </div>
- <div class="pathway">
- <div class="pathway-title">Strategic Joint Ventures</div>
- <p class="pathway-desc">We bring the data, systems, and expertise — you bring the capital or the deal. Built for institutional partners who want a specialized operator.</p>
- </div>
- <div class="pathway">
- <div class="pathway-title">The Suarez Debt Fund</div>
- <p class="pathway-desc">Fixed returns secured by physical assets. A structured approach to private lending with the downside protection of real property.</p>
- </div>
- <a href="https://www.suarezglobal.com/services-4" class="btn-primary" style="margin-top:0.5rem;">Explore Partnership Options</a>
- </div>
- </div>
+  <div class="investment-watermark">INVEST</div>
+  <div class="investment-layout">
+    <div>
+      <div class="section-eyebrow">Partnership</div>
+      <h2 class="section-title">Legacy Wealth.<br><em>Institutional</em> Precision.</h2>
+      <p class="section-body" style="margin-top:1.2rem;">We combine decades of operational expertise with proprietary AI to generate alpha while preserving capital. Our focus on the "Hidden Middle" — manufactured housing and RV communities — delivers recession-resilient returns most institutional players overlook.</p>
+    </div>
+    <div class="pathways">
+      <div class="pathway">
+        <div class="pathway-title">Equity Partnerships (LPs)</div>
+        <p class="pathway-desc">Passive income for accredited investors seeking exposure to specialized, recession-resilient real estate with professional management.</p>
+      </div>
+      <div class="pathway">
+        <div class="pathway-title">Strategic Joint Ventures</div>
+        <p class="pathway-desc">We bring the data, systems, and expertise — you bring the capital or the deal. Built for institutional partners who want a specialized operator.</p>
+      </div>
+      <div class="pathway">
+        <div class="pathway-title">The Suarez Debt Fund</div>
+        <p class="pathway-desc">Fixed returns secured by physical assets. A structured approach to private lending with the downside protection of real property.</p>
+      </div>
+      <a href="https://www.suarezglobal.com/services-4" class="btn-primary" style="margin-top:0.5rem;">Explore Partnership Options</a>
+    </div>
+  </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
 <section class="education reveal">
- <div class="edu-wrapper">
- <div class="section-eyebrow" style="justify-content:center;">Education</div>
- <h2 class="section-title">Learn The <em>Operator's</em> Playbook.</h2>
- <p class="section-body" style="margin:0 auto;">The same AI frameworks and acquisition systems we use internally — now available to serious operators ready to level up.</p>
- </div>
- <div class="edu-card">
- <div class="edu-content">
- <span class="edu-badge">Featured Course</span>
- <h3 class="edu-title">AI In Real Estate: The Operator Playbook</h3>
- <p class="edu-body">Master the tools, systems, and frameworks that institutional operators use to find deals faster, underwrite smarter, and scale without chaos.</p>
- <a href="https://www.suarezglobal.com/challenge-page/ai-in-business?programId=2909ce9d-85a7-474e-84ca-e61ed46bf925" class="btn-primary" style="align-self:flex-start;">Get Access Now</a>
- </div>
- <div class="edu-visual">
- <div class="edu-visual-grid"></div>
- <div class="edu-price">$1,000<span class="edu-price-label">Full Program Access</span></div>
- </div>
- </div>
+  <div class="edu-wrapper">
+    <div class="section-eyebrow" style="justify-content:center;">Education</div>
+    <h2 class="section-title">Learn The <em>Operator's</em> Playbook.</h2>
+    <p class="section-body" style="margin:0 auto;">The same AI frameworks and acquisition systems we use internally — now available to serious operators ready to level up.</p>
+  </div>
+  <div class="edu-card">
+    <div class="edu-content">
+      <span class="edu-badge">Featured Course</span>
+      <h3 class="edu-title">AI In Real Estate: The Operator Playbook</h3>
+      <p class="edu-body">Master the tools, systems, and frameworks that institutional operators use to find deals faster, underwrite smarter, and scale without chaos.</p>
+      <a href="https://www.suarezglobal.com/challenge-page/ai-in-business?programId=2909ce9d-85a7-474e-84ca-e61ed46bf925" class="btn-primary" style="align-self:flex-start;">Get Access Now</a>
+    </div>
+    <div class="edu-visual">
+      <div class="edu-visual-grid"></div>
+      <div class="edu-price">$1,000<span class="edu-price-label">Full Program Access</span></div>
+    </div>
+  </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
 <section class="contact reveal" id="contact">
- <div class="contact-glow"></div>
- <div class="contact-inner">
- <div class="section-eyebrow" style="justify-content:center;">Start Your Journey</div>
- <h2 class="contact-title">Ready to <em>Move</em>With Conviction?</h2>
- <p class="contact-sub">Tell us where you are and where you want to go. We'll show you exactly how to get there.</p>
- <form class="contact-form" id="contactForm">
- <div class="form-row">
- <div class="form-field">
- <label class="form-label">First Name</label>
- <input class="form-input" type="text" placeholder="John" required>
- </div>
- <div class="form-field">
- <label class="form-label">Last Name</label>
- <input class="form-input" type="text" placeholder="Smith" required>
- </div>
- </div>
- <div class="form-field">
- <label class="form-label">Email Address</label>
- <input class="form-input" type="email" placeholder="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b414443456b4844465b4a455205484446">[email protected]</a>" required>
- </div>
- <div class="form-field">
- <label class="form-label">I'm interested in</label>
- <select class="form-select">
- <option value="">Select an area...</option>
- <option>Real Estate — Buy / Sell / Invest</option>
- <option>Partnership / Capital Investment</option>
- <option>Technology & AI Solutions</option>
- <option>Strategic Consulting</option>
- <option>Education & Courses</option>
- <option>Multiple Areas</option>
- </select>
- </div>
- <div class="form-field">
- <label class="form-label">Tell us about your goals</label>
- <textarea class="form-textarea" placeholder="Where are you now, and where do you want to go?"></textarea>
- </div>
- <button type="submit" class="form-submit" id="submitBtn">Submit Inquiry</button>
- </form>
- </div>
+  <div class="contact-glow"></div>
+  <div class="contact-inner">
+    <div class="section-eyebrow" style="justify-content:center;">Start Your Journey</div>
+    <h2 class="contact-title">Ready to <em>Move</em><br>With Conviction?</h2>
+    <p class="contact-sub">Tell us where you are and where you want to go. We'll show you exactly how to get there.</p>
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" placeholder="John" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="john@company.com" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">I'm interested in</label>
+        <select class="form-select">
+          <option value="">Select an area...</option>
+          <option>Real Estate — Buy / Sell / Invest</option>
+          <option>Partnership / Capital Investment</option>
+          <option>Technology & AI Solutions</option>
+          <option>Strategic Consulting</option>
+          <option>Education & Courses</option>
+          <option>Multiple Areas</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Tell us about your goals</label>
+        <textarea class="form-textarea" placeholder="Where are you now, and where do you want to go?"></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="submitBtn">Submit Inquiry</button>
+    </form>
+  </div>
 </section>
 
 <footer>
- <div class="footer-logo">Suarez Global</div>
- <ul class="footer-links">
- <li><a href="https://www.suarezglobal.com/about-1">Solutions</a></li>
- <li><a href="https://www.suarezglobal.com/s-projects-side-by-side">Platforms</a></li>
- <li><a href="https://www.suarezglobal.com/services-4-1">Real Estate</a></li>
- <li><a href="https://www.suarezglobal.com/services-4">Partner</a></li>
- <li><a href="https://www.suarezglobal.com/education">Education</a></li>
- <li><a href="https://www.suarezglobal.com/shop">Marketplace</a></li>
- </ul>
- <div class="footer-copy">© 2026 Suarez Global, Inc. All rights reserved.</div>
+  <div class="footer-logo">Suarez Global</div>
+  <ul class="footer-links">
+    <li><a href="https://www.suarezglobal.com/about-1">Solutions</a></li>
+    <li><a href="https://www.suarezglobal.com/s-projects-side-by-side">Platforms</a></li>
+    <li><a href="https://www.suarezglobal.com/services-4-1">Real Estate</a></li>
+    <li><a href="https://www.suarezglobal.com/services-4">Partner</a></li>
+    <li><a href="https://www.suarezglobal.com/education">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/shop">Marketplace</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Suarez Global, Inc. All rights reserved.</div>
 </footer>
 
 <script>
- const reveals = document.querySelectorAll('.reveal');
- const io = new IntersectionObserver((entries) => {
- entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
- }, { threshold: 0.07 });
- reveals.forEach(el => io.observe(el));
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => io.observe(el));
 
- document.getElementById('hamburger').addEventListener('click', () => {
- document.getElementById('navLinks').classList.toggle('open');
- });
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
 
- window.addEventListener('scroll', () => {
- const nav = document.getElementById('navbar');
- nav.style.padding = window.scrollY > 60
- ? (window.innerWidth > 900 ? '0.85rem 4rem' : '0.85rem 1.5rem')
- : (window.innerWidth > 900 ? '1.4rem 4rem' : '1.1rem 1.5rem');
- });
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60
+      ? (window.innerWidth > 900 ? '0.85rem 4rem' : '0.85rem 1.5rem')
+      : (window.innerWidth > 900 ? '1.4rem 4rem' : '1.1rem 1.5rem');
+  });
 
- document.getElementById('contactForm').addEventListener('submit', function(e) {
- e.preventDefault();
- const btn = document.getElementById('submitBtn');
- btn.textContent = 'Message Sent ✓';
- btn.style.background = '#2d6b35';
- btn.style.color = '#f8f3ea';
- setTimeout(() => {
- btn.textContent = 'Submit Inquiry';
- btn.style.background = '';
- btn.style.color = '';
- this.reset();
- }, 3500);
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#2d6b35';
+    btn.style.color = '#f8f3ea';
+    setTimeout(() => {
+      btn.textContent = 'Submit Inquiry';
+      btn.style.background = '';
+      btn.style.color = '';
+      this.reset();
+    }, 3500);
   });
 </script>
 </body>
