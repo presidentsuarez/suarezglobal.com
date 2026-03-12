@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education — Suarez Global</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --green-deep: #0d1f0f;
+  --green-dark: #132716;
+  --green-mid: #1a3a1e;
+  --green-rich: #1f4d24;
+  --green-accent: #2d6b35;
+  --green-bright: #3d8b47;
+  --gold: #c9a84c;
+  --gold-light: #e2c97e;
+  --gold-pale: #f5e6c0;
+  --cream: #f8f3ea;
+  --text-muted: #8a9e8c;
+  --border: rgba(201, 168, 76, 0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', Georgia, sans-serif;
+  background-color: #0d1f0f;
+  color: #f8f3ea;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 4rem;
+  background: rgba(13,31,15,0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+.logo {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.22em; color: var(--gold);
+  text-decoration: none; text-transform: uppercase;
+}
+.logo span { color: #f8f3ea; opacity: 0.7; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-muted);
+  text-decoration: none; transition: color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-cta {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #0d1f0f; background: var(--gold);
+  padding: 0.65rem 1.6rem; text-decoration: none; transition: background 0.3s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
+
+/* ── HERO ── */
+.edu-hero {
+  min-height: 60vh;
+  display: flex; align-items: flex-end;
+  position: relative; overflow: hidden;
+  padding: 10rem 4rem 5rem;
+  background: linear-gradient(160deg, #0d1f0f 0%, #0a1a0c 60%, #080f09 100%);
+}
+.hero-glow {
+  position: absolute; right: 5%; top: 15%;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; left: -5%; bottom: 0%;
+  width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+.hero-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.36em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+.edu-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  font-weight: 300; line-height: 1.06; color: #f8f3ea;
+  margin-bottom: 1.4rem;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+.edu-hero h1 em { font-style: italic; color: var(--gold-light); }
+.edu-hero-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 300; font-style: italic; color: var(--text-muted);
+  max-width: 580px; line-height: 1.65;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+/* ── SHARED ── */
+.divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 4rem; }
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-mark { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+section { padding: 7rem 4rem; }
+.section-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 300; line-height: 1.15; color: #f8f3ea; margin-bottom: 1.2rem;
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+.section-body { font-size: 0.95rem; line-height: 1.78; color: var(--text-muted); max-width: 520px; }
+
+.btn-primary {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #0d1f0f; background: var(--gold);
+  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.28); }
+.btn-secondary {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f8f3ea; border: 1px solid var(--border);
+  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+/* ── FEATURED COURSE ── */
+.featured { background: #132716; position: relative; overflow: hidden; }
+.featured-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); max-width: 1100px;
+  margin-top: 4rem;
+}
+.featured-content {
+  background: #132716; padding: 4rem 3.5rem;
+  display: flex; flex-direction: column; gap: 1.6rem;
+}
+.featured-badge {
+  font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem; display: inline-block; width: fit-content;
+}
+.featured-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400;
+  color: #f8f3ea; line-height: 1.2;
+}
+.featured-body { font-size: 0.9rem; color: var(--text-muted); line-height: 1.78; }
+.featured-meta { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.4rem; }
+.featured-meta-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.04em;
+}
+.featured-meta-item::before {
+  content: ''; display: block; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+.featured-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.featured-visual {
+  background: linear-gradient(135deg, #1f4d24 0%, #2d6b35 60%, #1a3a1e 100%);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 420px; position: relative; overflow: hidden;
+}
+.featured-visual-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,168,76,0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.featured-price-block { position: relative; z-index: 1; text-align: center; }
+.featured-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 5rem; font-weight: 300; color: var(--gold-pale); line-height: 1;
+}
+.featured-price-label {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,230,192,0.5); display: block; margin-top: 0.5rem;
+}
+.featured-price-sub {
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(245,230,192,0.35); display: block; margin-top: 0.3rem;
+}
+
+/* ── WHAT YOU LEARN ── */
+.curriculum { background: #0d1f0f; }
+.curriculum-header { max-width: 600px; margin-bottom: 4rem; }
+.modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.module {
+  background: #0d1f0f; padding: 2.5rem 2rem;
+  position: relative; transition: background 0.4s; overflow: hidden;
+}
+.module-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.module:hover { background: #132716; }
+.module:hover .module-bar { transform: scaleX(1); }
+.module-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.5rem; font-weight: 300; color: rgba(201,168,76,0.12);
+  line-height: 1; margin-bottom: 1rem; transition: color 0.4s;
+}
+.module:hover .module-number { color: rgba(201,168,76,0.22); }
+.module-title {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.75rem; letter-spacing: 0.14em; color: var(--gold-light);
+  margin-bottom: 0.9rem; text-transform: uppercase;
+}
+.module-body { font-size: 0.87rem; line-height: 1.72; color: var(--text-muted); }
+.module-points { margin-top: 1.2rem; list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.module-points li { font-size: 0.77rem; color: var(--text-muted); padding-left: 1.2rem; position: relative; letter-spacing: 0.04em; }
+.module-points li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; }
+
+/* ── WHO IT'S FOR ── */
+.audience { background: #1a3a1e; position: relative; overflow: hidden; }
+.audience-watermark {
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Cinzel', Georgia, serif; font-size: 13rem; font-weight: 700;
+  color: rgba(255,255,255,0.025); letter-spacing: 0.1em;
+  pointer-events: none; white-space: nowrap; user-select: none;
+}
+.audience-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 1; }
+.profiles { display: flex; flex-direction: column; gap: 1.2rem; }
+.profile {
+  border-left: 2px solid var(--border); padding: 1.4rem 2rem;
+  transition: border-color 0.3s, background 0.3s; cursor: default;
+}
+.profile:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.profile-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.78rem;
+  letter-spacing: 0.12em; color: var(--gold-light); margin-bottom: 0.5rem; text-transform: uppercase;
+}
+.profile-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.68; }
+
+/* ── INSTRUCTOR ── */
+.instructor { background: #132716; }
+.instructor-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center; }
+.instructor-visual {
+  border: 1px solid var(--border); aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #1a3a1e 0%, #2d6b35 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.instructor-visual-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,168,76,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.instructor-initials {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 5rem; font-weight: 700; color: rgba(201,168,76,0.25);
+  position: relative; z-index: 1; letter-spacing: 0.1em;
+}
+.instructor-content { display: flex; flex-direction: column; gap: 1.4rem; }
+.instructor-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: #f8f3ea;
+}
+.instructor-name em { font-style: italic; color: var(--gold-light); }
+.instructor-title-tag {
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 0.8rem;
+}
+.instructor-title-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+.instructor-bio { font-size: 0.93rem; line-height: 1.8; color: var(--text-muted); }
+.instructor-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 0.5rem; }
+.i-stat { border-right: 1px solid var(--border); padding-right: 1.4rem; }
+.i-stat:last-child { border-right: none; }
+.i-stat-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem; font-weight: 300; color: var(--gold-light); line-height: 1;
+}
+.i-stat-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+
+/* ── CTA ── */
+.edu-cta { background: #0d1f0f; text-align: center; position: relative; overflow: hidden; }
+.cta-glow {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.cta-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 300; color: #f8f3ea; margin-bottom: 1rem; line-height: 1.15;
+}
+.cta-title em { font-style: italic; color: var(--gold-light); }
+.cta-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.72; }
+.cta-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+.cta-guarantee {
+  margin-top: 2rem; font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+}
+.cta-guarantee::before, .cta-guarantee::after {
+  content: ''; display: block; width: 30px; height: 1px; background: var(--border);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #070e08; padding: 2.5rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo { font-family: 'Cinzel', Georgia, serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
+.footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-copy { font-size: 0.68rem; color: rgba(138,158,140,0.4); letter-spacing: 0.05em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 58px; left: 0; right: 0; background: #132716;
+    padding: 2rem 1.5rem; gap: 1.5rem;
+    border-bottom: 1px solid var(--border); z-index: 99;
+  }
+  .edu-hero { padding: 8rem 1.5rem 4rem; }
+  section { padding: 4.5rem 1.5rem; }
+  .divider { padding: 0 1.5rem; }
+  .featured-layout { grid-template-columns: 1fr; }
+  .featured-visual { min-height: 200px; }
+  .modules-grid { grid-template-columns: 1fr; }
+  .audience-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .audience-watermark { display: none; }
+  .instructor-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .instructor-visual { max-width: 280px; }
+  .instructor-stats { grid-template-columns: repeat(3, 1fr); }
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+}
+@media (max-width: 640px) {
+  .modules-grid { grid-template-columns: 1fr; }
+  .instructor-stats { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="logo">Suarez<span> Global</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="https://www.suarezglobal.com/services-4">Invest</a></li>
+    <li><a href="/buyer-process.html">Buy or Sell</a></li>
+    <li><a href="https://www.suarezglobal.com/s-projects-side-by-side">Technology</a></li>
+    <li><a href="/education.html" class="active">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/about-1">About</a></li>
+  </ul>
+  <a href="/#contact" class="nav-cta">Work With Us</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="edu-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Education & Training</div>
+    <h1>Learn The<br><em>Operator's</em> Playbook.</h1>
+    <p class="edu-hero-sub">The same AI frameworks, underwriting systems, and acquisition strategies we use internally — taught by the people who built them.</p>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- FEATURED COURSE -->
+<section class="featured reveal">
+  <div class="section-eyebrow">Featured Course</div>
+  <h2 class="section-title">AI In Real Estate:<br><em>The Operator Playbook</em></h2>
+  <div class="featured-layout">
+    <div class="featured-content">
+      <span class="featured-badge">Now Enrolling</span>
+      <h3 class="featured-title">Master the tools institutional operators use to find deals faster, underwrite smarter, and scale without chaos.</h3>
+      <p class="featured-body">This isn't theory. Every framework, every system, and every AI tool in this program is pulled directly from how Suarez Global operates across its portfolio — REAP, deal underwriting, asset management, and capital deployment. You're getting the actual playbook.</p>
+      <div class="featured-meta">
+        <div class="featured-meta-item">Self-paced — access on your schedule</div>
+        <div class="featured-meta-item">Full lifetime access upon enrollment</div>
+        <div class="featured-meta-item">Includes REAP platform walkthrough</div>
+        <div class="featured-meta-item">Direct application to live deals</div>
+      </div>
+      <div class="featured-actions">
+        <a href="https://www.suarezglobal.com/challenge-page/ai-in-business?programId=2909ce9d-85a7-474e-84ca-e61ed46bf925" class="btn-primary">Get Access Now — $1,000</a>
+        <a href="#curriculum" class="btn-secondary">See What's Inside</a>
+      </div>
+    </div>
+    <div class="featured-visual">
+      <div class="featured-visual-grid"></div>
+      <div class="featured-price-block">
+        <div class="featured-price">$1,000</div>
+        <span class="featured-price-label">Full Program Access</span>
+        <span class="featured-price-sub">One-time investment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- CURRICULUM -->
+<section class="curriculum reveal" id="curriculum">
+  <div class="curriculum-header">
+    <div class="section-eyebrow">What's Inside</div>
+    <h2 class="section-title">Six Modules.<br><em>One Complete System.</em></h2>
+    <p class="section-body">Each module builds on the last — from finding deals to underwriting them, managing them, and eventually scaling the operation.</p>
+  </div>
+  <div class="modules-grid">
+    <div class="module">
+      <div class="module-bar"></div>
+      <div class="module-number">01</div>
+      <div class="module-title">The Operator Mindset</div>
+      <p class="module-body">How institutional operators think differently from retail investors — and the mental models that separate people who scale from people who stall.</p>
+      <ul class="module-points">
+        <li>The asset vs. income distinction</li>
+        <li>Portfolio thinking from day one</li>
+        <li>How AI changes the operator's edge</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="module-bar"></div>
+      <div class="module-number">02</div>
+      <div class="module-title">AI-Powered Deal Finding</div>
+      <p class="module-body">Using AI tools to surface off-market deals, identify distressed assets, and move before the market. The exact stack we use internally.</p>
+      <ul class="module-points">
+        <li>Market scanning with AI automation</li>
+        <li>Off-market outreach systems</li>
+        <li>Deal sourcing pipelines that scale</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="module-bar"></div>
+      <div class="module-number">03</div>
+      <div class="module-title">Underwriting With REAP</div>
+      <p class="module-body">A full walkthrough of the REAP platform — how to input deal data, read the outputs, and make acquisition decisions with confidence.</p>
+      <ul class="module-points">
+        <li>Purchase price & financing inputs</li>
+        <li>Reading return metrics & risk flags</li>
+        <li>Hold vs. sell decision framework</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="module-bar"></div>
+      <div class="module-number">04</div>
+      <div class="module-title">Capital & Deal Structure</div>
+      <p class="module-body">How to structure deals so investors say yes — LP agreements, joint ventures, debt structures, and how to position a deal to raise capital faster.</p>
+      <ul class="module-points">
+        <li>LP vs. JV structures explained</li>
+        <li>Investor communication templates</li>
+        <li>Private capital sourcing playbook</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="module-bar"></div>
+      <div class="module-number">05</div>
+      <div class="module-title">Asset Management & Operations</div>
+      <p class="module-body">Taking a property from acquisition close to performing asset — leasing, revenue management, and tracking actual performance against underwriting.</p>
+      <ul class="module-points">
+        <li>Tenant placement & screening</li>
+        <li>Revenue management systems</li>
+        <li>NOI optimization strategies</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="module-bar"></div>
+      <div class="module-number">06</div>
+      <div class="module-title">Scaling the Portfolio</div>
+      <p class="module-body">Building the infrastructure to grow — systems, team, technology stack, and the flywheel mechanics that make each deal easier than the last.</p>
+      <ul class="module-points">
+        <li>Building your operating stack</li>
+        <li>When and how to bring on a team</li>
+        <li>Compounding track record into capital</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- WHO IT'S FOR -->
+<section class="audience reveal">
+  <div class="audience-watermark">OPERATOR</div>
+  <div class="audience-layout">
+    <div>
+      <div class="section-eyebrow">Who It's For</div>
+      <h2 class="section-title">Built for<br><em>Serious Operators.</em></h2>
+      <p class="section-body" style="margin-top:1.2rem;">This program isn't for beginners looking to buy their first home. It's for people who are already moving — and want to move faster, smarter, and at a bigger scale.</p>
+    </div>
+    <div class="profiles">
+      <div class="profile">
+        <div class="profile-title">Active Real Estate Investors</div>
+        <p class="profile-desc">You're doing deals but underwriting by feel. REAP and the AI stack will give you the analytical rigor to make better decisions faster — and stop leaving returns on the table.</p>
+      </div>
+      <div class="profile">
+        <div class="profile-title">Licensed Agents & Brokers</div>
+        <p class="profile-desc">You're on the transaction side and want to understand the investor's lens. This program gives you the language, the tools, and the credibility to serve investor clients at a higher level.</p>
+      </div>
+      <div class="profile">
+        <div class="profile-title">Capital Allocators & LPs</div>
+        <p class="profile-desc">You're deploying capital into deals but don't have full visibility into how operators are underwriting and managing. This closes that gap and makes you a more informed partner.</p>
+      </div>
+      <div class="profile">
+        <div class="profile-title">Operators Ready to Scale</div>
+        <p class="profile-desc">You have a portfolio but no system. This program gives you the infrastructure — technology, processes, and capital strategy — to grow without the chaos that kills most operators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- INSTRUCTOR -->
+<section class="instructor reveal">
+  <div class="instructor-layout">
+    <div class="instructor-visual">
+      <div class="instructor-visual-grid"></div>
+      <div class="instructor-initials">JS</div>
+    </div>
+    <div class="instructor-content">
+      <div class="instructor-title-tag">Your Instructor</div>
+      <h2 class="instructor-name">Javier<br><em>Suarez</em></h2>
+      <p class="instructor-bio">Javier Suarez is the founder of Suarez Global Ventures — a multi-entity real estate and technology ecosystem that spans acquisitions, brokerage, operations, and proprietary SaaS. He built REAP because nothing on the market was built for how serious operators actually work. What you learn in this program is what he uses every day across every deal.</p>
+      <div class="instructor-stats">
+        <div class="i-stat">
+          <div class="i-stat-number">5+</div>
+          <div class="i-stat-label">Operating Entities</div>
+        </div>
+        <div class="i-stat">
+          <div class="i-stat-number">360°</div>
+          <div class="i-stat-label">Lifecycle Coverage</div>
+        </div>
+        <div class="i-stat">
+          <div class="i-stat-number">1</div>
+          <div class="i-stat-label">Unified System</div>
+        </div>
+      </div>
+      <a href="https://www.suarezglobal.com/challenge-page/ai-in-business?programId=2909ce9d-85a7-474e-84ca-e61ed46bf925" class="btn-primary" style="margin-top:0.5rem;">Enroll Now</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- CTA -->
+<section class="edu-cta reveal">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="section-eyebrow" style="justify-content:center;">Ready to Level Up</div>
+    <h2 class="cta-title">Stop Guessing.<br><em>Start Operating.</em></h2>
+    <p class="cta-sub">One program. Six modules. The exact playbook Suarez Global runs on — now available to serious operators ready to build at scale.</p>
+    <div class="cta-actions">
+      <a href="https://www.suarezglobal.com/challenge-page/ai-in-business?programId=2909ce9d-85a7-474e-84ca-e61ed46bf925" class="btn-primary">Get Access Now — $1,000</a>
+      <a href="/#contact" class="btn-secondary">Talk to Us First</a>
+    </div>
+    <div class="cta-guarantee">Full Program Access — Lifetime Availability</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Suarez Global</div>
+  <ul class="footer-links">
+    <li><a href="https://www.suarezglobal.com/services-4">Invest</a></li>
+    <li><a href="/buyer-process.html">Buy or Sell</a></li>
+    <li><a href="https://www.suarezglobal.com/s-projects-side-by-side">Technology</a></li>
+    <li><a href="/education.html">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/about-1">About</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Suarez Global, Inc. All rights reserved.</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => io.observe(el));
+
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60
+      ? (window.innerWidth > 900 ? '0.85rem 4rem' : '0.85rem 1.5rem')
+      : (window.innerWidth > 900 ? '1.4rem 4rem' : '1.1rem 1.5rem');
+  });
+</script>
+</body>
+</html>
