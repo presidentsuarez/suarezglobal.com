@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invest — Suarez Global</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --green-deep: #0d1f0f;
+  --green-dark: #132716;
+  --green-mid: #1a3a1e;
+  --green-rich: #1f4d24;
+  --green-accent: #2d6b35;
+  --green-bright: #3d8b47;
+  --gold: #c9a84c;
+  --gold-light: #e2c97e;
+  --gold-pale: #f5e6c0;
+  --cream: #f8f3ea;
+  --text-muted: #8a9e8c;
+  --border: rgba(201, 168, 76, 0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', Georgia, sans-serif;
+  background-color: #0d1f0f;
+  color: #f8f3ea;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 4rem;
+  background: rgba(13,31,15,0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+.logo {
+  font-family: 'Cinzel', Georgia, serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.22em; color: var(--gold); text-decoration: none; text-transform: uppercase;
+}
+.logo span { color: #f8f3ea; opacity: 0.7; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-cta {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #0d1f0f; background: var(--gold);
+  padding: 0.65rem 1.6rem; text-decoration: none; transition: background 0.3s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
+
+/* ── HERO ── */
+.invest-hero {
+  min-height: 70vh; display: flex; align-items: flex-end;
+  position: relative; overflow: hidden; padding: 10rem 4rem 5rem;
+  background: linear-gradient(160deg, #0d1f0f 0%, #0a1a0c 60%, #080f09 100%);
+}
+.hero-glow {
+  position: absolute; right: 5%; top: 10%;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.22) 0%, transparent 65%); pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; left: -5%; bottom: 0%;
+  width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%); pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+.hero-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.36em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem; animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+.invest-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.8rem); font-weight: 300; line-height: 1.06; color: #f8f3ea;
+  margin-bottom: 1.4rem; animation: fadeUp 0.8s 0.15s ease both;
+}
+.invest-hero h1 em { font-style: italic; color: var(--gold-light); }
+.invest-hero-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 300; font-style: italic;
+  color: var(--text-muted); max-width: 620px; line-height: 1.65;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.hero-stats {
+  display: flex; gap: 3.5rem; margin-top: 3.5rem;
+  animation: fadeUp 0.8s 0.45s ease both; flex-wrap: wrap;
+}
+.h-stat { border-left: 2px solid var(--gold); padding-left: 1.2rem; }
+.h-stat-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem; font-weight: 300; color: var(--gold-light); line-height: 1;
+}
+.h-stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+
+/* ── SHARED ── */
+.divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 4rem; }
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-mark { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+section { padding: 7rem 4rem; }
+.section-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 300; line-height: 1.15; color: #f8f3ea; margin-bottom: 1.2rem;
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+.section-body { font-size: 0.95rem; line-height: 1.78; color: var(--text-muted); max-width: 520px; }
+.btn-primary {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #0d1f0f; background: var(--gold); padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.28); }
+.btn-secondary {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f8f3ea; border: 1px solid var(--border); padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+/* ── ASSET CLASSES ── */
+.asset-classes { background: #132716; }
+.asset-intro { max-width: 680px; margin-bottom: 5rem; }
+.asset-block { margin-bottom: 5rem; }
+.asset-block:last-child { margin-bottom: 0; }
+.asset-block-header {
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border);
+}
+.asset-block-tag {
+  font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--green-bright); border: 1px solid rgba(61,139,71,0.35); padding: 0.35rem 0.8rem; flex-shrink: 0;
+}
+.asset-block-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 1rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase;
+}
+.asset-block-sub {
+  font-size: 1rem; color: var(--text-muted); margin-left: auto;
+  font-style: italic; font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.asset-types-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 1.5rem;
+}
+.asset-type {
+  background: #132716; padding: 1.8rem 1.6rem;
+  position: relative; transition: background 0.3s; overflow: hidden;
+}
+.asset-type-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.asset-type:hover { background: #1a3a1e; }
+.asset-type:hover .asset-type-bar { transform: scaleX(1); }
+.asset-type-name {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; letter-spacing: 0.12em;
+  color: var(--gold-light); margin-bottom: 0.6rem; text-transform: uppercase;
+}
+.asset-type-desc { font-size: 0.82rem; line-height: 1.65; color: var(--text-muted); }
+.asset-development {
+  border: 1px solid var(--border); background: rgba(201,168,76,0.04); padding: 2rem 2.5rem;
+  display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start;
+}
+.asset-dev-label {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.65rem; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase; border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem; white-space: nowrap; height: fit-content; margin-top: 0.15rem;
+}
+.asset-dev-content { display: flex; flex-direction: column; gap: 0.5rem; }
+.asset-dev-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.78rem; letter-spacing: 0.1em; color: #f8f3ea; text-transform: uppercase;
+}
+.asset-dev-body { font-size: 0.86rem; color: var(--text-muted); line-height: 1.68; }
+
+/* ── RENTAL STRATEGIES ── */
+.rental-strategies { background: #0d1f0f; }
+.rental-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.rental-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+.rental-card {
+  border-left: 2px solid var(--border); padding: 1.4rem 2rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.rental-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.rental-card-tag {
+  display: inline-block; font-size: 0.57rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--green-bright);
+  border: 1px solid rgba(61,139,71,0.3); padding: 0.25rem 0.6rem; margin-bottom: 0.6rem;
+}
+.rental-card-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.75rem;
+  letter-spacing: 0.14em; color: var(--gold-light); margin-bottom: 0.5rem; text-transform: uppercase;
+}
+.rental-card-body { font-size: 0.87rem; color: var(--text-muted); line-height: 1.68; }
+
+/* ── PATHWAYS ── */
+.pathways-section { background: #1a3a1e; position: relative; overflow: hidden; }
+.pathways-watermark {
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Cinzel', Georgia, serif; font-size: 13rem; font-weight: 700;
+  color: rgba(255,255,255,0.025); letter-spacing: 0.1em; pointer-events: none; white-space: nowrap; user-select: none;
+}
+.pathways-header { max-width: 600px; margin-bottom: 4rem; }
+.pathways-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border); position: relative; z-index: 1;
+}
+.pathway-card {
+  background: #1a3a1e; padding: 3rem 2.5rem;
+  position: relative; transition: background 0.4s; overflow: hidden;
+}
+.pathway-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.pathway-card:hover { background: #1f4d24; }
+.pathway-card:hover .pathway-bar { transform: scaleX(1); }
+.pathway-number {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 4rem; font-weight: 300;
+  color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 1.2rem;
+}
+.pathway-name {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.8rem; letter-spacing: 0.14em;
+  color: var(--gold-light); margin-bottom: 0.4rem; text-transform: uppercase;
+}
+.pathway-type { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green-bright); margin-bottom: 1rem; }
+.pathway-body { font-size: 0.87rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 1.4rem; }
+.pathway-details { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.pathway-details li { font-size: 0.77rem; color: var(--text-muted); padding-left: 1.2rem; position: relative; letter-spacing: 0.04em; }
+.pathway-details li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; }
+
+/* ── FLYWHEEL ── */
+.flywheel { background: #132716; }
+.flywheel-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.loop-diagram { border: 1px solid var(--border); padding: 3rem; background: #0d1f0f; display: flex; flex-direction: column; }
+.loop-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.68rem; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border);
+}
+.loop-step { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(201,168,76,0.08); }
+.loop-step:last-child { border-bottom: none; }
+.loop-step-num {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--gold);
+  background: rgba(201,168,76,0.1); border: 1px solid var(--border);
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;
+}
+.loop-step-text { font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; }
+.loop-step-text strong { color: #f8f3ea; font-weight: 500; }
+.loop-arrow { text-align: center; color: var(--gold); font-size: 0.8rem; opacity: 0.4; padding: 0.2rem 0; }
+.flywheel-content { display: flex; flex-direction: column; gap: 1.6rem; }
+.flywheel-points { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+.flywheel-point { border-left: 2px solid var(--border); padding: 1rem 1.5rem; transition: border-color 0.3s, background 0.3s; }
+.flywheel-point:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.flywheel-point-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; letter-spacing: 0.12em;
+  color: var(--gold-light); margin-bottom: 0.4rem; text-transform: uppercase;
+}
+.flywheel-point-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+
+/* ── PROCESS ── */
+.process-section { background: #0d1f0f; }
+.process-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.process-box { border: 1px solid var(--border); padding: 3rem; background: #132716; }
+.process-box-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem; letter-spacing: 0.18em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+}
+.process-steps { display: flex; flex-direction: column; gap: 1rem; }
+.process-step { display: flex; flex-direction: column; gap: 0.3rem; }
+.process-step-title { font-size: 0.82rem; color: #f8f3ea; letter-spacing: 0.04em; }
+.process-step-body { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+.process-divider { height: 1px; background: var(--border); }
+.process-note {
+  margin-top: 1.4rem; font-size: 0.75rem; color: var(--text-muted);
+  line-height: 1.65; font-style: italic; border-top: 1px solid var(--border); padding-top: 1.2rem;
+}
+
+/* ── CTA ── */
+.invest-cta { background: #1a3a1e; text-align: center; position: relative; overflow: hidden; }
+.cta-glow {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.25) 0%, transparent 70%); pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.cta-title {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 300; color: #f8f3ea; margin-bottom: 1rem; line-height: 1.15;
+}
+.cta-title em { font-style: italic; color: var(--gold-light); }
+.cta-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.72; }
+.cta-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+.cta-sub-note { margin-top: 1.8rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+/* ── FOOTER ── */
+footer {
+  background: #070e08; padding: 2.5rem 4rem; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo { font-family: 'Cinzel', Georgia, serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
+.footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-copy { font-size: 0.68rem; color: rgba(138,158,140,0.4); letter-spacing: 0.05em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) { .asset-types-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 58px; left: 0; right: 0; background: #132716;
+    padding: 2rem 1.5rem; gap: 1.5rem; border-bottom: 1px solid var(--border); z-index: 99;
+  }
+  .invest-hero { padding: 8rem 1.5rem 4rem; }
+  .hero-stats { flex-direction: column; gap: 1.5rem; }
+  section { padding: 4.5rem 1.5rem; }
+  .divider { padding: 0 1.5rem; }
+  .asset-types-grid { grid-template-columns: 1fr 1fr; }
+  .asset-development { grid-template-columns: 1fr; gap: 1rem; }
+  .asset-block-sub { margin-left: 0; }
+  .rental-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .pathways-grid { grid-template-columns: 1fr; }
+  .pathways-watermark { display: none; }
+  .flywheel-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .process-layout { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+}
+@media (max-width: 540px) { .asset-types-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="logo">Suarez<span> Global</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/invest.html" class="active">Invest</a></li>
+    <li><a href="/buyer-process.html">Buy or Sell</a></li>
+    <li><a href="/technology.html">Technology</a></li>
+    <li><a href="/education.html">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/about-1">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Work With Us</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="invest-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Capital Partnership</div>
+    <h1>Legacy Wealth.<br><em>Institutional</em> Precision.</h1>
+    <p class="invest-hero-sub">Full-spectrum real estate investment across residential and commercial asset classes — sourced, underwritten, operated, and exited by one vertically integrated ecosystem.</p>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-stat-number">2</div><div class="h-stat-label">Asset Class Verticals</div></div>
+      <div class="h-stat"><div class="h-stat-number">3</div><div class="h-stat-label">Partnership Structures</div></div>
+      <div class="h-stat"><div class="h-stat-number">REAP</div><div class="h-stat-label">Every Deal Underwritten</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- ASSET CLASSES -->
+<section class="asset-classes reveal">
+  <div class="asset-intro">
+    <div class="section-eyebrow">Where We Invest</div>
+    <h2 class="section-title">Two Verticals.<br><em>Full Spectrum.</em></h2>
+    <p class="section-body">Tampa Development Group deploys capital across both residential and commercial real estate — with a development component under each vertical for ground-up and value-add opportunities that generate outsized returns.</p>
+  </div>
+
+  <!-- RESIDENTIAL -->
+  <div class="asset-block">
+    <div class="asset-block-header">
+      <div class="asset-block-tag">Vertical 01</div>
+      <div class="asset-block-title">Residential</div>
+      <div class="asset-block-sub">Single-family through small multifamily — every rental strategy, every hold profile.</div>
+    </div>
+    <div class="asset-types-grid">
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Single-Family</div>
+        <p class="asset-type-desc">Detached homes deployed across short-term rental, extended stay, and long-term rental strategies — selected by market demand profile and target return.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Residential Multifamily</div>
+        <p class="asset-type-desc">Two-to-four unit properties — duplexes, triplexes, and quads. Stronger per-door returns and natural portfolio density within a single acquisition across all three rental strategies.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Manufactured Housing</div>
+        <p class="asset-type-desc">Factory-built homes on owned or leased land. Lower acquisition cost, recession-resilient demand, and structurally high tenant retention — a segment most operators overlook entirely.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">RV Communities</div>
+        <p class="asset-type-desc">Land-lease communities where residents own their units and lease the pad — creating near-zero turnover, stable cash flow, and minimal operational complexity.</p>
+      </div>
+    </div>
+    <div class="asset-development">
+      <div class="asset-dev-label">+ Development</div>
+      <div class="asset-dev-content">
+        <div class="asset-dev-title">Residential Development & Value-Add</div>
+        <p class="asset-dev-body">Ground-up residential construction, subdivision development, and deep value-add rehab across single-family and small multifamily assets. BuildCo manages scope, timeline, and execution in-house — targeting 90-day stabilization to revenue from close. Every development deal is underwritten in REAP with full pro forma modeling before capital is raised.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMERCIAL -->
+  <div class="asset-block">
+    <div class="asset-block-header">
+      <div class="asset-block-tag">Vertical 02</div>
+      <div class="asset-block-title">Commercial</div>
+      <div class="asset-block-sub">Five-plus units through institutional-grade assets — income-producing, systematically managed.</div>
+    </div>
+    <div class="asset-types-grid">
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Multifamily (5+)</div>
+        <p class="asset-type-desc">Apartment communities from small mid-rise to larger complexes — operated by Freedom Launch with full revenue management, leasing, and REAP performance tracking.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Industrial</div>
+        <p class="asset-type-desc">Warehouses, distribution facilities, and light manufacturing. Long-term leases, low operational burden, and strong structural demand driven by e-commerce and supply chain activity.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Office</div>
+        <p class="asset-type-desc">Conventional office in select markets where fundamentals support acquisition — targeting below-replacement-cost basis and repositioning plays in areas others are avoiding.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Medical Office</div>
+        <p class="asset-type-desc">Healthcare-tenanted assets with long lease terms, high retention, and demand insulated from remote work pressure. Mission-critical use drives durability through economic cycles.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Retail</div>
+        <p class="asset-type-desc">Necessity-based and service-oriented retail — grocery-anchored, medical, and essential services where e-commerce disruption is minimal and foot traffic is structural.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Flex Space</div>
+        <p class="asset-type-desc">Hybrid industrial-office properties serving small business, light manufacturing, and distribution tenants. Versatile tenant base and strong rent growth in supply-constrained markets.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Storage</div>
+        <p class="asset-type-desc">Self-storage and climate-controlled facilities — recession-resilient demand, low operating costs, minimal tenant improvement requirements, and a simple revenue management model.</p>
+      </div>
+      <div class="asset-type">
+        <div class="asset-type-bar"></div>
+        <div class="asset-type-name">Mixed-Use</div>
+        <p class="asset-type-desc">Combined retail, office, and residential assets in walkable locations. Multiple revenue streams and diversified tenant bases provide stability across varying market conditions.</p>
+      </div>
+    </div>
+    <div class="asset-development">
+      <div class="asset-dev-label">+ Development</div>
+      <div class="asset-dev-content">
+        <div class="asset-dev-title">Commercial Development & Repositioning</div>
+        <p class="asset-dev-body">Ground-up commercial construction, adaptive reuse, and major repositioning plays across multifamily, industrial, flex, and mixed-use assets. Deals go through full REAP pro forma underwriting, BuildCo manages construction execution, and Freedom Launch activates operations at stabilization. Repositioning targets assets with below-market rents, deferred maintenance, or structural vacancy where an operational turnaround creates significant equity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- RENTAL STRATEGIES -->
+<section class="rental-strategies reveal">
+  <div class="rental-layout">
+    <div>
+      <div class="section-eyebrow">Residential Rental Strategy</div>
+      <h2 class="section-title">Every Hold<br>Profile.<br><em>One System.</em></h2>
+      <p class="section-body" style="margin-top: 1.2rem;">Residential assets don't have one right strategy — they have a right strategy for each market, property, and investor profile. Freedom Launch operates across all three hold structures, with REAP underwriting the optimal rental model at the time of acquisition.</p>
+    </div>
+    <div class="rental-grid">
+      <div class="rental-card">
+        <div class="rental-card-tag">Highest Per-Night Yield</div>
+        <div class="rental-card-title">Short-Term Rental (STR)</div>
+        <p class="rental-card-body">Platforms like Airbnb and VRBO in high-demand vacation, urban, and event markets. Maximum nightly rate with active revenue management — Freedom Launch handles dynamic pricing, guest experience, and operations. Underwritten in REAP with conservative occupancy assumptions and market comps.</p>
+      </div>
+      <div class="rental-card">
+        <div class="rental-card-tag">Stability + Premium Rate</div>
+        <div class="rental-card-title">Extended Stay</div>
+        <p class="rental-card-body">30-to-90 day furnished rentals targeting corporate travelers, medical professionals, relocating employees, and insurance displacement clients. Higher-than-market-rate income with the operational simplicity of fewer turnovers — a growing demand segment in undersupplied markets.</p>
+      </div>
+      <div class="rental-card">
+        <div class="rental-card-tag">Consistent Cash Flow</div>
+        <div class="rental-card-title">Long-Term Rental</div>
+        <p class="rental-card-body">Traditional 12-month leases delivering predictable, consistent income with the lowest operational intensity. The foundation of portfolio stability — reliable cash flow that funds acquisitions and compounds investor returns cycle over cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- THREE PATHWAYS -->
+<section class="pathways-section reveal" id="pathways">
+  <div class="pathways-watermark">INVEST</div>
+  <div class="pathways-header">
+    <div class="section-eyebrow">How to Partner</div>
+    <h2 class="section-title">Three Ways<br>to <em>Deploy Capital.</em></h2>
+    <p class="section-body">Whether you want passive income, active deal participation, or fixed returns — there is a structure built for where you are and where you want to go.</p>
+  </div>
+  <div class="pathways-grid">
+    <div class="pathway-card">
+      <div class="pathway-bar"></div>
+      <div class="pathway-number">01</div>
+      <div class="pathway-name">Equity Partnerships</div>
+      <div class="pathway-type">LP Structure — Passive</div>
+      <p class="pathway-body">Accredited investors who want exposure to residential and commercial real estate without the operational burden. You provide capital. Tampa Development Group sources and acquires. Freedom Launch operates. You collect returns.</p>
+      <ul class="pathway-details">
+        <li>Passive — no operational involvement required</li>
+        <li>Every deal underwritten in REAP before raise</li>
+        <li>Full performance transparency via Altura IQ</li>
+        <li>Access across both residential and commercial verticals</li>
+        <li>Minimum investment discussed on intro call</li>
+      </ul>
+    </div>
+    <div class="pathway-card">
+      <div class="pathway-bar"></div>
+      <div class="pathway-number">02</div>
+      <div class="pathway-name">Strategic Joint Ventures</div>
+      <div class="pathway-type">JV Structure — Active Partnership</div>
+      <p class="pathway-body">For institutional partners and sophisticated operators who want a specialized co-investor. You bring capital, a deal, or both. Suarez Global brings the data, systems, acquisition infrastructure, and full operational stack.</p>
+      <ul class="pathway-details">
+        <li>Co-investment with the full Suarez operator ecosystem</li>
+        <li>Bring capital, a deal, or both</li>
+        <li>Shared upside — fully aligned incentives</li>
+        <li>REAP underwriting shared with JV partner</li>
+        <li>Ideal for family offices and experienced operators</li>
+      </ul>
+    </div>
+    <div class="pathway-card">
+      <div class="pathway-bar"></div>
+      <div class="pathway-number">03</div>
+      <div class="pathway-name">The Suarez Debt Fund</div>
+      <div class="pathway-type">Fixed Returns — Secured Lending</div>
+      <p class="pathway-body">Fixed returns secured by physical real estate assets across both verticals. Structured private lending for investors who want predictable income and downside protection without equity exposure or operational involvement.</p>
+      <ul class="pathway-details">
+        <li>Fixed return structure — predictable income</li>
+        <li>Secured by physical real estate collateral</li>
+        <li>No equity risk — lender position only</li>
+        <li>Short-to-medium term deployment windows</li>
+        <li>Terms discussed on qualification call</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- FLYWHEEL -->
+<section class="flywheel reveal">
+  <div class="flywheel-layout">
+    <div class="loop-diagram">
+      <div class="loop-title">The Capital Loop — How Your Investment Compounds</div>
+      <div class="loop-step">
+        <div class="loop-step-num">01</div>
+        <div class="loop-step-text"><strong>Suarez Global</strong> builds trust and attracts investor-ready contacts through education and consulting.</div>
+      </div>
+      <div class="loop-arrow">↓</div>
+      <div class="loop-step">
+        <div class="loop-step-num">02</div>
+        <div class="loop-step-text"><strong>Tampa Development Group</strong> sources a deal across residential or commercial, underwrites in REAP, and raises capital.</div>
+      </div>
+      <div class="loop-arrow">↓</div>
+      <div class="loop-step">
+        <div class="loop-step-num">03</div>
+        <div class="loop-step-text"><strong>Javier Suarez</strong> represents the acquisition — commission stays inside the ecosystem, improving deal economics directly.</div>
+      </div>
+      <div class="loop-arrow">↓</div>
+      <div class="loop-step">
+        <div class="loop-step-num">04</div>
+        <div class="loop-step-text"><strong>Freedom Launch</strong> takes the asset from closing to operational — leasing, revenue management, and collections.</div>
+      </div>
+      <div class="loop-arrow">↓</div>
+      <div class="loop-step">
+        <div class="loop-step-num">05</div>
+        <div class="loop-step-text"><strong>REAP</strong> tracks actual performance against original underwriting projections in real time.</div>
+      </div>
+      <div class="loop-arrow">↓</div>
+      <div class="loop-step">
+        <div class="loop-step-num">06</div>
+        <div class="loop-step-text"><strong>Returns build trust.</strong> Investors reinvest. Deal sizes grow. The flywheel spins faster with every cycle.</div>
+      </div>
+    </div>
+    <div class="flywheel-content">
+      <div class="section-eyebrow">The Structural Advantage</div>
+      <h2 class="section-title">Why the<br><em>Ecosystem</em><br>Outperforms.</h2>
+      <p class="section-body">Most operators run one business. Suarez Global runs five that feed each other — which means your capital benefits from infrastructure most deal sponsors don't have.</p>
+      <div class="flywheel-points">
+        <div class="flywheel-point">
+          <div class="flywheel-point-title">No Commission Leakage</div>
+          <p class="flywheel-point-desc">Every acquisition and disposition across both verticals is represented by Javier Suarez. Commission stays inside the ecosystem on every transaction.</p>
+        </div>
+        <div class="flywheel-point">
+          <div class="flywheel-point-title">Operational Infrastructure Already Built</div>
+          <p class="flywheel-point-desc">Freedom Launch doesn't spin up for your deal — it's already running. Systems, processes, and team are in place before capital is deployed.</p>
+        </div>
+        <div class="flywheel-point">
+          <div class="flywheel-point-title">Technology You Can See</div>
+          <p class="flywheel-point-desc">REAP gives investors full visibility into the underwriting logic behind every deal — and tracks actual performance against those projections after closing. No black box.</p>
+        </div>
+        <div class="flywheel-point">
+          <div class="flywheel-point-title">Track Record That Compounds</div>
+          <p class="flywheel-point-desc">Every successful deal across both verticals makes the next capital raise faster. The portfolio history gets stronger every cycle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- PROCESS -->
+<section class="process-section reveal">
+  <div class="process-layout">
+    <div>
+      <div class="section-eyebrow">Who Can Invest</div>
+      <h2 class="section-title">Accreditation &<br><em>What to Expect.</em></h2>
+      <p class="section-body" style="margin-top: 1.2rem;">Most Suarez Global partnership structures are available to accredited investors. The process is straightforward — intro call, deal review, documentation, and deployment.</p>
+      <div style="margin-top: 2.5rem;">
+        <a href="#contact" class="btn-primary">Start the Conversation</a>
+      </div>
+    </div>
+    <div class="process-box">
+      <div class="process-box-title">Investor Qualification & Process</div>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-step-title">Step 1 — Intro Call</div>
+          <p class="process-step-body">A short conversation about your goals, capital availability, asset class preference, and which structure fits. No pitch deck — just a real conversation.</p>
+        </div>
+        <div class="process-divider"></div>
+        <div class="process-step">
+          <div class="process-step-title">Step 2 — Deal Review</div>
+          <p class="process-step-body">We walk through the REAP underwriting on an active or upcoming deal — returns, risk index, deal score, and asset thesis. Full picture before you commit a dollar.</p>
+        </div>
+        <div class="process-divider"></div>
+        <div class="process-step">
+          <div class="process-step-title">Step 3 — Documentation</div>
+          <p class="process-step-body">PPM, subscription agreement, and accreditation verification. Most investors are fully documented within a week of the intro call.</p>
+        </div>
+        <div class="process-divider"></div>
+        <div class="process-step">
+          <div class="process-step-title">Step 4 — Capital Deployed</div>
+          <p class="process-step-body">Funds wire. Freedom Launch activates on the asset. REAP begins tracking. You receive regular investor updates on performance against underwriting projections.</p>
+        </div>
+      </div>
+      <div class="process-note">Equity LP and JV structures are generally limited to accredited investors as defined by SEC Rule 501. Debt fund structures may have different qualification requirements. Details discussed on intro call.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- CTA -->
+<section class="invest-cta reveal" id="contact">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="section-eyebrow" style="justify-content:center;">Ready to Deploy</div>
+    <h2 class="cta-title">Put Your Capital<br>to Work with <em>Conviction.</em></h2>
+    <p class="cta-sub">Tell us your goals, your timeline, and your preferred asset class. We'll show you exactly which structure fits — and what the next deal looks like.</p>
+    <div class="cta-actions">
+      <a href="/#contact" class="btn-primary">Start the Conversation</a>
+      <a href="/education.html" class="btn-secondary">Learn the System First</a>
+    </div>
+    <div class="cta-sub-note">Accredited investors only for equity structures — details on intro call</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Suarez Global</div>
+  <ul class="footer-links">
+    <li><a href="/invest.html">Invest</a></li>
+    <li><a href="/buyer-process.html">Buy or Sell</a></li>
+    <li><a href="/technology.html">Technology</a></li>
+    <li><a href="/education.html">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/about-1">About</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Suarez Global, Inc. All rights reserved.</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => io.observe(el));
+
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60
+      ? (window.innerWidth > 900 ? '0.85rem 4rem' : '0.85rem 1.5rem')
+      : (window.innerWidth > 900 ? '1.4rem 4rem' : '1.1rem 1.5rem');
+  });
+</script>
+</body>
+</html>
