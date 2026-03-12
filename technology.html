@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technology — Suarez Global</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --green-deep: #0d1f0f;
+  --green-dark: #132716;
+  --green-mid: #1a3a1e;
+  --green-rich: #1f4d24;
+  --green-accent: #2d6b35;
+  --green-bright: #3d8b47;
+  --gold: #c9a84c;
+  --gold-light: #e2c97e;
+  --gold-pale: #f5e6c0;
+  --cream: #f8f3ea;
+  --text-muted: #8a9e8c;
+  --border: rgba(201, 168, 76, 0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', Georgia, sans-serif;
+  background-color: #0d1f0f;
+  color: #f8f3ea;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 4rem;
+  background: rgba(13,31,15,0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+.logo {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.22em; color: var(--gold);
+  text-decoration: none; text-transform: uppercase;
+}
+.logo span { color: #f8f3ea; opacity: 0.7; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-muted);
+  text-decoration: none; transition: color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-cta {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #0d1f0f; background: var(--gold);
+  padding: 0.65rem 1.6rem; text-decoration: none; transition: background 0.3s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
+
+/* ── HERO ── */
+.tech-hero {
+  min-height: 65vh;
+  display: flex; align-items: flex-end;
+  position: relative; overflow: hidden;
+  padding: 10rem 4rem 5rem;
+  background: linear-gradient(160deg, #0d1f0f 0%, #0a1a0c 60%, #080f09 100%);
+}
+.hero-glow {
+  position: absolute; right: 5%; top: 10%;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.22) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; left: -5%; bottom: 0%;
+  width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+/* animated scan line */
+.hero-scan {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  animation: scan 6s linear infinite; pointer-events: none;
+}
+@keyframes scan {
+  0%   { top: 0%; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; }
+.hero-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.36em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+.tech-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  font-weight: 300; line-height: 1.06; color: #f8f3ea;
+  margin-bottom: 1.4rem;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+.tech-hero h1 em { font-style: italic; color: var(--gold-light); }
+.tech-hero-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 300; font-style: italic; color: var(--text-muted);
+  max-width: 580px; line-height: 1.65;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+/* ── SHARED ── */
+.divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 4rem; }
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-mark { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+section { padding: 7rem 4rem; }
+.section-eyebrow {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 300; line-height: 1.15; color: #f8f3ea; margin-bottom: 1.2rem;
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+.section-body { font-size: 0.95rem; line-height: 1.78; color: var(--text-muted); max-width: 520px; }
+
+.btn-primary {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #0d1f0f; background: var(--gold);
+  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.28); }
+.btn-secondary {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f8f3ea; border: 1px solid var(--border);
+  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+/* ── REAP FEATURE ── */
+.reap-section { background: #132716; position: relative; overflow: hidden; }
+.reap-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: center; position: relative; z-index: 1;
+}
+.reap-visual {
+  border: 1px solid var(--border);
+  background: #0d1f0f;
+  padding: 2.5rem;
+  position: relative; overflow: hidden;
+  min-height: 420px;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.reap-visual-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+}
+.reap-visual-title {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.72rem; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase;
+}
+.reap-status {
+  font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green-bright); display: flex; align-items: center; gap: 0.5rem;
+}
+.reap-status::before {
+  content: ''; display: block; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--green-bright);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+.reap-metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.reap-metric {
+  background: rgba(201,168,76,0.05); border: 1px solid var(--border);
+  padding: 1rem 1.2rem;
+}
+.reap-metric-label {
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 0.4rem;
+}
+.reap-metric-value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem; font-weight: 300; color: var(--gold-light); line-height: 1;
+}
+.reap-metric-value.green { color: #5ab868; }
+.reap-metric-value.red { color: #c96c6c; }
+.reap-bar-row { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.5rem; }
+.reap-bar-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.reap-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase;
+}
+.reap-bar-track {
+  height: 3px; background: rgba(255,255,255,0.07); position: relative;
+}
+.reap-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 1.2s ease;
+}
+.reap-verdict {
+  margin-top: auto; padding: 1rem 1.2rem;
+  border: 1px solid rgba(90,184,104,0.3);
+  background: rgba(90,184,104,0.06);
+  display: flex; align-items: center; gap: 1rem;
+}
+.reap-verdict-icon {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.62rem; letter-spacing: 0.15em; color: #5ab868; text-transform: uppercase;
+}
+.reap-verdict-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+.reap-content { display: flex; flex-direction: column; gap: 1.6rem; }
+.reap-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+.reap-feature {
+  border-left: 2px solid var(--border); padding: 1rem 1.5rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.reap-feature:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.reap-feature-title {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem;
+  letter-spacing: 0.12em; color: var(--gold-light); margin-bottom: 0.4rem; text-transform: uppercase;
+}
+.reap-feature-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+
+/* ── ALL PLATFORMS ── */
+.platforms-section { background: #0d1f0f; }
+.platforms-header { max-width: 600px; margin-bottom: 4rem; }
+.platforms-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+}
+.platform-card {
+  background: #0d1f0f; padding: 3rem 2.5rem;
+  position: relative; transition: background 0.4s; overflow: hidden;
+}
+.platform-bar {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.platform-card:hover { background: #132716; }
+.platform-card:hover .platform-bar { transform: scaleX(1); }
+.platform-tag {
+  font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--green-bright); border: 1px solid rgba(61,139,71,0.3);
+  padding: 0.3rem 0.7rem; display: inline-block; margin-bottom: 1.4rem;
+}
+.platform-name {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.3rem; letter-spacing: 0.08em; color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.platform-full {
+  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 1.2rem;
+}
+.platform-desc { font-size: 0.88rem; line-height: 1.72; color: var(--text-muted); margin-bottom: 1.4rem; }
+.platform-points { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.platform-points li {
+  font-size: 0.77rem; color: var(--text-muted);
+  padding-left: 1.2rem; position: relative; letter-spacing: 0.04em;
+}
+.platform-points li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.65rem; }
+
+/* ── HOW IT CONNECTS ── */
+.connective { background: #1a3a1e; position: relative; overflow: hidden; }
+.connective-watermark {
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Cinzel', Georgia, serif; font-size: 13rem; font-weight: 700;
+  color: rgba(255,255,255,0.025); letter-spacing: 0.1em;
+  pointer-events: none; white-space: nowrap; user-select: none;
+}
+.connective-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 1; }
+.connections { display: flex; flex-direction: column; gap: 1.2rem; }
+.connection {
+  border-left: 2px solid var(--border); padding: 1.4rem 2rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.connection:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.connection-who {
+  font-family: 'Cinzel', Georgia, serif; font-size: 0.72rem;
+  letter-spacing: 0.14em; color: var(--gold-light); margin-bottom: 0.4rem; text-transform: uppercase;
+}
+.connection-how { font-size: 0.86rem; color: var(--text-muted); line-height: 1.68; }
+
+/* ── CTA ── */
+.tech-cta { background: #0d1f0f; text-align: center; position: relative; overflow: hidden; }
+.cta-glow {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,107,53,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.cta-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 300; color: #f8f3ea; margin-bottom: 1rem; line-height: 1.15;
+}
+.cta-title em { font-style: italic; color: var(--gold-light); }
+.cta-sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.72; }
+.cta-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── FOOTER ── */
+footer {
+  background: #070e08; padding: 2.5rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo { font-family: 'Cinzel', Georgia, serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
+.footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-copy { font-size: 0.68rem; color: rgba(138,158,140,0.4); letter-spacing: 0.05em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 58px; left: 0; right: 0; background: #132716;
+    padding: 2rem 1.5rem; gap: 1.5rem;
+    border-bottom: 1px solid var(--border); z-index: 99;
+  }
+  .tech-hero { padding: 8rem 1.5rem 4rem; }
+  section { padding: 4.5rem 1.5rem; }
+  .divider { padding: 0 1.5rem; }
+  .reap-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .platforms-grid { grid-template-columns: 1fr; }
+  .connective-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .connective-watermark { display: none; }
+  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="/" class="logo">Suarez<span> Global</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="https://www.suarezglobal.com/services-4">Invest</a></li>
+    <li><a href="/buyer-process.html">Buy or Sell</a></li>
+    <li><a href="/technology.html" class="active">Technology</a></li>
+    <li><a href="/education.html">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/about-1">About</a></li>
+  </ul>
+  <a href="/#contact" class="nav-cta">Work With Us</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="tech-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Proprietary Technology</div>
+    <h1>The Infrastructure<br>of <em>Intelligence.</em></h1>
+    <p class="tech-hero-sub">We built our own tools because nothing on the market was built for the way serious operators work. Each platform is a force multiplier — independently powerful, exponentially stronger together.</p>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- REAP FEATURE -->
+<section class="reap-section reveal">
+  <div class="reap-layout">
+    <!-- Live mock UI -->
+    <div class="reap-visual">
+      <div class="reap-visual-header">
+        <div class="reap-visual-title">REAP — Deal Analysis</div>
+        <div class="reap-status">Live Underwriting</div>
+      </div>
+      <div class="reap-metric-row">
+        <div class="reap-metric">
+          <div class="reap-metric-label">Cash-on-Cash Return</div>
+          <div class="reap-metric-value green">8.4%</div>
+        </div>
+        <div class="reap-metric">
+          <div class="reap-metric-label">Cap Rate</div>
+          <div class="reap-metric-value">6.2%</div>
+        </div>
+        <div class="reap-metric">
+          <div class="reap-metric-label">IRR (5-Year)</div>
+          <div class="reap-metric-value green">17.1%</div>
+        </div>
+        <div class="reap-metric">
+          <div class="reap-metric-label">Equity Multiple</div>
+          <div class="reap-metric-value">2.1x</div>
+        </div>
+      </div>
+      <div class="reap-bar-row">
+        <div class="reap-bar-item">
+          <div class="reap-bar-label"><span>Deal Score</span><span>84 / 100</span></div>
+          <div class="reap-bar-track"><div class="reap-bar-fill" style="width:84%"></div></div>
+        </div>
+        <div class="reap-bar-item">
+          <div class="reap-bar-label"><span>Market Strength</span><span>91 / 100</span></div>
+          <div class="reap-bar-track"><div class="reap-bar-fill" style="width:91%"></div></div>
+        </div>
+        <div class="reap-bar-item">
+          <div class="reap-bar-label"><span>Risk Index</span><span>Low — 23 / 100</span></div>
+          <div class="reap-bar-track"><div class="reap-bar-fill" style="width:23%; background: linear-gradient(90deg, #5ab868, #8dd4a0);"></div></div>
+        </div>
+      </div>
+      <div class="reap-verdict">
+        <div class="reap-verdict-icon">✓ Acquire</div>
+        <div class="reap-verdict-text">This deal meets Suarez Global's minimum threshold. Recommend proceeding to capital raise.</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="reap-content">
+      <div class="section-eyebrow">The Core Platform</div>
+      <h2 class="section-title">REAP —<br><em>Real Estate Acquisition Protocol</em></h2>
+      <p class="section-body">The question every investor asks on every deal is the same: <em>is this a good deal or not?</em> REAP exists to answer that question with institutional precision — in minutes, not days.</p>
+      <div class="reap-features">
+        <div class="reap-feature">
+          <div class="reap-feature-title">Deal Underwriting</div>
+          <p class="reap-feature-desc">Input purchase price, rents, expenses, and financing. REAP outputs cash-on-cash return, cap rate, IRR, equity multiple, and a composite deal score — instantly.</p>
+        </div>
+        <div class="reap-feature">
+          <div class="reap-feature-title">Risk Analysis</div>
+          <p class="reap-feature-desc">Every deal gets a risk index score flagging where the numbers are fragile — vacancy sensitivity, debt coverage, exit assumptions — so you know exactly where the deal can break.</p>
+        </div>
+        <div class="reap-feature">
+          <div class="reap-feature-title">Performance Tracking</div>
+          <p class="reap-feature-desc">After closing, REAP tracks actual operational results against original underwriting projections — creating accountability between what was promised and what's being delivered.</p>
+        </div>
+        <div class="reap-feature">
+          <div class="reap-feature-title">Standalone or Integrated</div>
+          <p class="reap-feature-desc">REAP works as a fully independent SaaS platform for any investor anywhere — or as the operational backbone across the entire Suarez Global ecosystem.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
+        <a href="/#contact" class="btn-primary">Get Access to REAP</a>
+        <a href="/education.html" class="btn-secondary">Learn How We Use It</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- ALL PLATFORMS -->
+<section class="platforms-section reveal">
+  <div class="platforms-header">
+    <div class="section-eyebrow">The Full Stack</div>
+    <h2 class="section-title">Four Platforms.<br><em>One Unified Engine.</em></h2>
+    <p class="section-body">Each platform solves a distinct problem in the real estate operation lifecycle. Together they eliminate the gaps where most operators lose money, time, and deals.</p>
+  </div>
+  <div class="platforms-grid">
+    <div class="platform-card">
+      <div class="platform-bar"></div>
+      <div class="platform-tag">Flagship</div>
+      <div class="platform-name">REAP</div>
+      <div class="platform-full">Real Estate Acquisition Protocol</div>
+      <p class="platform-desc">Institutional-grade deal underwriting and analytics. Input a deal, get a verdict. The core of every acquisition decision made inside the Suarez ecosystem — and available as a standalone tool for any serious investor.</p>
+      <ul class="platform-points">
+        <li>Cash-on-cash, cap rate, IRR, equity multiple</li>
+        <li>Composite deal score & risk index</li>
+        <li>Actual vs. underwriting performance tracking</li>
+        <li>Available as external SaaS subscription</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="platform-bar"></div>
+      <div class="platform-tag">Asset Intelligence</div>
+      <div class="platform-name">Altura IQ</div>
+      <div class="platform-full">Asset Management Intelligence</div>
+      <p class="platform-desc">Real-time portfolio monitoring across every property in operation. Occupancy, NOI, collections, and expense variance — visible in one place so nothing slips through the cracks at scale.</p>
+      <ul class="platform-points">
+        <li>Live occupancy & revenue dashboards</li>
+        <li>NOI tracking across the full portfolio</li>
+        <li>Operational performance alerts</li>
+        <li>Integrates directly with REAP underwriting</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="platform-bar"></div>
+      <div class="platform-tag">Construction & Rehab</div>
+      <div class="platform-name">BuildCo</div>
+      <div class="platform-full">Precision Construction & Development</div>
+      <p class="platform-desc">In-house infrastructure and renovation management built to The Suarez Standard. Stabilizing acquired assets within 90 days so they move from closing table to revenue-producing as fast as possible.</p>
+      <ul class="platform-points">
+        <li>Scope-of-work generation & budget tracking</li>
+        <li>Contractor management & milestone oversight</li>
+        <li>90-day stabilization protocol</li>
+        <li>Quality control tied to REAP projections</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="platform-bar"></div>
+      <div class="platform-tag">Capital Deployment</div>
+      <div class="platform-name">EquityPath</div>
+      <div class="platform-full">The Financial Roadmap</div>
+      <p class="platform-desc">Aligning investor goals with tax-advantaged compounding growth. EquityPath maps capital deployment strategy through Freedom Launch — connecting investor returns to the underlying asset performance tracked in Altura IQ.</p>
+      <ul class="platform-points">
+        <li>Investor return modeling & projections</li>
+        <li>Tax-advantaged structure alignment</li>
+        <li>Capital deployment scheduling</li>
+        <li>Distribution tracking & investor reporting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- HOW IT CONNECTS -->
+<section class="connective reveal">
+  <div class="connective-watermark">REAP</div>
+  <div class="connective-layout">
+    <div>
+      <div class="section-eyebrow">Connective Tissue</div>
+      <h2 class="section-title">Every Business<br>Runs on <em>REAP.</em></h2>
+      <p class="section-body" style="margin-top:1.2rem;">REAP isn't just a product — it's the analytical layer that connects every entity in the Suarez ecosystem. The same platform that powers internal decisions is the one available to outside investors and agents.</p>
+    </div>
+    <div class="connections">
+      <div class="connection">
+        <div class="connection-who">Tampa Development Group</div>
+        <p class="connection-how">Every acquisition gets underwritten in REAP before capital is raised. The deal score and risk index inform the go / no-go decision on every property.</p>
+      </div>
+      <div class="connection">
+        <div class="connection-who">Freedom Launch</div>
+        <p class="connection-how">Operational performance is tracked in REAP against original underwriting projections — creating a live accountability loop between what was promised and what's being produced.</p>
+      </div>
+      <div class="connection">
+        <div class="connection-who">Javier Suarez (Brokerage)</div>
+        <p class="connection-how">Every buyer client gets access to REAP to analyze their purchase. Turns a one-time transaction into an ongoing relationship with ongoing analytical value.</p>
+      </div>
+      <div class="connection">
+        <div class="connection-who">External Investors & Agents</div>
+        <p class="connection-how">Any investor or agent anywhere can subscribe to REAP independently. No relationship to Javier, TDG, or Freedom Launch required — REAP stands fully on its own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- CTA -->
+<section class="tech-cta reveal">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="section-eyebrow" style="justify-content:center;">Get Started</div>
+    <h2 class="cta-title">Underwrite Your<br>Next Deal with <em>REAP.</em></h2>
+    <p class="cta-sub">Stop guessing whether a deal works. Get the analytical infrastructure that institutional operators use — and make acquisition decisions with conviction.</p>
+    <div class="cta-actions">
+      <a href="/#contact" class="btn-primary">Get Access to REAP</a>
+      <a href="/education.html" class="btn-secondary">Learn the System First</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Suarez Global</div>
+  <ul class="footer-links">
+    <li><a href="https://www.suarezglobal.com/services-4">Invest</a></li>
+    <li><a href="/buyer-process.html">Buy or Sell</a></li>
+    <li><a href="/technology.html">Technology</a></li>
+    <li><a href="/education.html">Education</a></li>
+    <li><a href="https://www.suarezglobal.com/about-1">About</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Suarez Global, Inc. All rights reserved.</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => io.observe(el));
+
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60
+      ? (window.innerWidth > 900 ? '0.85rem 4rem' : '0.85rem 1.5rem')
+      : (window.innerWidth > 900 ? '1.4rem 4rem' : '1.1rem 1.5rem');
+  });
+
+  // Animate bars on scroll into view
+  const barFills = document.querySelectorAll('.reap-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.style.width; // trigger reflow
+      }
+    });
+  }, { threshold: 0.3 });
+  barFills.forEach(b => barObserver.observe(b));
+</script>
+</body>
+</html>
