@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3422 W Idlewild — Renovation Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0a0c0f;
+    --surface:   #111418;
+    --card:      #161b22;
+    --border:    #21262d;
+    --border2:   #30363d;
+    --amber:     #f0a500;
+    --amber2:    #ffc841;
+    --green:     #3fb950;
+    --red:       #f85149;
+    --blue:      #58a6ff;
+    --purple:    #bc8cff;
+    --text:      #e6edf3;
+    --muted:     #7d8590;
+    --muted2:    #484f58;
+    --mono:      'Space Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+    --display:   'Bebas Neue', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── SCANLINE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── LAYOUT ── */
+  .shell { max-width: 1440px; margin: 0 auto; padding: 0 24px 48px; }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,12,15,.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .header-inner {
+    max-width: 1440px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .site-badge {
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: .05em;
+    color: var(--amber);
+  }
+  .site-meta {
+    display: flex; flex-direction: column;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+  .site-meta span { color: var(--text); }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(63,185,80,.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(63,185,80,.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(63,185,80,0); }
+    100% { box-shadow: 0 0 0 0 rgba(63,185,80,0); }
+  }
+  .status-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .last-updated {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: .15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border2), transparent);
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .kpi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 16px 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .kpi-card:hover { border-color: var(--border2); }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .kpi-card.amber::before  { background: var(--amber); }
+  .kpi-card.green::before  { background: var(--green); }
+  .kpi-card.red::before    { background: var(--red); }
+  .kpi-card.blue::before   { background: var(--blue); }
+  .kpi-card.purple::before { background: var(--purple); }
+  .kpi-card.muted::before  { background: var(--muted2); }
+
+  .kpi-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-card.amber  .kpi-value { color: var(--amber); }
+  .kpi-card.green  .kpi-value { color: var(--green); }
+  .kpi-card.red    .kpi-value { color: var(--red); }
+  .kpi-card.blue   .kpi-value { color: var(--blue); }
+  .kpi-card.purple .kpi-value { color: var(--purple); }
+  .kpi-card.muted  .kpi-value { color: var(--text); }
+
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  /* ── PROGRESS BAR ── */
+  .prog-wrap {
+    background: var(--border);
+    border-radius: 4px;
+    height: 4px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .prog-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+  .prog-bar.amber  { background: var(--amber); }
+  .prog-bar.green  { background: var(--green); }
+  .prog-bar.red    { background: var(--red); }
+  .prog-bar.blue   { background: var(--blue); }
+
+  /* ── TWO-COL LAYOUT ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .full-row { margin-bottom: 20px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-title {
+    font-family: var(--display);
+    font-size: 17px;
+    letter-spacing: .08em;
+    color: var(--text);
+  }
+  .card-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .badge-amber  { background: rgba(240,165,0,.15);   color: var(--amber);  border: 1px solid rgba(240,165,0,.3); }
+  .badge-green  { background: rgba(63,185,80,.15);   color: var(--green);  border: 1px solid rgba(63,185,80,.3); }
+  .badge-blue   { background: rgba(88,166,255,.15);  color: var(--blue);   border: 1px solid rgba(88,166,255,.3);}
+  .badge-red    { background: rgba(248,81,73,.15);   color: var(--red);    border: 1px solid rgba(248,81,73,.3); }
+  .badge-purple { background: rgba(188,140,255,.15); color: var(--purple); border: 1px solid rgba(188,140,255,.3);}
+  .badge-muted  { background: rgba(125,133,144,.1);  color: var(--muted);  border: 1px solid var(--border2); }
+
+  /* ── DRAW CARDS ── */
+  .draw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .draw-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s;
+  }
+  .draw-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+
+  .draw-card-head {
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .draw-num {
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: .15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .draw-title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .draw-budget {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--amber);
+    white-space: nowrap;
+    margin-left: 12px;
+  }
+
+  .draw-dates {
+    padding: 8px 16px;
+    background: rgba(0,0,0,.2);
+    display: flex; gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .draw-date-item { display: flex; flex-direction: column; }
+  .draw-date-label { font-size: 9px; font-family: var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  .draw-date-val   { font-size: 11px; font-family: var(--mono); color: var(--text); margin-top: 1px; }
+
+  .draw-progress-section { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .draw-progress-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .draw-progress-label { font-size: 10px; font-family: var(--mono); color: var(--muted); }
+  .draw-progress-pct   { font-size: 10px; font-family: var(--mono); color: var(--amber); }
+
+  .draw-line-items { padding: 0; }
+  .line-item {
+    display: grid;
+    grid-template-columns: 1fr 80px 90px 80px;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(33,38,45,.6);
+    gap: 8px;
+    transition: background .15s;
+  }
+  .line-item:last-child { border-bottom: none; }
+  .line-item:hover { background: rgba(255,255,255,.02); }
+  .line-item-desc  { font-size: 11px; color: var(--text); line-height: 1.3; }
+  .line-item-budget { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: right; }
+  .line-item-spent {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-align: right;
+    color: var(--text);
+  }
+  .line-item-spent input {
+    width: 100%;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 6px;
+    text-align: right;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .line-item-spent input:focus { border-color: var(--amber); }
+  .line-item-status {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .li-status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--muted2);
+  }
+  .li-status-dot.done   { background: var(--green); }
+  .li-status-dot.active { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+
+  .draw-footer {
+    padding: 10px 16px;
+    background: rgba(0,0,0,.15);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .draw-totals { display: flex; gap: 20px; }
+  .draw-total-item { display: flex; flex-direction: column; }
+  .draw-total-label { font-size: 9px; font-family: var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  .draw-total-val   { font-size: 13px; font-family: var(--mono); font-weight: 700; margin-top: 1px; }
+  .draw-total-val.budget  { color: var(--amber); }
+  .draw-total-val.spent   { color: var(--green); }
+  .draw-total-val.remain  { color: var(--text); }
+
+  /* status pill */
+  .status-pill {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .2s;
+  }
+  .status-pill.not-started { background: rgba(125,133,144,.1); color: var(--muted); border: 1px solid var(--border2); }
+  .status-pill.in-progress { background: rgba(240,165,0,.15);   color: var(--amber); border: 1px solid rgba(240,165,0,.3); }
+  .status-pill.complete    { background: rgba(63,185,80,.15);   color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+  .status-pill.pending     { background: rgba(88,166,255,.15);  color: var(--blue);  border: 1px solid rgba(88,166,255,.3); }
+
+  /* ── RISK TABLE ── */
+  .risk-table { width: 100%; border-collapse: collapse; }
+  .risk-table th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+  .risk-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .risk-table tr:last-child td { border-bottom: none; }
+  .risk-table tr:hover td { background: rgba(255,255,255,.02); }
+  .risk-impact { font-family: var(--mono); font-size: 11px; color: var(--red); }
+  .risk-draw   { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+  .risk-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .risk-toggle input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--red);
+    cursor: pointer;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-grid { overflow-x: auto; }
+  .gantt-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+  .gantt-table th {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .08em;
+    color: var(--muted);
+    padding: 0 8px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border2);
+  }
+  .gantt-table th.left { text-align: left; }
+  .gantt-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .gantt-table tr:last-child td { border-bottom: none; }
+  .gantt-bar {
+    height: 18px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .05em;
+    color: rgba(0,0,0,.7);
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity .2s;
+  }
+  .gantt-bar:hover { opacity: .85; }
+  .gantt-cell { background: transparent; }
+  .gantt-draw-label { font-size: 11px; color: var(--text); font-weight: 500; }
+  .gantt-draw-budget { font-family: var(--mono); font-size: 11px; color: var(--amber); }
+  .gantt-dates { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+  /* ── BOTTOM GRID ── */
+  .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* ── BUDGET DONUT ── */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .donut-svg { flex-shrink: 0; }
+  .donut-legend { display: flex; flex-direction: column; gap: 10px; }
+  .legend-row {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+  }
+  .legend-label { font-size: 12px; color: var(--muted); flex: 1; }
+  .legend-val   { font-family: var(--mono); font-size: 12px; color: var(--text); }
+  .legend-pct   { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 36px; text-align: right; }
+
+  /* ── NOTES / VENDOR ── */
+  .notes-area {
+    width: 100%;
+    background: rgba(0,0,0,.2);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 12px;
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+    min-height: 120px;
+    transition: border-color .15s;
+  }
+  .notes-area:focus { border-color: var(--amber); }
+
+  .vendor-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+  .vendor-label { font-size: 11px; font-family: var(--mono); color: var(--muted); }
+  .vendor-input {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 8px;
+    outline: none;
+    width: 100%;
+    transition: border-color .15s;
+  }
+  .vendor-input:focus { border-color: var(--amber); }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .f-left {
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: .1em;
+    color: var(--muted);
+  }
+  footer .f-right {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { animation: fadeIn .5s ease forwards; opacity: 0; }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .slide-up { animation: slideUp .4s ease forwards; opacity: 0; transform: translateY(12px); }
+  @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+  .kpi-card { animation: slideUp .4s ease forwards; opacity: 0; }
+  .kpi-card:nth-child(1) { animation-delay: .05s; }
+  .kpi-card:nth-child(2) { animation-delay: .1s; }
+  .kpi-card:nth-child(3) { animation-delay: .15s; }
+  .kpi-card:nth-child(4) { animation-delay: .2s; }
+  .kpi-card:nth-child(5) { animation-delay: .25s; }
+  .kpi-card:nth-child(6) { animation-delay: .3s; }
+
+  /* ── UTILITY ── */
+  .mono { font-family: var(--mono); }
+  .text-muted { color: var(--muted); }
+  .text-amber { color: var(--amber); }
+  .text-green { color: var(--green); }
+  .text-red   { color: var(--red); }
+  .mt8  { margin-top: 8px; }
+  .mt16 { margin-top: 16px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .kpi-grid  { grid-template-columns: repeat(3, 1fr); }
+    .draw-grid { grid-template-columns: 1fr; }
+    .two-col   { grid-template-columns: 1fr; }
+    .bottom-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="site-badge">SUAREZ CAPITAL</div>
+      <div class="site-meta">
+        <div>PROPERTY <span>3422 W Idlewild Ave, Tampa FL 33614</span></div>
+        <div>ASSET TYPE <span>4-Unit Multifamily (Units A, B, C, D)</span></div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="pulse-dot"></div>
+      <div class="status-label">LIVE TRACKER</div>
+      <div class="last-updated" id="lastUpdated">—</div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- KPI STRIP -->
+  <div class="kpi-grid" style="margin-top:28px;">
+    <div class="kpi-card amber">
+      <div class="kpi-label">Target Budget</div>
+      <div class="kpi-value">$60K</div>
+      <div class="kpi-sub">Range $60K–$70K</div>
+      <div class="prog-wrap"><div class="prog-bar amber" id="prog-budget" style="width:0%"></div></div>
+    </div>
+    <div class="kpi-card muted">
+      <div class="kpi-label">Project Total Est.</div>
+      <div class="kpi-value">$67K</div>
+      <div class="kpi-sub">4 draws · 4 units</div>
+      <div class="prog-wrap"><div class="prog-bar amber" style="width:100%"></div></div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-label">Total Drawn</div>
+      <div class="kpi-value" id="kpi-drawn">$0</div>
+      <div class="kpi-sub" id="kpi-drawn-sub">0 of 4 draws</div>
+      <div class="prog-wrap"><div class="prog-bar blue" id="prog-drawn" style="width:0%"></div></div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Total Spent</div>
+      <div class="kpi-value" id="kpi-spent">$0</div>
+      <div class="kpi-sub" id="kpi-spent-sub">0% of budget</div>
+      <div class="prog-wrap"><div class="prog-bar green" id="prog-spent" style="width:0%"></div></div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Remaining</div>
+      <div class="kpi-value" id="kpi-remaining">$60K</div>
+      <div class="kpi-sub">Budget balance</div>
+      <div class="prog-wrap"><div class="prog-bar red" id="prog-remaining" style="width:100%"></div></div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Risk Exposure</div>
+      <div class="kpi-value">$15K</div>
+      <div class="kpi-sub">Max if all risks hit</div>
+      <div class="prog-wrap"><div class="prog-bar" style="width:22%;background:var(--purple)"></div></div>
+    </div>
+  </div>
+
+  <!-- DRAWS -->
+  <div class="section-title">Draw Schedule & Line Items</div>
+  <div class="draw-grid full-row" id="drawGrid">
+
+    <!-- DRAW 1 -->
+    <div class="draw-card" id="draw-card-1">
+      <div class="draw-card-head">
+        <div>
+          <div class="draw-num">Draw 01</div>
+          <div class="draw-title">Roof Replacement – Both Buildings</div>
+        </div>
+        <div style="text-align:right">
+          <div class="draw-budget">$19,000</div>
+          <div style="margin-top:6px">
+            <span class="status-pill not-started" onclick="cycleStatus(this)">Not Started</span>
+          </div>
+        </div>
+      </div>
+      <div class="draw-dates">
+        <div class="draw-date-item"><span class="draw-date-label">Start</span><span class="draw-date-val">02/10/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Target</span><span class="draw-date-val">03/01/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Actual</span><span class="draw-date-val" id="actual-1" contenteditable="true" style="outline:none;min-width:80px;color:var(--muted)">—</span></div>
+      </div>
+      <div class="draw-progress-section">
+        <div class="draw-progress-row">
+          <span class="draw-progress-label">Spend Progress</span>
+          <span class="draw-progress-pct" id="d1-pct">0%</span>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar amber" id="d1-prog" style="width:0%"></div></div>
+      </div>
+      <div class="draw-line-items" id="items-1">
+        <!-- cols: desc | budget | spent input | dot -->
+        <div style="display:grid;grid-template-columns:1fr 80px 90px 20px;padding:6px 16px 4px;gap:8px;">
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Item</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Budget</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Spent</span>
+          <span></span>
+        </div>
+      </div>
+      <div class="draw-footer">
+        <div class="draw-totals">
+          <div class="draw-total-item"><span class="draw-total-label">Budget</span><span class="draw-total-val budget">$19,000</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Spent</span><span class="draw-total-val spent" id="d1-spent-total">$0</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Remain</span><span class="draw-total-val remain" id="d1-remain">$19,000</span></div>
+        </div>
+        <span class="card-badge badge-amber" style="font-size:9px">Draw 1 of 4</span>
+      </div>
+    </div>
+
+    <!-- DRAW 2 -->
+    <div class="draw-card" id="draw-card-2">
+      <div class="draw-card-head">
+        <div>
+          <div class="draw-num">Draw 02</div>
+          <div class="draw-title">Interior Renovations – Units A &amp; B</div>
+        </div>
+        <div style="text-align:right">
+          <div class="draw-budget">$25,000</div>
+          <div style="margin-top:6px">
+            <span class="status-pill not-started" onclick="cycleStatus(this)">Not Started</span>
+          </div>
+        </div>
+      </div>
+      <div class="draw-dates">
+        <div class="draw-date-item"><span class="draw-date-label">Start</span><span class="draw-date-val">03/02/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Target</span><span class="draw-date-val">03/25/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Actual</span><span class="draw-date-val" contenteditable="true" style="outline:none;min-width:80px;color:var(--muted)">—</span></div>
+      </div>
+      <div class="draw-progress-section">
+        <div class="draw-progress-row">
+          <span class="draw-progress-label">Spend Progress</span>
+          <span class="draw-progress-pct" id="d2-pct">0%</span>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar amber" id="d2-prog" style="width:0%"></div></div>
+      </div>
+      <div class="draw-line-items" id="items-2">
+        <div style="display:grid;grid-template-columns:1fr 80px 90px 20px;padding:6px 16px 4px;gap:8px;">
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Item</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Budget</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Spent</span>
+          <span></span>
+        </div>
+      </div>
+      <div class="draw-footer">
+        <div class="draw-totals">
+          <div class="draw-total-item"><span class="draw-total-label">Budget</span><span class="draw-total-val budget">$25,000</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Spent</span><span class="draw-total-val spent" id="d2-spent-total">$0</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Remain</span><span class="draw-total-val remain" id="d2-remain">$25,000</span></div>
+        </div>
+        <span class="card-badge badge-blue" style="font-size:9px">Draw 2 of 4</span>
+      </div>
+    </div>
+
+    <!-- DRAW 3 -->
+    <div class="draw-card" id="draw-card-3">
+      <div class="draw-card-head">
+        <div>
+          <div class="draw-num">Draw 03</div>
+          <div class="draw-title">Interior Renovations – Units C &amp; D</div>
+        </div>
+        <div style="text-align:right">
+          <div class="draw-budget">$12,000</div>
+          <div style="margin-top:6px">
+            <span class="status-pill not-started" onclick="cycleStatus(this)">Not Started</span>
+          </div>
+        </div>
+      </div>
+      <div class="draw-dates">
+        <div class="draw-date-item"><span class="draw-date-label">Start</span><span class="draw-date-val">03/26/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Target</span><span class="draw-date-val">04/10/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Actual</span><span class="draw-date-val" contenteditable="true" style="outline:none;min-width:80px;color:var(--muted)">—</span></div>
+      </div>
+      <div class="draw-progress-section">
+        <div class="draw-progress-row">
+          <span class="draw-progress-label">Spend Progress</span>
+          <span class="draw-progress-pct" id="d3-pct">0%</span>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar amber" id="d3-prog" style="width:0%"></div></div>
+      </div>
+      <div class="draw-line-items" id="items-3">
+        <div style="display:grid;grid-template-columns:1fr 80px 90px 20px;padding:6px 16px 4px;gap:8px;">
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Item</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Budget</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Spent</span>
+          <span></span>
+        </div>
+      </div>
+      <div class="draw-footer">
+        <div class="draw-totals">
+          <div class="draw-total-item"><span class="draw-total-label">Budget</span><span class="draw-total-val budget">$12,000</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Spent</span><span class="draw-total-val spent" id="d3-spent-total">$0</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Remain</span><span class="draw-total-val remain" id="d3-remain">$12,000</span></div>
+        </div>
+        <span class="card-badge badge-purple" style="font-size:9px">Draw 3 of 4</span>
+      </div>
+    </div>
+
+    <!-- DRAW 4 -->
+    <div class="draw-card" id="draw-card-4">
+      <div class="draw-card-head">
+        <div>
+          <div class="draw-num">Draw 04</div>
+          <div class="draw-title">Site Improvements – Parking / Electrical / Backyard</div>
+        </div>
+        <div style="text-align:right">
+          <div class="draw-budget">$11,000</div>
+          <div style="margin-top:6px">
+            <span class="status-pill not-started" onclick="cycleStatus(this)">Not Started</span>
+          </div>
+        </div>
+      </div>
+      <div class="draw-dates">
+        <div class="draw-date-item"><span class="draw-date-label">Start</span><span class="draw-date-val">04/01/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Target</span><span class="draw-date-val">04/20/2026</span></div>
+        <div class="draw-date-item"><span class="draw-date-label">Actual</span><span class="draw-date-val" contenteditable="true" style="outline:none;min-width:80px;color:var(--muted)">—</span></div>
+      </div>
+      <div class="draw-progress-section">
+        <div class="draw-progress-row">
+          <span class="draw-progress-label">Spend Progress</span>
+          <span class="draw-progress-pct" id="d4-pct">0%</span>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar amber" id="d4-prog" style="width:0%"></div></div>
+      </div>
+      <div class="draw-line-items" id="items-4">
+        <div style="display:grid;grid-template-columns:1fr 80px 90px 20px;padding:6px 16px 4px;gap:8px;">
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase">Item</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Budget</span>
+          <span style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:right;letter-spacing:.08em;text-transform:uppercase">Spent</span>
+          <span></span>
+        </div>
+      </div>
+      <div class="draw-footer">
+        <div class="draw-totals">
+          <div class="draw-total-item"><span class="draw-total-label">Budget</span><span class="draw-total-val budget">$11,000</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Spent</span><span class="draw-total-val spent" id="d4-spent-total">$0</span></div>
+          <div class="draw-total-item"><span class="draw-total-label">Remain</span><span class="draw-total-val remain" id="d4-remain">$11,000</span></div>
+        </div>
+        <span class="card-badge badge-red" style="font-size:9px">Draw 4 of 4</span>
+      </div>
+    </div>
+
+  </div><!-- /draw-grid -->
+
+  <!-- TIMELINE + BUDGET ALLOCATION -->
+  <div class="two-col">
+
+    <!-- TIMELINE GANTT -->
+    <div class="card slide-up">
+      <div class="card-header">
+        <div class="card-title">Project Timeline</div>
+        <span class="card-badge badge-muted">Feb – Apr 2026</span>
+      </div>
+      <div class="timeline-grid">
+        <table class="gantt-table">
+          <thead>
+            <tr>
+              <th class="left" style="width:160px">Draw</th>
+              <th class="left" style="width:70px">Budget</th>
+              <th>Feb</th><th>Mar 1</th><th>Mar 16</th><th>Apr 1</th><th>Apr 20</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="gantt-draw-label">D1 · Roof</div><div class="gantt-dates">02/10 → 03/01</div></td>
+              <td class="gantt-draw-budget">$19K</td>
+              <td colspan="2"><div class="gantt-bar" style="background:var(--amber);width:100%">ROOF</div></td>
+              <td colspan="3"></td>
+            </tr>
+            <tr>
+              <td><div class="gantt-draw-label">D2 · Units A &amp; B</div><div class="gantt-dates">03/02 → 03/25</div></td>
+              <td class="gantt-draw-budget">$25K</td>
+              <td></td>
+              <td colspan="2"><div class="gantt-bar" style="background:#58a6ff;width:100%">UNITS A&amp;B</div></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td><div class="gantt-draw-label">D3 · Units C &amp; D</div><div class="gantt-dates">03/26 → 04/10</div></td>
+              <td class="gantt-draw-budget">$12K</td>
+              <td colspan="2"></td>
+              <td><div class="gantt-bar" style="background:var(--purple);width:100%">C&amp;D</div></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td><div class="gantt-draw-label">D4 · Site</div><div class="gantt-dates">04/01 → 04/20</div></td>
+              <td class="gantt-draw-budget">$11K</td>
+              <td colspan="3"></td>
+              <td colspan="2"><div class="gantt-bar" style="background:#f85149;width:100%">SITE WORK</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:11px;color:var(--muted);font-family:var(--mono)">TARGET COMPLETION</span>
+        <span style="font-family:var(--display);font-size:18px;letter-spacing:.08em;color:var(--amber)">APRIL 20, 2026</span>
+      </div>
+    </div>
+
+    <!-- BUDGET ALLOCATION DONUT -->
+    <div class="card slide-up">
+      <div class="card-header">
+        <div class="card-title">Budget Allocation</div>
+        <span class="card-badge badge-amber">~$67K Total</span>
+      </div>
+      <div class="donut-wrap">
+        <svg class="donut-svg" width="140" height="140" viewBox="0 0 140 140">
+          <!-- Interior ($37K = 55%) -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#58a6ff" stroke-width="22"
+            stroke-dasharray="183 327" stroke-dashoffset="0" transform="rotate(-90 70 70)" opacity=".85"/>
+          <!-- Roof ($19K = 28%) -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#f0a500" stroke-width="22"
+            stroke-dasharray="94 327" stroke-dashoffset="-186" transform="rotate(-90 70 70)" opacity=".85"/>
+          <!-- Site ($11K = 17%) -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#f85149" stroke-width="22"
+            stroke-dasharray="55 327" stroke-dashoffset="-280" transform="rotate(-90 70 70)" opacity=".85"/>
+          <text x="70" y="66" text-anchor="middle" font-family="'Space Mono'" font-size="11" fill="#e6edf3" font-weight="700">$67K</text>
+          <text x="70" y="80" text-anchor="middle" font-family="'Space Mono'" font-size="8" fill="#7d8590">TOTAL</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="legend-row">
+            <div class="legend-dot" style="background:#58a6ff"></div>
+            <div class="legend-label">Interior (A/B/C/D)</div>
+            <div class="legend-val">$37K</div>
+            <div class="legend-pct">55%</div>
+          </div>
+          <div class="legend-row">
+            <div class="legend-dot" style="background:var(--amber)"></div>
+            <div class="legend-label">Roof Replacement</div>
+            <div class="legend-val">$19K</div>
+            <div class="legend-pct">28%</div>
+          </div>
+          <div class="legend-row">
+            <div class="legend-dot" style="background:var(--red)"></div>
+            <div class="legend-label">Site Improvements</div>
+            <div class="legend-val">$11K</div>
+            <div class="legend-pct">17%</div>
+          </div>
+          <div style="padding-top:10px;margin-top:6px;border-top:1px solid var(--border);">
+            <div style="font-size:10px;font-family:var(--mono);color:var(--muted);margin-bottom:4px">UNIT BREAKDOWN</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+              <div style="font-size:11px;color:var(--text)">Unit A <span class="text-amber mono">$15K</span></div>
+              <div style="font-size:11px;color:var(--text)">Unit B <span class="text-amber mono">$10K</span></div>
+              <div style="font-size:11px;color:var(--text)">Unit C <span class="text-amber mono">$9K</span></div>
+              <div style="font-size:11px;color:var(--text)">Unit D <span class="text-amber mono">$3K</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RISK TRACKER -->
+  <div class="section-title">Risk Items</div>
+  <div class="card full-row slide-up">
+    <div class="card-header">
+      <div class="card-title">Known Risk Items — Verify Before Work Begins</div>
+      <span class="card-badge badge-red">Max Exposure: +$15,000</span>
+    </div>
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th style="width:32px">#</th>
+          <th>Risk Description</th>
+          <th>Low Est.</th>
+          <th>High Est.</th>
+          <th>Draw</th>
+          <th>Probability</th>
+          <th>Triggered?</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-muted mono">01</td>
+          <td>Roof truss condition — Building 1 (Units A/B/C)</td>
+          <td class="risk-impact">+$3,000</td>
+          <td class="risk-impact">+$5,000</td>
+          <td class="risk-draw">Draw 1</td>
+          <td><span class="card-badge badge-amber">Medium</span></td>
+          <td><label class="risk-toggle"><input type="checkbox" onchange="recalcRisk()"> Triggered</label></td>
+          <td><input class="vendor-input" placeholder="notes..." style="width:140px"></td>
+        </tr>
+        <tr>
+          <td class="text-muted mono">02</td>
+          <td>Unit A plumbing — piping replacement required</td>
+          <td class="risk-impact">+$2,000</td>
+          <td class="risk-impact">+$4,000</td>
+          <td class="risk-draw">Draw 2</td>
+          <td><span class="card-badge badge-amber">Medium</span></td>
+          <td><label class="risk-toggle"><input type="checkbox" onchange="recalcRisk()"> Triggered</label></td>
+          <td><input class="vendor-input" placeholder="notes..." style="width:140px"></td>
+        </tr>
+        <tr>
+          <td class="text-muted mono">03</td>
+          <td>Unit A kitchen cabinets — replace vs. reuse</td>
+          <td class="risk-impact">+$2,000</td>
+          <td class="risk-impact">+$3,000</td>
+          <td class="risk-draw">Draw 2</td>
+          <td><span class="card-badge badge-muted">Low</span></td>
+          <td><label class="risk-toggle"><input type="checkbox" onchange="recalcRisk()"> Triggered</label></td>
+          <td><input class="vendor-input" placeholder="notes..." style="width:140px"></td>
+        </tr>
+        <tr>
+          <td class="text-muted mono">04</td>
+          <td>Parking pad slab thickness — 4″ vs 6″</td>
+          <td class="risk-impact">+$500</td>
+          <td class="risk-impact">+$1,000</td>
+          <td class="risk-draw">Draw 4</td>
+          <td><span class="card-badge badge-muted">Low</span></td>
+          <td><label class="risk-toggle"><input type="checkbox" onchange="recalcRisk()"> Triggered</label></td>
+          <td><input class="vendor-input" placeholder="notes..." style="width:140px"></td>
+        </tr>
+        <tr>
+          <td class="text-muted mono">05</td>
+          <td>Unforeseen structural — Unit C bedroom addition</td>
+          <td class="risk-impact">+$500</td>
+          <td class="risk-impact">+$2,000</td>
+          <td class="risk-draw">Draw 3</td>
+          <td><span class="card-badge badge-muted">Low</span></td>
+          <td><label class="risk-toggle"><input type="checkbox" onchange="recalcRisk()"> Triggered</label></td>
+          <td><input class="vendor-input" placeholder="notes..." style="width:140px"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:32px;align-items:center;">
+      <div style="font-size:11px;color:var(--muted);font-family:var(--mono)">TRIGGERED RISK COST:</div>
+      <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--red)" id="risk-triggered">$0</div>
+      <div style="font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:20px">ADJUSTED TOTAL:</div>
+      <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--amber)" id="risk-adjusted">~$67,000</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM — VENDORS + NOTES -->
+  <div class="bottom-grid">
+    <!-- VENDOR LOG -->
+    <div class="card slide-up">
+      <div class="card-header">
+        <div class="card-title">Contractor / Vendor Log</div>
+        <span class="card-badge badge-muted">6 Trades</span>
+      </div>
+      <div id="vendorLog">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="card slide-up">
+      <div class="card-header">
+        <div class="card-title">Command Notes</div>
+        <span class="card-badge badge-muted">Editable</span>
+      </div>
+      <textarea class="notes-area" placeholder="Add project notes, lender conditions, inspection results, open items...">• Verify roof truss condition on Building 1 BEFORE signing roofing contract.
+• Verify Unit A plumbing condition before finalizing interior scope.
+• Confirm Unit A kitchen cabinet reuse before ordering replacements.
+• Confirm parking pad slab thickness requirement before pouring.
+• All permits must be closed before draw request.
+• Photo documentation required at each stage for lender.</textarea>
+
+      <div style="margin-top:16px">
+        <div class="section-title" style="font-size:11px;margin-bottom:12px">Lender / Inspection Log</div>
+        <table style="width:100%;border-collapse:collapse">
+          <thead>
+            <tr>
+              <th style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:left;padding:0 8px 8px;letter-spacing:.08em;text-transform:uppercase">Draw</th>
+              <th style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:left;padding:0 8px 8px;letter-spacing:.08em;text-transform:uppercase">Inspector</th>
+              <th style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:left;padding:0 8px 8px;letter-spacing:.08em;text-transform:uppercase">Date</th>
+              <th style="font-size:9px;font-family:var(--mono);color:var(--muted);text-align:center;padding:0 8px 8px;letter-spacing:.08em;text-transform:uppercase">Result</th>
+            </tr>
+          </thead>
+          <tbody id="inspectionLog">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /shell -->
+
+<footer style="max-width:1440px;margin:0 auto;padding:0 24px 40px">
+  <div class="f-left">SUAREZ CAPITAL · 3422 W IDLEWILD AVE · INTERNAL CONSTRUCTION DOCUMENT</div>
+  <div class="f-right">TARGET COMPLETION: APRIL 20, 2026 · 60–90 DAY EXECUTION</div>
+</footer>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+const draws = {
+  1: {
+    budget: 19000,
+    items: [
+      { desc: "Building 1 – Metal roof tear-off & removal",         budget: 5000 },
+      { desc: "Building 1 – New metal roof installation",           budget: 6000 },
+      { desc: "Building 1 – Truss reinforcement (allowance) ⚠",    budget: 2000 },
+      { desc: "Building 1 – Flashing, ridge cap, sealant",         budget: 1000 },
+      { desc: "Building 2 – Metal roof tear-off & removal",        budget: 1500 },
+      { desc: "Building 2 – New metal roof installation",          budget: 2500 },
+      { desc: "Building 2 – Flashing, ridge cap, sealant",         budget:  500 },
+      { desc: "Permits & licensed contractor certification",        budget:  500 },
+    ]
+  },
+  2: {
+    budget: 25000,
+    items: [
+      { desc: "Unit A – Demo & framing (living room → 3BR)",        budget: 1500 },
+      { desc: "Unit A – Kitchen modification (split w/ Unit B)",    budget: 2500 },
+      { desc: "Unit A – LVP flooring (~650 SF)",                   budget: 2000 },
+      { desc: "Unit A – Interior paint",                           budget: 1200 },
+      { desc: "Unit A – Electrical, fixtures, ceiling fans",       budget: 1500 },
+      { desc: "Unit A – Bathroom plumbing fixes ⚠",               budget: 1200 },
+      { desc: "Unit A – HVAC ductwork reconfiguration",            budget: 2000 },
+      { desc: "Unit A – Doors, trim, hardware",                    budget: 1000 },
+      { desc: "Unit A – Appliances / misc kitchen",                budget: 1500 },
+      { desc: "Unit B – Bedroom framing & finish",                 budget: 1500 },
+      { desc: "Unit B – Kitchen cabinets + countertops ⚠",        budget: 3000 },
+      { desc: "Unit B – Appliances",                               budget: 1200 },
+      { desc: "Unit B – Interior paint",                           budget: 1000 },
+      { desc: "Unit B – Lighting, electrical, bath fixture",       budget: 1000 },
+      { desc: "Unit B – Flooring repair",                          budget:  800 },
+      { desc: "Unit B – Doors, trim, misc",                        budget:  700 },
+      { desc: "Unit B – Doorway connection cleanup (A/B)",         budget:  400 },
+    ]
+  },
+  3: {
+    budget: 12000,
+    items: [
+      { desc: "Unit C – Bedroom framing (1BR→2BR)",                budget: 1800 },
+      { desc: "Unit C – Electrical outlets & wiring",              budget: 1000 },
+      { desc: "Unit C – Interior paint (full unit)",               budget: 1000 },
+      { desc: "Unit C – LVP flooring replacement",                 budget: 1500 },
+      { desc: "Unit C – Kitchen refresh",                          budget: 2000 },
+      { desc: "Unit C – Bathroom refresh",                         budget: 1200 },
+      { desc: "Unit D – Interior paint",                           budget:  800 },
+      { desc: "Unit D – Flooring repair",                          budget:  700 },
+      { desc: "Unit D – Fixtures, ceiling fans, hardware",         budget:  500 },
+      { desc: "Unit D – General maintenance & punch list",         budget:  500 },
+    ]
+  },
+  4: {
+    budget: 11000,
+    items: [
+      { desc: "Parking expansion – concrete pad 300–400 SF ⚠",    budget: 4000 },
+      { desc: "Electrical cleanup – exterior improvements",        budget: 2000 },
+      { desc: "Electrical – additional safety allowance",          budget:  500 },
+      { desc: "Backyard clearing (~0.2 acre)",                     budget: 1200 },
+      { desc: "Gravel / patio area installation",                  budget: 1500 },
+      { desc: "Shed conversion – outdoor/storage",                 budget: 1500 },
+      { desc: "Miscellaneous site / punch list",                   budget:  300 },
+    ]
+  }
+};
+
+const vendors = [
+  { trade: "Metal Roofing",      draw: "D1" },
+  { trade: "GC Interior – A/B", draw: "D2" },
+  { trade: "GC Interior – C/D", draw: "D3" },
+  { trade: "Licensed Electrician", draw: "D2/D4" },
+  { trade: "Concrete / Site",    draw: "D4" },
+  { trade: "Licensed Plumber",   draw: "D2" },
+];
+
+// ── BUILD DRAW LINE ITEMS ───────────────────────────────────────────────────
+function buildDrawItems() {
+  for (const [drawNum, draw] of Object.entries(draws)) {
+    const container = document.getElementById(`items-${drawNum}`);
+    draw.items.forEach((item, idx) => {
+      const row = document.createElement('div');
+      row.className = 'line-item';
+      row.innerHTML = `
+        <div class="line-item-desc">${item.desc}</div>
+        <div class="line-item-budget">${fmt(item.budget)}</div>
+        <div class="line-item-spent">
+          <input type="number" min="0" max="${item.budget * 2}" step="100"
+            placeholder="0" data-draw="${drawNum}" data-idx="${idx}"
+            onchange="updateTotals()" oninput="updateTotals()">
+        </div>
+        <div class="line-item-status"><div class="li-status-dot" id="dot-${drawNum}-${idx}"></div></div>
+      `;
+      container.appendChild(row);
+    });
+  }
+}
+
+// ── BUILD VENDOR LOG ────────────────────────────────────────────────────────
+function buildVendors() {
+  const container = document.getElementById('vendorLog');
+  vendors.forEach(v => {
+    const row = document.createElement('div');
+    row.style.cssText = 'padding: 10px 0; border-bottom: 1px solid var(--border);';
+    row.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-size:12px;font-weight:600;color:var(--text)">${v.trade}</span>
+        <span class="card-badge badge-muted" style="font-size:9px">${v.draw}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <input class="vendor-input" placeholder="Company name">
+        <input class="vendor-input" placeholder="Phone / email">
+        <input class="vendor-input" placeholder="License #">
+        <input class="vendor-input" placeholder="Contract amt $">
+      </div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+// ── BUILD INSPECTION LOG ────────────────────────────────────────────────────
+function buildInspections() {
+  const tbody = document.getElementById('inspectionLog');
+  const drawLabels = ['D1 – Roof','D2 – Units A/B','D3 – Units C/D','D4 – Site'];
+  drawLabels.forEach((lbl, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-size:11px;color:var(--muted);font-family:var(--mono);padding:6px 8px">${lbl}</td>
+      <td style="padding:4px 8px"><input class="vendor-input" placeholder="Inspector name" style="width:100%"></td>
+      <td style="padding:4px 8px"><input class="vendor-input" placeholder="MM/DD/YYYY" style="width:100%"></td>
+      <td style="padding:4px 8px;text-align:center">
+        <select style="background:var(--surface);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:var(--mono);font-size:10px;padding:4px 6px;outline:none">
+          <option value="">—</option>
+          <option>Pass</option>
+          <option>Fail</option>
+          <option>Conditional</option>
+          <option>Pending</option>
+        </select>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── TOTALS ──────────────────────────────────────────────────────────────────
+const TOTAL_BUDGET = 67000;
+
+function updateTotals() {
+  let grandSpent = 0;
+
+  for (const [drawNum, draw] of Object.entries(draws)) {
+    const inputs = document.querySelectorAll(`input[data-draw="${drawNum}"]`);
+    let drawSpent = 0;
+    inputs.forEach((inp, idx) => {
+      const val = parseFloat(inp.value) || 0;
+      drawSpent += val;
+      const dot = document.getElementById(`dot-${drawNum}-${idx}`);
+      if (dot) {
+        dot.className = 'li-status-dot' + (val > 0 ? (val >= draw.items[idx].budget ? ' done' : ' active') : '');
+      }
+    });
+    grandSpent += drawSpent;
+
+    const pct = Math.min(100, Math.round((drawSpent / draw.budget) * 100));
+    const progEl = document.getElementById(`d${drawNum}-prog`);
+    const pctEl  = document.getElementById(`d${drawNum}-pct`);
+    const spentEl  = document.getElementById(`d${drawNum}-spent-total`);
+    const remainEl = document.getElementById(`d${drawNum}-remain`);
+
+    if (progEl) progEl.style.width = pct + '%';
+    if (pctEl)  pctEl.textContent = pct + '%';
+    if (spentEl)  spentEl.textContent = fmt(drawSpent);
+    if (remainEl) remainEl.textContent = fmt(Math.max(0, draw.budget - drawSpent));
+  }
+
+  // KPI strip
+  const remaining = TOTAL_BUDGET - grandSpent;
+  const pctSpent  = Math.min(100, Math.round((grandSpent / TOTAL_BUDGET) * 100));
+
+  document.getElementById('kpi-drawn').textContent     = fmt(grandSpent);
+  document.getElementById('kpi-spent').textContent     = fmt(grandSpent);
+  document.getElementById('kpi-remaining').textContent = fmt(Math.max(0, remaining));
+  document.getElementById('kpi-spent-sub').textContent = pctSpent + '% of budget';
+
+  const drawsActive = [1,2,3,4].filter(d => {
+    const inputs = document.querySelectorAll(`input[data-draw="${d}"]`);
+    return [...inputs].some(i => parseFloat(i.value) > 0);
+  }).length;
+  document.getElementById('kpi-drawn-sub').textContent = drawsActive + ' of 4 draws active';
+
+  document.getElementById('prog-drawn').style.width   = Math.min(100, Math.round((grandSpent / TOTAL_BUDGET)*100)) + '%';
+  document.getElementById('prog-spent').style.width   = Math.min(100, pctSpent) + '%';
+  document.getElementById('prog-remaining').style.width = Math.min(100, Math.round((remaining / TOTAL_BUDGET)*100)) + '%';
+
+  updateTimestamp();
+}
+
+// ── RISK CALC ───────────────────────────────────────────────────────────────
+const riskHighs = [5000, 4000, 3000, 1000, 2000];
+function recalcRisk() {
+  const checkboxes = document.querySelectorAll('.risk-toggle input[type="checkbox"]');
+  let total = 0;
+  checkboxes.forEach((cb, i) => { if (cb.checked) total += riskHighs[i]; });
+  document.getElementById('risk-triggered').textContent = '+' + fmt(total);
+  document.getElementById('risk-adjusted').textContent  = '~' + fmt(67000 + total);
+}
+
+// ── STATUS CYCLE ────────────────────────────────────────────────────────────
+const statusCycle = ['not-started','in-progress','complete','pending'];
+const statusLabel = {'not-started':'Not Started','in-progress':'In Progress','complete':'Complete','pending':'Pending Inspection'};
+function cycleStatus(el) {
+  const current = statusCycle.find(s => el.classList.contains(s)) || 'not-started';
+  const next = statusCycle[(statusCycle.indexOf(current) + 1) % statusCycle.length];
+  statusCycle.forEach(s => el.classList.remove(s));
+  el.classList.add(next);
+  el.textContent = statusLabel[next];
+}
+
+// ── FORMAT ──────────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n >= 1000) return '$' + (n/1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
+  return '$' + n.toLocaleString();
+}
+
+function updateTimestamp() {
+  const now = new Date();
+  document.getElementById('lastUpdated').textContent =
+    'Updated ' + now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+buildDrawItems();
+buildVendors();
+buildInspections();
+updateTimestamp();
+
+// Animate progress bars on load
+setTimeout(() => {
+  document.getElementById('prog-budget').style.width = '90%'; // $60K of $67K target
+}, 300);
+</script>
+</body>
+</html>
