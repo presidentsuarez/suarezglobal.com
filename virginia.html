@@ -19,8 +19,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a:hover{color:var(--gold-light);}
 .nav-cta{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#0d1f0f;background:var(--gold);padding:0.65rem 1.6rem;text-decoration:none;transition:background 0.3s;}
 .nav-cta:hover{background:var(--gold-light);}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-.hamburger span{display:block;width:24px;height:2px;background:var(--gold);}
 
 .hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:10rem 4rem 5rem;background:linear-gradient(155deg,#0d1f0f 0%,#0a1a0c 55%,#080f09 100%);}
 .hero-glow{position:absolute;right:0;top:0;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(45,107,53,0.18) 0%,transparent 60%);pointer-events:none;}
@@ -241,8 +239,6 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
 @media(max-width:900px){
   nav{padding:1.1rem 1.5rem;}
   .nav-links,.nav-cta{display:none;}
-  .hamburger{display:flex;}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:#132716;padding:2rem 1.5rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
   .hero{padding:8rem 1.5rem 4rem;min-height:auto;}
   .hero-meta{width:100%;}
   .hero-meta-item{padding:0.85rem 1rem;flex:1;min-width:90px;}
@@ -699,7 +695,6 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.05});
   reveals.forEach(el=>io.observe(el));
-  document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});
   window.addEventListener('scroll',()=>{
     const nav=document.getElementById('navbar');
     nav.style.padding=window.scrollY>60?(window.innerWidth>900?'0.85rem 4rem':'0.85rem 1.5rem'):(window.innerWidth>900?'1.4rem 4rem':'1.1rem 1.5rem');
