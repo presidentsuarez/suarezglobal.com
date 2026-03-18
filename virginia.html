@@ -3,466 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>West Virginia Ave — Suarez Global</title>
+<title>4214 W Virginia Ave — Suarez Global</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+:root{--green-deep:#0d1f0f;--green-dark:#132716;--green-mid:#1a3a1e;--green-rich:#1f4d24;--green-accent:#2d6b35;--green-bright:#3d8b47;--gold:#c9a84c;--gold-light:#e2c97e;--gold-pale:#f5e6c0;--cream:#f8f3ea;--text-muted:#8a9e8c;--border:rgba(201,168,76,0.18);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',Georgia,sans-serif;background-color:#0d1f0f;color:#f8f3ea;overflow-x:hidden;}
 
-:root {
-  --green-deep: #0d1f0f;
-  --green-dark: #132716;
-  --green-mid: #1a3a1e;
-  --green-rich: #1f4d24;
-  --green-accent: #2d6b35;
-  --green-bright: #3d8b47;
-  --gold: #c9a84c;
-  --gold-light: #e2c97e;
-  --gold-pale: #f5e6c0;
-  --cream: #f8f3ea;
-  --text-muted: #8a9e8c;
-  --border: rgba(201,168,76,0.18);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(13,31,15,0.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:padding 0.3s;}
+.logo{font-family:'Cinzel',Georgia,serif;font-size:1rem;font-weight:700;letter-spacing:0.22em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
+.logo span{color:#f8f3ea;opacity:0.7;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold-light);}
+.nav-cta{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#0d1f0f;background:var(--gold);padding:0.65rem 1.6rem;text-decoration:none;transition:background 0.3s;}
+.nav-cta:hover{background:var(--gold-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+.hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:10rem 4rem 5rem;background:linear-gradient(155deg,#0d1f0f 0%,#0a1a0c 55%,#080f09 100%);}
+.hero-glow{position:absolute;right:0;top:0;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(45,107,53,0.18) 0%,transparent 60%);pointer-events:none;}
+.hero-glow2{position:absolute;left:-10%;bottom:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 65%);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:80px 80px;}
+.hero-stripe{position:absolute;top:0;right:18%;width:2px;height:100%;background:linear-gradient(180deg,transparent 0%,var(--gold) 40%,transparent 100%);opacity:0.18;transform:skewX(-8deg);}
+.hero-stripe2{position:absolute;top:0;right:24%;width:1px;height:100%;background:linear-gradient(180deg,transparent 0%,var(--gold) 60%,transparent 100%);opacity:0.09;transform:skewX(-8deg);}
+.hero-content{position:relative;z-index:2;width:100%;}
+.hero-tag{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.64rem;font-weight:500;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:0.45rem 1.1rem;margin-bottom:2rem;animation:fadeUp 0.7s ease both;}
+.hero-tag-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.36em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;display:flex;align-items:center;gap:1rem;animation:fadeUp 0.7s 0.1s ease both;}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.8rem,6.5vw,6rem);font-weight:300;line-height:1.04;color:#f8f3ea;margin-bottom:0.6rem;animation:fadeUp 0.7s 0.2s ease both;}
+h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1rem,2vw,1.3rem);font-weight:300;font-style:italic;color:var(--text-muted);margin-bottom:2.5rem;max-width:600px;line-height:1.6;animation:fadeUp 0.7s 0.3s ease both;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:0;margin-bottom:3rem;border:1px solid var(--border);width:fit-content;animation:fadeUp 0.7s 0.4s ease both;overflow:hidden;}
+.hero-meta-item{padding:1rem 1.6rem;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:0.25rem;}
+.hero-meta-item:last-child{border-right:none;}
+.meta-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);}
+.meta-value{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--gold-light);}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.5s ease both;}
 
-body {
-  font-family: 'DM Sans', Georgia, sans-serif;
-  background-color: #0d1f0f;
-  color: #f8f3ea;
-  overflow-x: hidden;
-}
+.btn-primary{font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#0d1f0f;background:var(--gold);padding:1rem 2.4rem;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.2s,box-shadow 0.3s;border:none;cursor:pointer;font-family:inherit;}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,0.28);}
+.btn-secondary{font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#f8f3ea;border:1px solid var(--border);padding:1rem 2.4rem;text-decoration:none;display:inline-block;transition:border-color 0.3s,color 0.3s,transform 0.2s;}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-2px);}
 
-/* ─── NAV ─── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 4rem;
-  background: rgba(13,31,15,0.92);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border);
-  transition: padding 0.3s;
-}
-.logo {
-  font-family: 'Cinzel', Georgia, serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: var(--gold);
-  text-decoration: none;
-  text-transform: uppercase;
-}
-.logo span { color: #f8f3ea; opacity: 0.7; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s;
-}
-.nav-links a:hover { color: var(--gold-light); }
-.nav-cta {
-  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
-  text-transform: uppercase; color: #0d1f0f; background: var(--gold);
-  padding: 0.65rem 1.6rem; text-decoration: none; transition: background 0.3s;
-}
-.nav-cta:hover { background: var(--gold-light); }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); }
+.divider{display:flex;align-items:center;gap:1.5rem;padding:0 4rem;}
+.divider-line{flex:1;height:1px;background:var(--border);}
+.divider-mark{width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);flex-shrink:0;}
 
-/* ─── HERO ─── */
-.hero {
-  min-height: 72vh;
-  display: flex; align-items: flex-end;
-  position: relative; overflow: hidden;
-  padding: 10rem 4rem 5rem;
-  background: linear-gradient(155deg, #0d1f0f 0%, #0a1a0c 55%, #080f09 100%);
-}
-.hero-glow {
-  position: absolute; right: 0; top: 0;
-  width: 800px; height: 800px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(45,107,53,0.18) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-glow2 {
-  position: absolute; left: -10%; bottom: -10%;
-  width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
+.section-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:1rem;}
+.section-eyebrow::before{content:'';display:block;width:30px;height:1px;background:var(--gold);}
+.section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:#f8f3ea;margin-bottom:1.2rem;}
+.section-title em{font-style:italic;color:var(--gold-light);}
+.section-body{font-size:0.93rem;line-height:1.8;color:var(--text-muted);margin-bottom:2rem;}
 
-/* Diagonal accent stripe */
-.hero-stripe {
-  position: absolute;
-  top: 0; right: 18%;
-  width: 2px; height: 100%;
-  background: linear-gradient(180deg, transparent 0%, var(--gold) 40%, transparent 100%);
-  opacity: 0.18;
-  transform: skewX(-8deg);
-}
-.hero-stripe2 {
-  position: absolute;
-  top: 0; right: 24%;
-  width: 1px; height: 100%;
-  background: linear-gradient(180deg, transparent 0%, var(--gold) 60%, transparent 100%);
-  opacity: 0.09;
-  transform: skewX(-8deg);
-}
+/* PRESENTATION */
+.presentation{background:#132716;padding:6rem 4rem;position:relative;overflow:hidden;}
+.presentation-bg-text{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:11rem;font-weight:700;color:rgba(255,255,255,0.02);pointer-events:none;white-space:nowrap;user-select:none;}
+.presentation-layout{display:grid;grid-template-columns:1fr 1.7fr;gap:5rem;align-items:start;position:relative;z-index:1;}
+.presentation-sidebar{position:sticky;top:100px;}
+.deal-highlights{display:flex;flex-direction:column;gap:0;margin-bottom:2rem;border:1px solid var(--border);}
+.deal-highlight{display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.4rem;border-bottom:1px solid var(--border);transition:background 0.3s;}
+.deal-highlight:last-child{border-bottom:none;}
+.deal-highlight:hover{background:rgba(201,168,76,0.05);}
+.highlight-icon{width:32px;height:32px;flex-shrink:0;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:var(--gold);}
+.highlight-text{font-size:0.83rem;color:var(--cream);letter-spacing:0.02em;}
+.highlight-text strong{color:var(--gold-light);font-weight:500;}
+.embed-label{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+.embed-label::before{content:'';display:block;width:20px;height:1px;background:var(--gold);}
+.embed-border{border:1px solid var(--border);padding:3px;background:rgba(13,31,15,0.5);transition:border-color 0.4s;position:relative;}
+.embed-border:hover{border-color:rgba(201,168,76,0.4);}
+.embed-border::before,.embed-border::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid;z-index:2;}
+.embed-border::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.embed-border::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.embed-inner{position:relative;width:100%;padding-bottom:60%;overflow:hidden;background:#0d1f0f;}
+.embed-inner iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block;}
 
-.hero-content { position: relative; z-index: 2; width: 100%; }
+/* SNAPSHOT */
+.snapshot{background:#0d1f0f;padding:6rem 4rem;position:relative;}
+.snapshot-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(45,107,53,0.13) 0%,transparent 70%);pointer-events:none;}
+.snapshot-header{text-align:center;max-width:580px;margin:0 auto 4rem;}
+.snapshot-header .section-eyebrow{justify-content:center;}
+.snapshot-header .section-eyebrow::before{display:none;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);position:relative;z-index:1;max-width:1100px;margin:0 auto 2px;}
+.stat-block{background:#0d1f0f;padding:2.2rem 1.6rem;text-align:center;position:relative;overflow:hidden;transition:background 0.3s;}
+.stat-block::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:center;transition:transform 0.4s ease;}
+.stat-block:hover{background:#132716;}
+.stat-block:hover::before{transform:scaleX(1);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:0.4rem;}
+.stat-lbl{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);line-height:1.5;}
+.noi-compare{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);}
+.noi-col{background:#0d1f0f;padding:2.5rem;}
+.noi-col.highlight{background:#132716;}
+.noi-tag{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border);padding:0.3rem 0.7rem;display:inline-block;margin-bottom:1rem;}
+.noi-tag.active{color:var(--gold);border-color:var(--gold);}
+.noi-label{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.1em;color:var(--gold-light);text-transform:uppercase;margin-bottom:0.5rem;}
+.noi-amount{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#f8f3ea;line-height:1;margin-bottom:0.5rem;}
+.noi-amount.big{font-size:3.6rem;color:var(--gold-light);}
+.noi-detail{font-size:0.8rem;color:var(--text-muted);line-height:1.7;}
+.noi-detail span{color:var(--cream);}
 
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 0.8rem;
-  font-size: 0.64rem; font-weight: 500; letter-spacing: 0.38em;
-  text-transform: uppercase; color: var(--gold);
-  border: 1px solid var(--border);
-  padding: 0.45rem 1.1rem;
-  margin-bottom: 2rem;
-  animation: fadeUp 0.7s ease both;
-}
-.hero-tag-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+/* CAPITAL */
+.capital{background:#1a3a1e;padding:6rem 4rem;position:relative;overflow:hidden;}
+.capital-watermark{position:absolute;left:-2rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:12rem;font-weight:700;color:rgba(255,255,255,0.025);pointer-events:none;white-space:nowrap;user-select:none;}
+.capital-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;position:relative;z-index:1;}
+.stack-bars{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2rem;}
+.stack-bar-item{display:flex;flex-direction:column;gap:0.4rem;}
+.bar-label{display:flex;justify-content:space-between;align-items:baseline;}
+.bar-name{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+.bar-val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);}
+.bar-track{height:6px;background:rgba(201,168,76,0.1);}
+.bar-fill{height:100%;background:var(--gold);}
+.bar-fill.equity{background:var(--green-bright);}
+.sources-uses{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.su-box{border:1px solid var(--border);padding:1.6rem 1.8rem;}
+.su-title{font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border);}
+.su-line{display:flex;justify-content:space-between;align-items:baseline;padding:0.35rem 0;border-bottom:1px solid rgba(201,168,76,0.06);}
+.su-line:last-child{border-bottom:none;border-top:1px solid var(--border);padding-top:0.7rem;margin-top:0.2rem;}
+.su-line-label{font-size:0.75rem;color:var(--text-muted);}
+.su-line-val{font-size:0.78rem;color:var(--cream);font-weight:500;}
+.su-total .su-line-label{color:var(--gold-light);}
+.su-total .su-line-val{color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1rem;}
 
-@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+/* RENT ROLL */
+.rentroll{background:#0d1f0f;padding:6rem 4rem;}
+.rr-table-wrap{overflow-x:auto;margin-top:2.5rem;}
+table{width:100%;border-collapse:collapse;font-size:0.83rem;}
+thead tr{border-bottom:1px solid var(--gold);}
+th{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);padding:0.8rem 1.2rem;text-align:left;white-space:nowrap;}
+td{padding:1rem 1.2rem;border-bottom:1px solid rgba(201,168,76,0.07);color:var(--text-muted);white-space:nowrap;}
+tr:hover td{background:rgba(45,107,53,0.08);color:var(--cream);}
+tr.total-row td{border-top:1px solid var(--gold);color:var(--gold-light);font-weight:500;background:rgba(201,168,76,0.05);}
+.status-badge{display:inline-block;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.2rem 0.55rem;border:1px solid;}
+.status-active{color:var(--green-bright);border-color:var(--green-bright);}
+.status-vacating{color:#e2a97e;border-color:#e2a97e;}
+.vacancy-callout{display:grid;grid-template-columns:repeat(3,1fr) 1.2fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2.5rem;}
+.vac-card{background:#0d1f0f;padding:2rem 1.8rem;transition:background 0.3s;}
+.vac-card:hover{background:#132716;}
+.vac-id{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.vac-name{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.08em;color:var(--cream);margin-bottom:0.8rem;}
+.vac-sf{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-light);line-height:1;}
+.vac-rent{font-size:0.75rem;color:var(--text-muted);margin-top:0.3rem;}
+.vac-total{background:#132716;padding:2rem 1.8rem;display:flex;flex-direction:column;justify-content:center;}
+.vac-total-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.vac-total-num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:#f8f3ea;line-height:1;}
+.vac-total-sub{font-size:0.72rem;color:var(--text-muted);margin-top:0.3rem;}
 
-.hero-eyebrow {
-  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.36em;
-  text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 1rem;
-  animation: fadeUp 0.7s 0.1s ease both;
-}
-.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+/* THESIS */
+.thesis{background:#132716;padding:6rem 4rem;position:relative;overflow:hidden;}
+.thesis-watermark{position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:12rem;font-weight:700;color:rgba(255,255,255,0.02);pointer-events:none;white-space:nowrap;user-select:none;}
+.thesis-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;position:relative;z-index:1;}
+.thesis-points{display:flex;flex-direction:column;gap:0;}
+.thesis-point{border-left:2px solid var(--border);padding:1.5rem 2rem;transition:border-color 0.3s,background 0.3s;}
+.thesis-point:hover{border-color:var(--gold);background:rgba(201,168,76,0.04);}
+.tp-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(201,168,76,0.3);line-height:1;margin-bottom:0.4rem;}
+.tp-title{font-family:'Cinzel',serif;font-size:0.73rem;letter-spacing:0.12em;color:var(--gold-light);margin-bottom:0.5rem;text-transform:uppercase;}
+.tp-body{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
 
-h1 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.8rem, 6.5vw, 6rem);
-  font-weight: 300; line-height: 1.04; color: #f8f3ea;
-  margin-bottom: 0.6rem;
-  animation: fadeUp 0.7s 0.2s ease both;
-}
-h1 em { font-style: italic; color: var(--gold-light); }
+/* EXIT */
+.exit{background:#0d1f0f;padding:6rem 4rem;position:relative;}
+.exit-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;}
+.exit-visual{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);}
+.exit-step{padding:1.6rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:background 0.3s;}
+.exit-step:last-child{border-bottom:none;background:rgba(201,168,76,0.06);}
+.exit-step:hover{background:rgba(45,107,53,0.08);}
+.exit-step-label{font-size:0.78rem;color:var(--text-muted);line-height:1.5;}
+.exit-step-label small{display:block;font-size:0.7rem;color:rgba(138,158,140,0.6);margin-top:0.2rem;}
+.exit-step-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--cream);text-align:right;flex-shrink:0;}
+.exit-step-val.gold{color:var(--gold-light);}
+.exit-step-val.big{font-size:2rem;}
+.exit-step-val small{display:block;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-top:0.15rem;}
+.exit-ranges{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:1.5rem;}
+.range-box{background:#0d1f0f;padding:1.5rem;text-align:center;transition:background 0.3s;}
+.range-box:hover{background:#132716;}
+.range-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;}
+.range-val{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--gold-light);}
+.dscr-box{border:1px solid var(--border);padding:2rem;margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;text-align:center;}
+.dscr-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-light);}
+.dscr-lbl{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);line-height:1.5;}
 
-.hero-sub {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  font-weight: 300; font-style: italic; color: var(--text-muted);
-  margin-bottom: 2.5rem; max-width: 540px; line-height: 1.6;
-  animation: fadeUp 0.7s 0.3s ease both;
-}
+/* MARKET */
+.market{background:#1a3a1e;padding:6rem 4rem;position:relative;overflow:hidden;}
+.market-watermark{position:absolute;left:-2rem;bottom:-2rem;font-family:'Cinzel',serif;font-size:10rem;font-weight:700;color:rgba(255,255,255,0.025);pointer-events:none;white-space:nowrap;user-select:none;}
+.market-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);position:relative;z-index:1;}
+.market-card{background:#1a3a1e;padding:2.5rem;transition:background 0.3s;}
+.market-card:hover{background:#1f4d24;}
+.market-card-title{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border);}
+.market-points{display:flex;flex-direction:column;gap:0.55rem;}
+.market-point{font-size:0.83rem;color:var(--text-muted);padding-left:1.2rem;position:relative;line-height:1.55;}
+.market-point::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:0.65rem;}
+.market-point strong{color:var(--cream);}
 
-.hero-meta {
-  display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 3rem;
-  border: 1px solid var(--border);
-  width: fit-content;
-  animation: fadeUp 0.7s 0.4s ease both;
-  overflow: hidden;
-}
-.hero-meta-item {
-  padding: 1rem 2rem;
-  border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; gap: 0.25rem;
-}
-.hero-meta-item:last-child { border-right: none; }
-.meta-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); }
-.meta-value { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--gold-light); }
+/* CTA */
+.cta-section{background:#132716;padding:7rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.cta-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,107,53,0.22) 0%,transparent 65%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:300;line-height:1.1;color:#f8f3ea;margin-bottom:1rem;}
+.cta-title em{font-style:italic;color:var(--gold-light);}
+.cta-body{font-size:0.95rem;color:var(--text-muted);margin-bottom:3rem;line-height:1.75;max-width:500px;margin-left:auto;margin-right:auto;}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.5s ease both; }
+footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:'Cinzel',serif;font-size:0.9rem;font-weight:600;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;}
+.footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap;}
+.footer-links a{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:var(--gold-light);}
+.footer-copy{font-size:0.68rem;color:rgba(138,158,140,0.4);letter-spacing:0.05em;}
 
-/* ─── BUTTONS ─── */
-.btn-primary {
-  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-  color: #0d1f0f; background: var(--gold);
-  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.3s; border: none; cursor: pointer; font-family: inherit;
-}
-.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.28); }
-.btn-secondary {
-  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-  color: #f8f3ea; border: 1px solid var(--border);
-  padding: 1rem 2.4rem; text-decoration: none; display: inline-block;
-  transition: border-color 0.3s, color 0.3s, transform 0.2s;
-}
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
 
-/* ─── DIVIDER ─── */
-.divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 4rem; }
-.divider-line { flex: 1; height: 1px; background: var(--border); }
-.divider-mark { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); flex-shrink: 0; }
-
-/* ─── PRESENTATION SECTION ─── */
-.presentation {
-  background: #132716;
-  padding: 6rem 4rem;
-  position: relative;
-  overflow: hidden;
+@media(max-width:1100px){
+  .capital-layout,.exit-layout,.thesis-layout{grid-template-columns:1fr;gap:3rem;}
 }
-.presentation-bg-text {
-  position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
-  font-family: 'Cinzel', serif; font-size: 11rem; font-weight: 700;
-  color: rgba(255,255,255,0.02); letter-spacing: 0.1em;
-  pointer-events: none; white-space: nowrap; user-select: none;
+@media(max-width:1024px){
+  .presentation-layout{grid-template-columns:1fr;gap:3rem;}
+  .presentation-sidebar{position:static;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .noi-compare{grid-template-columns:1fr;}
+  .sources-uses{grid-template-columns:1fr;}
+  .market-grid{grid-template-columns:1fr;}
+  .vacancy-callout{grid-template-columns:1fr 1fr;}
 }
-.presentation-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.7fr;
-  gap: 5rem;
-  align-items: start;
-  position: relative; z-index: 1;
+@media(max-width:900px){
+  nav{padding:1.1rem 1.5rem;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:#132716;padding:2rem 1.5rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:99;}
+  .hero{padding:8rem 1.5rem 4rem;min-height:auto;}
+  .hero-meta{width:100%;}
+  .hero-meta-item{padding:0.85rem 1rem;flex:1;min-width:90px;}
+  .presentation,.snapshot,.capital,.rentroll,.thesis,.exit,.market,.cta-section{padding:4rem 1.5rem;}
+  .divider{padding:0 1.5rem;}
+  footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;}
+  .embed-inner{padding-bottom:70%;}
+  table{font-size:0.73rem;}
+  th,td{padding:0.65rem 0.8rem;}
+  .dscr-box{grid-template-columns:1fr;}
+  .exit-ranges{grid-template-columns:1fr;}
 }
-.presentation-sidebar { position: sticky; top: 100px; }
-.section-eyebrow {
-  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
-  display: flex; align-items: center; gap: 1rem;
-}
-.section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
-.section-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 300; line-height: 1.15; color: #f8f3ea; margin-bottom: 1.2rem;
-}
-.section-title em { font-style: italic; color: var(--gold-light); }
-.section-body { font-size: 0.93rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 2rem; }
-
-.deal-highlights { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; border: 1px solid var(--border); }
-.deal-highlight {
-  display: flex; align-items: center; gap: 1.2rem;
-  padding: 1.1rem 1.4rem;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
-}
-.deal-highlight:last-child { border-bottom: none; }
-.deal-highlight:hover { background: rgba(201,168,76,0.05); }
-.highlight-icon {
-  width: 32px; height: 32px; flex-shrink: 0;
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem; color: var(--gold);
-}
-.highlight-text { font-size: 0.83rem; color: var(--cream); letter-spacing: 0.02em; }
-.highlight-text strong { color: var(--gold-light); font-weight: 500; }
-
-/* Embed wrapper */
-.embed-frame-wrapper {
-  position: relative;
-}
-.embed-label {
-  font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.embed-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold); }
-
-.embed-border {
-  border: 1px solid var(--border);
-  padding: 3px;
-  background: rgba(13,31,15,0.5);
-  transition: border-color 0.4s;
-  position: relative;
-}
-.embed-border:hover { border-color: rgba(201,168,76,0.4); }
-
-/* Corner accents */
-.embed-border::before, .embed-border::after {
-  content: '';
-  position: absolute;
-  width: 16px; height: 16px;
-  border-color: var(--gold);
-  border-style: solid;
-  z-index: 2;
-}
-.embed-border::before {
-  top: -1px; left: -1px;
-  border-width: 2px 0 0 2px;
-}
-.embed-border::after {
-  bottom: -1px; right: -1px;
-  border-width: 0 2px 2px 0;
-}
-
-.embed-inner {
-  position: relative;
-  width: 100%;
-  padding-bottom: 60%;
-  overflow: hidden;
-  background: #0d1f0f;
-}
-.embed-inner iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-
-/* ─── OPPORTUNITY STATS ─── */
-.opportunity {
-  background: #0d1f0f;
-  padding: 6rem 4rem;
-  position: relative;
-}
-.opp-glow {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-  width: 700px; height: 400px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(45,107,53,0.13) 0%, transparent 70%);
-  pointer-events: none;
-}
-.opp-header { text-align: center; max-width: 580px; margin: 0 auto 4rem; }
-.opp-header .section-eyebrow { justify-content: center; }
-.opp-header .section-eyebrow::before { display: none; }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  position: relative; z-index: 1;
-  max-width: 960px; margin: 0 auto;
-}
-.stat-block {
-  background: #0d1f0f;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s;
-}
-.stat-block::before {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  transform: scaleX(0); transform-origin: center;
-  transition: transform 0.4s ease;
-}
-.stat-block:hover { background: #132716; }
-.stat-block:hover::before { transform: scaleX(1); }
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem; font-weight: 300; color: var(--gold-light); line-height: 1;
-  margin-bottom: 0.4rem;
-}
-.stat-lbl { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
-
-/* ─── THESIS ─── */
-.thesis {
-  background: #1a3a1e;
-  padding: 6rem 4rem;
-  position: relative; overflow: hidden;
-}
-.thesis-watermark {
-  position: absolute; left: -2rem; top: 50%; transform: translateY(-50%);
-  font-family: 'Cinzel', serif; font-size: 12rem; font-weight: 700;
-  color: rgba(255,255,255,0.025); pointer-events: none; white-space: nowrap; user-select: none;
-}
-.thesis-layout {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
-  position: relative; z-index: 1;
-}
-.thesis-points { display: flex; flex-direction: column; gap: 0; }
-.thesis-point {
-  border-left: 2px solid var(--border);
-  padding: 1.5rem 2rem;
-  transition: border-color 0.3s, background 0.3s;
-}
-.thesis-point:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
-.tp-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem; font-weight: 300; color: rgba(201,168,76,0.3); line-height: 1; margin-bottom: 0.4rem;
-}
-.tp-title { font-family: 'Cinzel', serif; font-size: 0.73rem; letter-spacing: 0.12em; color: var(--gold-light); margin-bottom: 0.5rem; text-transform: uppercase; }
-.tp-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
-
-/* ─── CTA ─── */
-.cta-section {
-  background: #132716;
-  padding: 7rem 4rem;
-  text-align: center;
-  position: relative; overflow: hidden;
-}
-.cta-glow {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-  width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(45,107,53,0.22) 0%, transparent 65%); pointer-events: none;
-}
-.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
-.cta-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 300; line-height: 1.1; color: #f8f3ea; margin-bottom: 1rem;
-}
-.cta-title em { font-style: italic; color: var(--gold-light); }
-.cta-body { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 3rem; line-height: 1.75; max-width: 480px; margin-left: auto; margin-right: auto; }
-.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-/* ─── FOOTER ─── */
-footer {
-  background: #070e08;
-  padding: 2.5rem 4rem;
-  border-top: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
-}
-.footer-logo { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
-.footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
-.footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
-.footer-links a:hover { color: var(--gold-light); }
-.footer-copy { font-size: 0.68rem; color: rgba(138,158,140,0.4); letter-spacing: 0.05em; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
-  .presentation-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .presentation-sidebar { position: static; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .thesis-layout { grid-template-columns: 1fr; gap: 3rem; }
-}
-
-@media (max-width: 900px) {
-  nav { padding: 1.1rem 1.5rem; }
-  .nav-links, .nav-cta { display: none; }
-  .hamburger { display: flex; }
-  .nav-links.open {
-    display: flex; flex-direction: column; position: fixed;
-    top: 58px; left: 0; right: 0; background: #132716;
-    padding: 2rem 1.5rem; gap: 1.5rem;
-    border-bottom: 1px solid var(--border); z-index: 99;
-  }
-  .hero { padding: 8rem 1.5rem 4rem; min-height: auto; }
-  .hero-meta { width: 100%; }
-  .hero-meta-item { padding: 0.85rem 1.2rem; flex: 1; min-width: 100px; }
-  .presentation, .opportunity, .thesis, .cta-section { padding: 4rem 1.5rem; }
-  .divider { padding: 0 1.5rem; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
-  .embed-inner { padding-bottom: 70%; }
-}
-
-@media (max-width: 540px) {
-  .hero-meta { flex-direction: column; }
-  .hero-meta-item { border-right: none; border-bottom: 1px solid var(--border); }
-  .hero-meta-item:last-child { border-bottom: none; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .embed-inner { padding-bottom: 80%; }
+@media(max-width:640px){
+  .hero-meta{flex-direction:column;}
+  .hero-meta-item{border-right:none;border-bottom:1px solid var(--border);}
+  .hero-meta-item:last-child{border-bottom:none;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .vacancy-callout{grid-template-columns:1fr;}
+  .embed-inner{padding-bottom:80%;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="navbar">
   <a href="https://www.suarezglobal.com" class="logo">Suarez<span> Global</span></a>
   <ul class="nav-links" id="navLinks">
@@ -472,44 +266,29 @@ footer {
     <li><a href="/invest.html">Invest</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Partner With Us</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-stripe"></div>
-  <div class="hero-stripe2"></div>
+  <div class="hero-glow"></div><div class="hero-glow2"></div><div class="hero-grid"></div>
+  <div class="hero-stripe"></div><div class="hero-stripe2"></div>
   <div class="hero-content">
-    <div class="hero-tag"><span class="hero-tag-dot"></span>Active Deal — Industrial Repositioning</div>
-    <div class="hero-eyebrow">Washington, D.C. MSA · 2025 Acquisition</div>
-    <h1>West Virginia<br>Ave <em>Industrial</em></h1>
-    <p class="hero-sub">A precision repositioning play in one of the most supply-constrained industrial corridors in the Mid-Atlantic market.</p>
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Active Acquisition — Under Contract</div>
+    <div class="hero-eyebrow">Tampa, FL 33614 · Drew Park Industrial Corridor · City of Tampa CRA Designated</div>
+    <h1>4214 W Virginia<br>Ave <em>Industrial</em></h1>
+    <p class="hero-sub">A precision value-add repositioning — acquired below replacement cost in Tampa's most supply-constrained airport-proximate submarket, with verified in-place income, documented forced-appreciation levers, and a clear institutional exit.</p>
     <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="meta-label">Asset Type</span>
-        <span class="meta-value">Industrial</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="meta-label">Strategy</span>
-        <span class="meta-value">Repositioning</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="meta-label">Market</span>
-        <span class="meta-value">DC MSA</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="meta-label">Stage</span>
-        <span class="meta-value">Active</span>
-      </div>
+      <div class="hero-meta-item"><span class="meta-label">Purchase Price</span><span class="meta-value">$3,750,000</span></div>
+      <div class="hero-meta-item"><span class="meta-label">Building SF</span><span class="meta-value">45,560 SF</span></div>
+      <div class="hero-meta-item"><span class="meta-label">All-In Basis</span><span class="meta-value">$5,250,000</span></div>
+      <div class="hero-meta-item"><span class="meta-label">In-Place NOI</span><span class="meta-value">$169,313</span></div>
+      <div class="hero-meta-item"><span class="meta-label">Proforma NOI</span><span class="meta-value">$709,948</span></div>
+      <div class="hero-meta-item"><span class="meta-label">Est. Completed Value</span><span class="meta-value">$10,922,277</span></div>
     </div>
     <div class="hero-actions">
       <a href="#presentation" class="btn-primary">View Full Deck</a>
-      <a href="#contact" class="btn-secondary">Request Details</a>
+      <a href="#contact" class="btn-secondary">Request Investor Package</a>
     </div>
   </div>
 </section>
@@ -523,43 +302,22 @@ footer {
     <div class="presentation-sidebar">
       <div class="section-eyebrow">Deal Presentation</div>
       <h2 class="section-title">The Full<br><em>Investment</em> Thesis.</h2>
-      <p class="section-body">Review our complete underwriting, market analysis, and repositioning strategy — built on proprietary REAP data and institutional-grade diligence.</p>
-
+      <p class="section-body">Full underwriting, verified rent roll, market analysis, and repositioning strategy — presented by Tampa Development Group LLC, a Suarez Global Ventures Company. Principal: Javier A. Suarez.</p>
       <div class="deal-highlights">
-        <div class="deal-highlight">
-          <div class="highlight-icon">◈</div>
-          <div class="highlight-text"><strong>DC MSA Location</strong> — Premier infill industrial corridor</div>
-        </div>
-        <div class="deal-highlight">
-          <div class="highlight-icon">◈</div>
-          <div class="highlight-text"><strong>Value-Add Play</strong> — Operational repositioning upside</div>
-        </div>
-        <div class="deal-highlight">
-          <div class="highlight-icon">◈</div>
-          <div class="highlight-text"><strong>REAP Underwritten</strong> — AI-verified acquisition targets</div>
-        </div>
-        <div class="deal-highlight">
-          <div class="highlight-icon">◈</div>
-          <div class="highlight-text"><strong>Altura IQ Monitored</strong> — Real-time asset intelligence</div>
-        </div>
-        <div class="deal-highlight">
-          <div class="highlight-icon">◈</div>
-          <div class="highlight-text"><strong>Recession-Resilient</strong> — Industrial demand fundamentals</div>
-        </div>
+        <div class="deal-highlight"><div class="highlight-icon">◈</div><div class="highlight-text"><strong>$82.31/SF basis</strong> vs. $157+ as-is stabilized market value/SF</div></div>
+        <div class="deal-highlight"><div class="highlight-icon">◈</div><div class="highlight-text"><strong>4 Verified Tenants</strong> — $256,200 annual in-place rent on executed leases</div></div>
+        <div class="deal-highlight"><div class="highlight-icon">◈</div><div class="highlight-text"><strong>35,060 SF Vacancy Upside</strong> — $525,900/yr at $15/SF market rents</div></div>
+        <div class="deal-highlight"><div class="highlight-icon">◈</div><div class="highlight-text"><strong>All Star Arbitrage</strong> — 25,000 SF at $3.60/SF vacating Apr 2026; market is $15/SF+</div></div>
+        <div class="deal-highlight"><div class="highlight-icon">◈</div><div class="highlight-text"><strong>Drew Park CRA</strong> — City of Tampa active municipal incentive zone</div></div>
+        <div class="deal-highlight"><div class="highlight-icon">◈</div><div class="highlight-text"><strong>70% LTC Bridge + $1.2M equity</strong> — Full CapEx funded, lender-clean structure</div></div>
       </div>
-
       <a href="#contact" class="btn-primary">Request Investor Access</a>
     </div>
-
-    <div class="embed-frame-wrapper">
-      <div class="embed-label">Interactive Presentation</div>
+    <div>
+      <div class="embed-label">Interactive Investor Presentation — Tampa Development Group LLC</div>
       <div class="embed-border">
         <div class="embed-inner">
-          <iframe
-            src="https://gamma.app/embed/r8a57yo991wgx0b"
-            allow="fullscreen"
-            title="West Virginia Ave Industrial Repositioning">
-          </iframe>
+          <iframe src="https://gamma.app/embed/r8a57yo991wgx0b" allow="fullscreen" title="West Virginia Ave Industrial Repositioning"></iframe>
         </div>
       </div>
     </div>
@@ -568,64 +326,310 @@ footer {
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
-<!-- STATS -->
-<section class="opportunity reveal">
-  <div class="opp-glow"></div>
-  <div class="opp-header">
-    <div class="section-eyebrow">Why Industrial</div>
-    <h2 class="section-title" style="text-align:center;">The Market<br><em>Backdrop.</em></h2>
+<!-- DEAL SNAPSHOT -->
+<section class="snapshot reveal">
+  <div class="snapshot-glow"></div>
+  <div class="snapshot-header">
+    <div class="section-eyebrow">Deal Snapshot</div>
+    <h2 class="section-title" style="text-align:center;">Numbers That<br><em>Speak For Themselves.</em></h2>
   </div>
   <div class="stats-grid">
-    <div class="stat-block">
-      <div class="stat-num">2.1%</div>
-      <div class="stat-lbl">DC MSA Industrial<br>Vacancy Rate</div>
+    <div class="stat-block"><div class="stat-num">$3.75M</div><div class="stat-lbl">Contract Price<br>Below Market Comps</div></div>
+    <div class="stat-block"><div class="stat-num">45,560</div><div class="stat-lbl">Total Building SF<br>1.9 Acre Lot · Tampa FL</div></div>
+    <div class="stat-block"><div class="stat-num">4.52%</div><div class="stat-lbl">In-Place Cap Rate<br>On Purchase Price</div></div>
+    <div class="stat-block"><div class="stat-num">16.8%</div><div class="stat-lbl">As-Is Stabilized Cap Rate<br>Yield on Purchase Price</div></div>
+    <div class="stat-block"><div class="stat-num">$5.25M</div><div class="stat-lbl">All-In Project Basis<br>Purchase + $1.5M CapEx</div></div>
+    <div class="stat-block"><div class="stat-num">$10.9M</div><div class="stat-lbl">Est. Completed Value<br>@ 6.5% Exit Cap Rate</div></div>
+    <div class="stat-block"><div class="stat-num">50–65%</div><div class="stat-lbl">Cost-to-Value Ratio<br>Embedded Equity at Purchase</div></div>
+    <div class="stat-block"><div class="stat-num">1.39x</div><div class="stat-lbl">DSCR at Stabilization<br>$198K Annual Free Cash Flow</div></div>
+  </div>
+  <div class="noi-compare">
+    <div class="noi-col">
+      <div class="noi-tag">Current — Verified</div>
+      <div class="noi-label">In-Place NOI</div>
+      <div class="noi-amount">$169,313</div>
+      <div class="noi-detail">Revenue: <span>$256,200</span> (4 tenants, executed leases)<br>Op. Expenses: <span>($86,887)</span> verified via county records<br>Occupancy: <span>77.9% · 35,500 SF leased</span><br>In-Place Cap Rate: <span>4.52% on $3.75M</span></div>
     </div>
-    <div class="stat-block">
-      <div class="stat-num">$18B+</div>
-      <div class="stat-lbl">Annual E-Commerce<br>Demand Driver</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-num">30 Day</div>
-      <div class="stat-lbl">Close Capability<br>Via Suarez Systems</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-num">90 Day</div>
-      <div class="stat-lbl">Stabilization to<br>Suarez Standard</div>
+    <div class="noi-col highlight">
+      <div class="noi-tag active">Proforma — Post Repositioning</div>
+      <div class="noi-label">Stabilized NOI @ $24/SF NNN</div>
+      <div class="noi-amount big">$709,948</div>
+      <div class="noi-detail">Revenue: <span>$1,030,560</span> (41,440 SF + parking)<br>Op. Expenses: <span>($320,612)</span> proforma<br>Yield on Basis: <span>16.8% stabilized on $5.25M all-in</span><br>Exit Value: <span>$10,922,277 @ 6.5% cap</span></div>
     </div>
   </div>
 </section>
 
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
 
-<!-- THESIS POINTS -->
+<!-- RENT ROLL -->
+<section class="rentroll reveal">
+  <div class="section-eyebrow">Verified Rent Roll</div>
+  <h2 class="section-title">Existing Tenants &amp;<br><em>Vacancy Opportunity.</em></h2>
+  <p class="section-body" style="max-width:660px;">Four active tenants generating $256,200 annually on executed leases and license agreements — all verified via executed documents, county records, and utility bills. Three vacant spaces represent $525,900 in annualized upside at $15/SF market rates.</p>
+  <div class="rr-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Tenant</th><th>Suite</th><th>SF</th><th>Lease Type</th><th>Monthly Rent</th><th>Annual Rent</th><th>$/SF/Yr</th><th>Expires</th><th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>All Star Paper Goods</td><td>Unit 1</td><td>25,000</td><td>Modified Gross</td><td>$7,500</td><td>$90,000</td><td>$3.60</td><td>Month-to-Month</td><td><span class="status-badge status-vacating">Vacating Apr 2026</span></td>
+        </tr>
+        <tr>
+          <td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 2</td><td>4,000</td><td>NNN</td><td>$4,000</td><td>$48,000</td><td>$12.00</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td>
+        </tr>
+        <tr>
+          <td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 3</td><td>4,200</td><td>NNN</td><td>$4,200</td><td>$50,400</td><td>$12.00</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td>
+        </tr>
+        <tr>
+          <td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 4</td><td>700</td><td>NNN</td><td>$650</td><td>$7,800</td><td>$11.14</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td>
+        </tr>
+        <tr>
+          <td>Metro Diner LLC</td><td>Unit 5</td><td>1,600</td><td>NNN</td><td>$2,000</td><td>$24,000</td><td>$15.00</td><td>Month-to-Month</td><td><span class="status-badge status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td>Skyline Limousine of Tampa Bay</td><td>Unit 6 (Outdoor Parking)</td><td>—</td><td>License Agreement</td><td>$3,000</td><td>$36,000</td><td>—</td><td>Dec 31, 2025</td><td><span class="status-badge status-active">Active</span></td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL IN-PLACE</td><td>—</td><td>35,500 SF</td><td>—</td><td>$21,350/mo</td><td>$256,200/yr</td><td>—</td><td>—</td><td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="vacancy-callout">
+    <div class="vac-card">
+      <div class="vac-id">VAC-1</div>
+      <div class="vac-name">Unidentified Space(s)</div>
+      <div class="vac-sf">6,060 SF</div>
+      <div class="vac-rent">$90,900/yr potential · $15/SF · As-is, non-renovated</div>
+    </div>
+    <div class="vac-card">
+      <div class="vac-id">VAC-2</div>
+      <div class="vac-name">Corner Loft Unit</div>
+      <div class="vac-sf">4,000 SF</div>
+      <div class="vac-rent">$60,000/yr potential · $15/SF · Minor cleanup, previously Kennedy South Painting</div>
+    </div>
+    <div class="vac-card">
+      <div class="vac-id">VAC-3</div>
+      <div class="vac-name">All Star Paper Goods</div>
+      <div class="vac-sf">25,000 SF</div>
+      <div class="vac-rent">$375,000/yr potential · $15/SF · Vacating April 2026 — largest single upside lever</div>
+    </div>
+    <div class="vac-total">
+      <div class="vac-total-label">Total Vacancy Upside</div>
+      <div class="vac-total-num">$525,900</div>
+      <div class="vac-total-sub">35,060 SF · Annually at $15/SF market</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- CAPITAL STACK -->
+<section class="capital reveal">
+  <div class="capital-watermark">CAPITAL</div>
+  <div class="capital-layout">
+    <div>
+      <div class="section-eyebrow">Capital Structure</div>
+      <h2 class="section-title">Conservative<br><em>Leverage.</em> Full Protection.</h2>
+      <p class="section-body">70% LTC senior bridge loan funds the acquisition. 100% of CapEx is separately funded through the rehab draw. Total equity requirement of ~$1.2M — sourced from the liquidity partner and internal JV capital — keeps sponsor alignment high and lender risk low.</p>
+      <div class="stack-bars">
+        <div class="stack-bar-item">
+          <div class="bar-label"><span class="bar-name">Senior Bridge — Acquisition (70% LTC)</span><span class="bar-val">$2,625,000</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:49%"></div></div>
+        </div>
+        <div class="stack-bar-item">
+          <div class="bar-label"><span class="bar-name">Senior Bridge — Rehab (100% Funded)</span><span class="bar-val">$1,500,000</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:28%"></div></div>
+        </div>
+        <div class="stack-bar-item">
+          <div class="bar-label"><span class="bar-name">Equity — Liquidity Partner + JV</span><span class="bar-val">$1,200,000</span></div>
+          <div class="bar-track"><div class="bar-fill equity" style="width:23%"></div></div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);padding:1.8rem 2rem;margin-top:1rem;">
+        <div style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border);">Sponsorship Structure — Suarez Global Ventures LLC</div>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.75;margin-bottom:0.9rem;"><strong style="color:var(--cream);">Operating Sponsor (Javier A. Suarez)</strong> — Signs all loan documents, provides institutional track record and REO portfolio, oversees complete execution and leasing strategy.</p>
+        <p style="font-size:0.83rem;color:var(--text-muted);line-height:1.75;"><strong style="color:var(--cream);">Liquidity Partner</strong> — LLC member (not a silent contributor). Demonstrates $1.0M–$1.5M+ verified liquidity via bank statements. Limited operational involvement. Structure eliminates lender ambiguity around sponsorship, personal guarantees, and liquidity requirements.</p>
+      </div>
+    </div>
+    <div>
+      <div class="sources-uses" style="margin-bottom:1rem;">
+        <div class="su-box">
+          <div class="su-title">Sources of Funds</div>
+          <div class="su-line su-total" style="border:none;padding:0;margin-bottom:0.8rem;"><span class="su-line-label" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);">~$5,325,000</span></div>
+          <div class="su-line"><span class="su-line-label">Sr. Bridge — Acquisition</span><span class="su-line-val">~$2,625,000</span></div>
+          <div class="su-line"><span class="su-line-label">Sr. Bridge — Rehab</span><span class="su-line-val">~$1,500,000</span></div>
+          <div class="su-line"><span class="su-line-label">Closing Costs &amp; Reserves</span><span class="su-line-val">~$75,000</span></div>
+          <div class="su-line su-total"><span class="su-line-label">Equity Investment</span><span class="su-line-val">~$1,200,000</span></div>
+        </div>
+        <div class="su-box">
+          <div class="su-title">Uses of Funds</div>
+          <div class="su-line su-total" style="border:none;padding:0;margin-bottom:0.8rem;"><span class="su-line-label" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-light);">~$5,325,000</span></div>
+          <div class="su-line"><span class="su-line-label">Property Acquisition</span><span class="su-line-val">~$3,750,000</span></div>
+          <div class="su-line"><span class="su-line-label">Repositioning / CapEx</span><span class="su-line-val">~$1,500,000</span></div>
+          <div class="su-line su-total"><span class="su-line-label">Closing Costs &amp; Reserves</span><span class="su-line-val">~$75,000</span></div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);padding:1.8rem 2rem;">
+        <div style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border);">Verified Operating Expenses (In-Place)</div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(201,168,76,0.07);font-size:0.8rem;"><span style="color:var(--text-muted);">Real Estate Taxes (Hillsborough County)</span><span style="color:var(--cream);">$45,486/yr</span></div>
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(201,168,76,0.07);font-size:0.8rem;"><span style="color:var(--text-muted);">Insurance (RE Investment Quote)</span><span style="color:var(--cream);">$20,976/yr</span></div>
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(201,168,76,0.07);font-size:0.8rem;"><span style="color:var(--text-muted);">City of Tampa Water/Sewer</span><span style="color:var(--cream);">$7,615/yr</span></div>
+          <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(201,168,76,0.07);font-size:0.8rem;"><span style="color:var(--text-muted);">Management Fee (5% of gross income)</span><span style="color:var(--cream);">$12,810/yr</span></div>
+          <div style="display:flex;justify-content:space-between;padding:0.6rem 0;font-size:0.82rem;border-top:1px solid var(--border);margin-top:0.2rem;"><span style="color:var(--gold-light);font-weight:500;">Total Owner-Paid OpEx</span><span style="color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1.05rem;">$86,887/yr</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- THESIS -->
 <section class="thesis reveal">
   <div class="thesis-watermark">THESIS</div>
   <div class="thesis-layout">
     <div>
       <div class="section-eyebrow">Investment Thesis</div>
-      <h2 class="section-title">Precision.<br><em>Conviction.</em><br>Execution.</h2>
-      <p class="section-body" style="margin-top:1.2rem;">Every Suarez Global deal is built on the same foundation — institutional intelligence applied with operator discipline to generate alpha where others see complexity.</p>
+      <h2 class="section-title">Basis-Light.<br><em>Asset-Heavy.</em><br>Execution-Driven.</h2>
+      <p class="section-body" style="margin-top:1.2rem;">"This is an asset-heavy, basis-light industrial repositioning acquired well below market, with conservative leverage, strong in-place fundamentals, and clear forced-appreciation levers. Even under conservative underwriting, stabilized value materially exceeds total cost."</p>
+      <a href="#contact" class="btn-secondary" style="margin-top:1rem;display:inline-block;">Explore Partnership Options</a>
     </div>
     <div class="thesis-points">
       <div class="thesis-point">
         <div class="tp-num">01</div>
-        <div class="tp-title">Supply-Constrained Submarket</div>
-        <p class="tp-body">Washington D.C.'s infill industrial stock faces near-zero new deliveries, creating persistent rent growth pressure that benefits existing owners.</p>
+        <div class="tp-title">Below-Market Acquisition Basis</div>
+        <p class="tp-body">Contract price of $3.75M ($82.31/SF) vs. as-is stabilized market value of $7.18M+ ($157.68/SF). Buying at a $3.43M discount to as-is market value before any renovation upside. Embedded equity protection from day one.</p>
       </div>
       <div class="thesis-point">
         <div class="tp-num">02</div>
-        <div class="tp-title">Operational Repositioning Upside</div>
-        <p class="tp-body">Our BuildCo team stabilizes assets to The Suarez Standard within 90 days — unlocking the NOI gap between current operations and market potential.</p>
+        <div class="tp-title">Lease Rollover Arbitrage — All Star</div>
+        <p class="tp-body">All Star Paper Goods holds 25,000 SF at $3.60/SF (Modified Gross) on a month-to-month lease, vacating April 2026. Tampa market rate is $15/SF+. Re-leasing this single space at market adds $283,500 in annual NOI — documented, not speculative.</p>
       </div>
       <div class="thesis-point">
         <div class="tp-num">03</div>
-        <div class="tp-title">AI-Powered Underwriting Edge</div>
-        <p class="tp-body">REAP identified this opportunity before market discovery. Our proprietary acquisition protocol eliminates emotion and surfaces true value with surgical precision.</p>
+        <div class="tp-title">Vacancy Monetization — 35,060 SF</div>
+        <p class="tp-body">10,060 SF currently vacant (VAC-1 unidentified space + VAC-2 Corner Loft). Combined with All Star's departure, total vacancy represents $525,900 in annual upside at $15/SF as-is rents. Repositioned at $24/SF NNN, potential gross revenue reaches $1,030,560.</p>
       </div>
       <div class="thesis-point">
         <div class="tp-num">04</div>
-        <div class="tp-title">Multiple Exit Paths</div>
-        <p class="tp-body">Structured for flexible disposition — sale to institutional buyer, refinance & hold, or 1031 exchange — aligned to investor-specific tax strategy.</p>
+        <div class="tp-title">Conservative Capital Structure</div>
+        <p class="tp-body">70% LTC senior bridge with 100% rehab funding provides downside protection while maximizing equity returns. $1.2M equity requirement keeps sponsor alignment strong. Lender-clean structure via Suarez Global Ventures LLC designed for fast approvals.</p>
+      </div>
+      <div class="thesis-point">
+        <div class="tp-num">05</div>
+        <div class="tp-title">Flexible Exit — Dual Pathways</div>
+        <p class="tp-body">Sell stabilized to institutional buyer (Prologis, Basis Industrial, 1031 exchange buyers) at 6.5% cap → $10,922,277 estimated value. Or refinance to permanent at $7.1M loan, locking $198,748 free cash flow annually at 1.39x DSCR. Both pathways supported by current market data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- EXIT VALUATION -->
+<section class="exit reveal">
+  <div class="section-eyebrow">Exit Valuation &amp; Returns</div>
+  <h2 class="section-title" style="margin-bottom:3rem;">The Path to<br><em>$10,922,277.</em></h2>
+  <div class="exit-layout">
+    <div>
+      <div class="exit-visual">
+        <div class="exit-step">
+          <div class="exit-step-label">Full Lease-Up — Proforma Rent Roll<small>41,440 SF @ $24/SF NNN + $36,000 outdoor parking</small></div>
+          <div class="exit-step-val">$1,030,560<small>Gross Revenue</small></div>
+        </div>
+        <div class="exit-step">
+          <div class="exit-step-label">Less Proforma Operating Expenses<small>Taxes · Insurance · Utilities · Mgmt · CAM · Marketing · Vacancy</small></div>
+          <div class="exit-step-val" style="color:#e2a97e;">($320,612)<small>Total ProForma OpEx</small></div>
+        </div>
+        <div class="exit-step">
+          <div class="exit-step-label">Stabilized Net Operating Income</div>
+          <div class="exit-step-val gold">$709,948<small>Proforma NOI</small></div>
+        </div>
+        <div class="exit-step">
+          <div class="exit-step-label">Apply Conservative 6.5% Cap Rate<small>Institutional pricing for airport-proximate Tampa industrial</small></div>
+          <div class="exit-step-val gold big">$10,922,277<small>Estimated Completed Value</small></div>
+        </div>
+      </div>
+      <div class="exit-ranges">
+        <div class="range-box"><div class="range-label">Stabilized NOI Range</div><div class="range-val">$550K–$710K</div></div>
+        <div class="range-box"><div class="range-label">Conservative ARV Range</div><div class="range-val">$8.5M–$11M</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow">Debt Service Analysis</div>
+      <h3 class="section-title" style="font-size:1.8rem;">Stabilized<br><em>Cash Flow.</em></h3>
+      <p class="section-body">At stabilization, the permanent loan profile delivers healthy free cash flow with a DSCR of 1.39x — well above typical lender minimums — positioning the asset for either a clean institutional sale or a long-term cash-flowing hold.</p>
+      <div class="dscr-box">
+        <div class="dscr-item"><div class="dscr-num">$7.1M</div><div class="dscr-lbl">Permanent Loan<br>@ 6% Interest Rate</div></div>
+        <div class="dscr-item"><div class="dscr-num">1.39x</div><div class="dscr-lbl">DSCR at<br>Full Stabilization</div></div>
+        <div class="dscr-item"><div class="dscr-num">$198K</div><div class="dscr-lbl">Annual Free<br>Cash Flow</div></div>
+      </div>
+      <div style="border:1px solid var(--border);padding:2rem;margin-top:1.5rem;">
+        <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);">Institutional Buyer Universe</div>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <div style="font-size:0.83rem;color:var(--text-muted);padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">—</span><strong style="color:var(--cream);">REITs &amp; Institutions:</strong> Prologis, Link Logistics (Blackstone), Generation Income Properties (Tampa-based), Nuveen, Transwestern</div>
+          <div style="font-size:0.83rem;color:var(--text-muted);padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">—</span><strong style="color:var(--cream);">Private Equity:</strong> Basis Industrial (Delray Beach), Mangrove Equity Partners, Ballast Point Ventures, Osceola Capital</div>
+          <div style="font-size:0.83rem;color:var(--text-muted);padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">—</span><strong style="color:var(--cream);">1031 Exchange Buyers:</strong> Tampa's 6.5% YOY rent growth + airport proximity = premium exchange target</div>
+          <div style="font-size:0.83rem;color:var(--text-muted);padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">—</span><strong style="color:var(--cream);">Brokerage Execution:</strong> Cushman &amp; Wakefield, CBRE, Colliers — Tampa industrial specialists</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- MARKET -->
+<section class="market reveal">
+  <div class="market-watermark">TAMPA</div>
+  <div style="margin-bottom:3.5rem;position:relative;z-index:1;">
+    <div class="section-eyebrow">Market Context</div>
+    <h2 class="section-title">Drew Park &amp; Tampa Bay:<br>A Region on <em>the Rise.</em></h2>
+    <p class="section-body" style="max-width:620px;">Institutional capital is actively flowing into Tampa's fastest-growing industrial corridor — backed by billions in public infrastructure investment, a $1.5B TPA expansion, and unprecedented regional economic tailwinds.</p>
+  </div>
+  <div class="market-grid">
+    <div class="market-card">
+      <div class="market-card-title">Drew Park — Strategic Location</div>
+      <div class="market-points">
+        <div class="market-point">Minutes from <strong>Tampa International Airport (TPA)</strong> — irreplaceable airport-proximate advantage for logistics and distribution</div>
+        <div class="market-point">Direct access to <strong>I-275 and Veterans Expressway</strong> — regional connectivity for last-mile operators</div>
+        <div class="market-point"><strong>City of Tampa CRA Designated</strong> — active municipal incentives for industrial and commercial redevelopment, reducing execution risk</div>
+        <div class="market-point">1.5 sq. miles of established industrial infrastructure — warehouses, flex spaces, and distribution centers</div>
+        <div class="market-point"><strong>Small-bay vacancy: ~3%</strong> — tightest segment in the Tampa market; institutional buyers actively targeting this corridor</div>
+      </div>
+    </div>
+    <div class="market-card">
+      <div class="market-card-title">Tampa Industrial Fundamentals</div>
+      <div class="market-points">
+        <div class="market-point">Overall vacancy: <strong>6.8–8.5%</strong> — tight supply with continued positive net absorption</div>
+        <div class="market-point">Market rents: <strong>$9+/PSF NNN</strong> with 6.5% YOY growth; our proforma targets $24/SF</div>
+        <div class="market-point"><strong>$727M in Tampa industrial sales</strong> YTD through Q3 2025 — Q3 alone: $337M</div>
+        <div class="market-point">Premium stabilized assets trading in the <strong>low-6% cap range</strong> — our 6.5% target is positioned for upward valuation pressure</div>
+        <div class="market-point">Industrial loan originations Q2 2025: <strong>+102% QoQ</strong> — lenders aggressively deploying capital into industrial</div>
+      </div>
+    </div>
+    <div class="market-card">
+      <div class="market-card-title">TPA Expansion — $1.5B Direct Catalyst</div>
+      <div class="market-points">
+        <div class="market-point"><strong>Airside D: $1.5B terminal</strong> — 16 gates opening 2028; targeting 35M annual passengers by 2037</div>
+        <div class="market-point">Enhanced air cargo and logistics infrastructure — fueling 3PL demand in airport-proximate Drew Park</div>
+        <div class="market-point"><strong>OBBBA (Public Law 119-21):</strong> $4.75B for Air Traffic Control modernization directly supporting TPA operations</div>
+        <div class="market-point"><strong>100% Bonus Depreciation</strong> for qualified property placed in service after Dec 31, 2025 — reduces effective CapEx cost 15–25%</div>
+      </div>
+    </div>
+    <div class="market-card">
+      <div class="market-card-title">Florida &amp; Tampa Bay Economy</div>
+      <div class="market-points">
+        <div class="market-point">Florida GDP: <strong>$1.5 trillion</strong> — 2.5–3.0% growth outpacing national average; <strong>no state income tax</strong></div>
+        <div class="market-point">Population: 23.75M+, adding 1.4M+ residents through 2030 — driving sustained last-mile logistics demand</div>
+        <div class="market-point">Tampa Bay: <strong>#2 fastest-growing mid-sized U.S. economy</strong> — Gross Metropolitan Product up 43%</div>
+        <div class="market-point">Port Tampa Bay economic impact: <strong>$34.6B</strong>, supporting 192,000+ jobs — directly fueling cargo demand near Drew Park</div>
+        <div class="market-point">Transformative projects: <strong>Howard Frankland Bridge (2026)</strong>, Westshore Interchange (I-275/SR-60), $1B+ Water Street Tampa</div>
       </div>
     </div>
   </div>
@@ -637,12 +641,9 @@ footer {
 <section class="cta-section reveal" id="contact">
   <div class="cta-glow"></div>
   <div class="cta-inner">
-    <div class="section-eyebrow" style="justify-content:center; margin-bottom:1.5rem;">
-      <span style="display:block;width:30px;height:1px;background:var(--gold)"></span>
-      Investor Relations
-    </div>
+    <div class="section-eyebrow" style="justify-content:center;margin-bottom:1.5rem;"><span style="display:block;width:30px;height:1px;background:var(--gold)"></span>Investor Relations</div>
     <h2 class="cta-title">Ready to Move<br>With <em>Conviction?</em></h2>
-    <p class="cta-body">This deal is open to accredited investors and strategic partners. Request a full data room package and schedule a call with our acquisition team.</p>
+    <p class="cta-body">This deal is open to accredited investors and strategic capital partners. We are actively seeking a liquidity partner with $1.0M–$1.5M+ verified liquidity to join as an LLC member in Suarez Global Ventures LLC. Request the full data room — including executed leases, county tax records, insurance quotes, and utility verification — and schedule a call with Javier A. Suarez.</p>
     <div class="cta-actions">
       <a href="https://www.suarezglobal.com/services-4" class="btn-primary">Request Investor Package</a>
       <a href="https://www.suarezglobal.com/about-1" class="btn-secondary">Learn About Suarez Global</a>
@@ -650,7 +651,6 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Suarez Global</div>
   <ul class="footer-links">
@@ -659,28 +659,17 @@ footer {
     <li><a href="/buyer-process.html">Real Estate</a></li>
     <li><a href="/invest.html">Invest</a></li>
   </ul>
-  <div class="footer-copy">© 2026 Suarez Global, Inc. All rights reserved.</div>
+  <div class="footer-copy">© 2026 Tampa Development Group LLC — A Suarez Global Ventures Company. All rights reserved.</div>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.06 });
-  reveals.forEach(el => io.observe(el));
-
-  // Mobile nav
-  document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('open');
-  });
-
-  // Nav scroll shrink
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    nav.style.padding = window.scrollY > 60
-      ? (window.innerWidth > 900 ? '0.85rem 4rem' : '0.85rem 1.5rem')
-      : (window.innerWidth > 900 ? '1.4rem 4rem' : '1.1rem 1.5rem');
+  const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.05});
+  reveals.forEach(el=>io.observe(el));
+  document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open');});
+  window.addEventListener('scroll',()=>{
+    const nav=document.getElementById('navbar');
+    nav.style.padding=window.scrollY>60?(window.innerWidth>900?'0.85rem 4rem':'0.85rem 1.5rem'):(window.innerWidth>900?'1.4rem 4rem':'1.1rem 1.5rem');
   });
 </script>
 </body>
