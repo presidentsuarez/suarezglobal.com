@@ -80,6 +80,16 @@ h1 em{font-style:italic;color:var(--gold-light);}
 .embed-border::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
 .embed-inner{position:relative;width:100%;padding-bottom:60%;overflow:hidden;background:#0d1f0f;}
 .embed-inner iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block;}
+/* Full-screen button — header bar */
+.embed-fullscreen-btn{display:inline-flex;align-items:center;gap:0.55rem;font-size:0.64rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:0.5rem 1.1rem;text-decoration:none;white-space:nowrap;transition:border-color 0.3s,color 0.3s,background 0.3s,transform 0.2s;flex-shrink:0;}
+.embed-fullscreen-btn:hover{border-color:var(--gold);color:#0d1f0f;background:var(--gold);transform:translateY(-1px);}
+.embed-fullscreen-btn svg{transition:transform 0.2s;}
+.embed-fullscreen-btn:hover svg{transform:translate(1px,-1px);}
+/* Hover overlay button on the embed frame */
+.embed-hover-overlay{position:absolute;bottom:14px;right:14px;z-index:10;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.62rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#f8f3ea;background:rgba(13,31,15,0.82);border:1px solid rgba(201,168,76,0.35);padding:0.5rem 1rem;text-decoration:none;backdrop-filter:blur(8px);opacity:0;transform:translateY(4px);transition:opacity 0.25s,transform 0.25s,border-color 0.2s,background 0.2s;}
+.embed-border:hover .embed-hover-overlay{opacity:1;transform:translateY(0);}
+.embed-hover-overlay:hover{background:var(--gold);color:#0d1f0f;border-color:var(--gold);}
+.embed-hover-overlay svg{flex-shrink:0;}
 
 /* SNAPSHOT */
 .snapshot{background:#0d1f0f;padding:6rem 4rem;position:relative;}
@@ -314,11 +324,42 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <a href="#contact" class="btn-primary">Request Investor Access</a>
     </div>
     <div>
-      <div class="embed-label">Interactive Investor Presentation — Tampa Development Group LLC</div>
-      <div class="embed-border">
+      <!-- Embed header row -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:1rem;flex-wrap:wrap;">
+        <div class="embed-label" style="margin-bottom:0;">Interactive Investor Presentation — Tampa Development Group LLC</div>
+        <a
+          href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="embed-fullscreen-btn"
+          title="Open full presentation in a new tab"
+        >
+          <!-- Expand icon -->
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 1h4v4M12 1L7 6M5 12H1V8M1 12l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Open Full Screen
+        </a>
+      </div>
+
+      <!-- Embed frame -->
+      <div class="embed-border" style="position:relative;">
         <div class="embed-inner">
           <iframe src="https://gamma.app/embed/r8a57yo991wgx0b" allow="fullscreen" title="West Virginia Ave Industrial Repositioning"></iframe>
         </div>
+        <!-- Hover overlay button on the frame itself -->
+        <a
+          href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="embed-hover-overlay"
+          title="Open full presentation"
+        >
+          <svg width="16" height="16" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 1h4v4M12 1L7 6M5 12H1V8M1 12l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Open Full Presentation
+        </a>
       </div>
     </div>
   </div>
