@@ -377,6 +377,53 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
 .footer-links a{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
 .footer-links a:hover{color:var(--gold-light);}
 .footer-copy{font-size:0.68rem;color:rgba(138,158,140,0.4);letter-spacing:0.05em;}
+/* RAYS STADIUM */
+.rays{background:#0d1f0f;padding:6rem 4rem;position:relative;overflow:hidden;}
+.rays-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:4rem;max-width:1100px;margin-left:auto;margin-right:auto;}
+.rays-img-wrap{position:relative;border:1px solid var(--border);overflow:hidden;}
+.rays-img-wrap::before,.rays-img-wrap::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid;z-index:2;}
+.rays-img-wrap::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.rays-img-wrap::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.rays-img-wrap img{width:100%;display:block;opacity:0.92;transition:opacity 0.5s,transform 0.6s;}
+.rays-img-wrap:hover img{opacity:1;transform:scale(1.03);}
+.rays-badge{position:absolute;top:1rem;left:1rem;z-index:3;background:rgba(13,31,15,0.88);border:1px solid var(--gold);padding:0.4rem 0.9rem;font-size:0.58rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-family:'Cinzel',serif;backdrop-filter:blur(8px);}
+.rays-content{max-width:1100px;margin:0 auto;}
+.rays-header{text-align:center;max-width:700px;margin:0 auto 3.5rem;}
+.rays-header .section-eyebrow{justify-content:center;}
+.rays-header .section-eyebrow::before{display:none;}
+.rays-header .section-title{margin-bottom:0.8rem;}
+.rays-intro{font-size:0.93rem;color:var(--text-muted);line-height:1.8;text-align:center;}
+.rays-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:3.5rem;}
+.rays-stat{background:#0d1f0f;padding:2rem 1.4rem;text-align:center;transition:background 0.3s;}
+.rays-stat:hover{background:#132716;}
+.rays-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:0.35rem;}
+.rays-stat-lbl{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);line-height:1.4;}
+.rays-details{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.rays-detail-card{border:1px solid var(--border);padding:2rem;position:relative;background:rgba(19,39,22,0.35);transition:border-color 0.3s,background 0.3s;}
+.rays-detail-card:hover{border-color:rgba(201,168,76,0.35);background:rgba(19,39,22,0.55);}
+.rays-detail-title{font-family:'Cinzel',serif;font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.7rem;}
+.rays-detail-title svg{width:18px;height:18px;fill:var(--gold);flex-shrink:0;}
+.rays-detail-body{font-size:0.85rem;color:var(--text-muted);line-height:1.75;}
+.rays-detail-body strong{color:var(--gold-light);font-weight:500;}
+.rays-timeline{border:1px solid var(--border);padding:2.5rem;margin-bottom:3rem;background:rgba(19,39,22,0.25);}
+.rays-timeline-title{font-family:'Cinzel',serif;font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;text-align:center;}
+.rays-tl-items{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.rays-tl-item{text-align:center;padding:1rem 0.5rem;position:relative;}
+.rays-tl-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);opacity:0.35;}
+.rays-tl-year{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold-light);font-weight:400;margin-bottom:0.3rem;}
+.rays-tl-desc{font-size:0.72rem;color:var(--text-muted);line-height:1.5;}
+.rays-battery{border:1px solid var(--border);padding:2.5rem;background:rgba(26,58,30,0.3);margin-bottom:0;}
+.rays-battery-title{font-family:'Cinzel',serif;font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.rays-battery-body{font-size:0.85rem;color:var(--text-muted);line-height:1.75;margin-bottom:1.5rem;}
+.rays-battery-body strong{color:var(--gold-light);font-weight:500;}
+.rays-battery-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.rays-battery-stat{background:rgba(13,31,15,0.7);padding:1.2rem;text-align:center;}
+.rays-battery-stat strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-light);font-weight:400;margin-bottom:0.2rem;}
+.rays-battery-stat span{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);}
+@media(max-width:1024px){.rays-stats{grid-template-columns:repeat(2,1fr);}.rays-details{grid-template-columns:1fr;}.rays-tl-items{grid-template-columns:repeat(3,1fr);}.rays-battery-stats{grid-template-columns:1fr;}}
+@media(max-width:900px){.rays{padding:4rem 1.5rem;}.rays-hero-grid{grid-template-columns:1fr;}}
+@media(max-width:640px){.rays-tl-items{grid-template-columns:1fr;}}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.75s ease,transform 0.75s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -565,9 +612,9 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <div class="hero-meta-item"><span class="meta-label">Est. Completed Value</span><span class="meta-value">$10,922,277</span></div>
     </div>
     <div class="hero-actions">
-      <a href="#presentation" class="btn-primary">View Full Deck</a>
-      <a href="#contact" class="btn-secondary">Request Investor Package</a>
-      <a href="https://www.suarezglobal.com/javier.html" target="_blank" rel="noopener noreferrer" class="btn-sponsor"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Meet the Sponsor</a>
+      <a href="#presentation" class="btn-primary">📊 View Full Deck</a>
+      <a href="#rays-stadium" class="btn-secondary">🏟️ $2.3B Rays Stadium — Less Than a Block Away</a>
+      <a href="https://www.suarezglobal.com/javier.html" target="_blank" rel="noopener noreferrer" class="btn-sponsor">🤝 Meet the Sponsor</a>
     </div>
   </div>
 </section>
@@ -849,6 +896,76 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
         <div class="market-point">Tampa Bay: <strong>#2 fastest-growing mid-sized U.S. economy</strong> — Gross Metropolitan Product up 43%</div>
         <div class="market-point">Port Tampa Bay economic impact: <strong>$34.6B</strong>, supporting 192,000+ jobs — directly fueling cargo demand near Drew Park</div>
         <div class="market-point">Transformative projects: <strong>Howard Frankland Bridge (2026)</strong>, Westshore Interchange (I-275/SR-60), $1B+ Water Street Tampa</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- RAYS STADIUM -->
+<section class="rays reveal" id="rays-stadium">
+  <div class="rays-hero-grid">
+    <div class="rays-img-wrap">
+      <span class="rays-badge">Opening Day 2029</span>
+      <img src="https://www.suarezglobal.com/rays.jpeg" alt="Tampa Bay Rays New Ballpark Rendering" loading="lazy">
+    </div>
+    <div class="rays-img-wrap">
+      <span class="rays-badge">Less Than 1 Block Away</span>
+      <img src="https://www.suarezglobal.com/rays2.jpeg" alt="Rays Park Mixed-Use District" loading="lazy">
+    </div>
+  </div>
+
+  <div class="rays-content">
+    <div class="rays-header">
+      <div class="section-eyebrow">Proximity Catalyst</div>
+      <h2 class="section-title">A $2.3 Billion <em>Stadium</em><br>Less Than a Block Away.</h2>
+      <p class="rays-intro">The Tampa Bay Rays are building their permanent home — a state-of-the-art ballpark and mixed-use district on the Westshore/Dale Mabry corridor. 4214 W Virginia Ave sits in the direct path of the largest development Tampa Bay has ever seen. This is not speculative — it has the backing of Florida's Governor, the MLB Commissioner, Hillsborough County, and every major sports franchise in the region.</p>
+    </div>
+
+    <div class="rays-stats">
+      <div class="rays-stat"><div class="rays-stat-num">$2.3B</div><div class="rays-stat-lbl">Ballpark &amp; District<br>Total Cost</div></div>
+      <div class="rays-stat"><div class="rays-stat-num">$34B</div><div class="rays-stat-lbl">30-Year Projected<br>Economic Impact</div></div>
+      <div class="rays-stat"><div class="rays-stat-num">10M+</div><div class="rays-stat-lbl">Annual Visitors<br>At Full Build-Out</div></div>
+      <div class="rays-stat"><div class="rays-stat-num">11,900</div><div class="rays-stat-lbl">Permanent New<br>Jobs Created</div></div>
+    </div>
+
+    <div class="rays-details">
+      <div class="rays-detail-card">
+        <div class="rays-detail-title"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Location &amp; Design</div>
+        <div class="rays-detail-body">The 130-acre site sits at <strong>Dale Mabry Highway &amp; West Tampa Bay Boulevard</strong> — directly across from Raymond James Stadium and adjacent to Steinbrenner Field. The district is divided into four zones: <strong>Champions Quarter</strong> (the $2.3B domed stadium seating ~31,000), <strong>Innovation Edge</strong> (rebuilt Hillsborough College campus), <strong>The Row</strong> (retail and dining spine), and <strong>The Canopy</strong> (green space, restaurants, and residential). Designed by <strong>Populous and Gensler</strong> — the world's leading sports architecture firms.</div>
+      </div>
+      <div class="rays-detail-card">
+        <div class="rays-detail-title"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>Funding &amp; Political Support</div>
+        <div class="rays-detail-body">The Rays cover <strong>50% of construction + 100% of all cost overruns</strong>. The remaining ~$467M comes from Hillsborough County's existing Community Investment Tax. <strong>Gov. DeSantis</strong> facilitated the state land transfer. <strong>MLB Commissioner Manfred</strong>, <strong>Mayor Castor</strong>, the Hillsborough County Commission (unanimous vote), the Buccaneers, Lightning, Yankees, and Tampa International Airport are all formal stakeholders. Binding government votes expected <strong>April 1–2, 2026</strong>.</div>
+      </div>
+      <div class="rays-detail-card">
+        <div class="rays-detail-title"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>Economic Impact</div>
+        <div class="rays-detail-body">An independent analysis by <strong>RCLCO projects $34 billion in total economic impact</strong> over 30 years, with <strong>10 million annual visitors</strong> comparable to a major U.S. theme park. Commissioner Hagan estimates the full development beyond the stadium at <strong>$8–$10 billion</strong>. The mixed-use development is <strong>100% privately financed</strong> beyond the stadium itself — creating a self-reinforcing stream of tax revenue that funds schools, infrastructure, and public services.</div>
+      </div>
+      <div class="rays-detail-card">
+        <div class="rays-detail-title"><svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>How We Got Here</div>
+        <div class="rays-detail-body">In fall 2024, <strong>Hurricane Milton damaged Tropicana Field's roof</strong>. During 2025, the Rays played at Steinbrenner Field. In March 2025, the Rays exited their previous <strong>$1.3B deal in St. Pete</strong> after Pinellas County commissioners delayed bond approval. That collapse pivoted the team entirely to Tampa/Hillsborough County. <strong>Gov. DeSantis and the Florida Cabinet transferred 22 acres of state land</strong> on Feb. 24, 2026, with a five-year use condition requiring construction to begin within that window.</div>
+      </div>
+    </div>
+
+    <div class="rays-timeline">
+      <div class="rays-timeline-title">Development Timeline</div>
+      <div class="rays-tl-items">
+        <div class="rays-tl-item"><div class="rays-tl-year">2026</div><div class="rays-tl-desc">Rays return to Tropicana Field. Binding votes April 1–2. Groundbreaking targeted July.</div></div>
+        <div class="rays-tl-item"><div class="rays-tl-year">2027</div><div class="rays-tl-desc">Active stadium construction. Mixed-use district development begins.</div></div>
+        <div class="rays-tl-item"><div class="rays-tl-year">2028</div><div class="rays-tl-desc">Final season at Tropicana Field. Construction acceleration.</div></div>
+        <div class="rays-tl-item"><div class="rays-tl-year">2029</div><div class="rays-tl-desc">Opening Day at Rays Park. 31,000-seat domed stadium operational.</div></div>
+        <div class="rays-tl-item"><div class="rays-tl-year">2030+</div><div class="rays-tl-desc">Full district buildout. 10M+ visitors. $34B economic engine at maturity.</div></div>
+      </div>
+    </div>
+
+    <div class="rays-battery">
+      <div class="rays-battery-title">The Proven Playbook — Battery Atlanta Comparison</div>
+      <div class="rays-battery-body">The Rays have explicitly modeled Rays Park after <strong>The Battery Atlanta</strong> — the mixed-use district built around Truist Park (Atlanta Braves) in Cobb County, GA. That project is now the most-studied example of stadium-led economic development in the country. The surrounding area saw a broader halo of approximately <strong>$4.5 billion in increased property values</strong> from 2013 to 2018 alone.</div>
+      <div class="rays-battery-stats">
+        <div class="rays-battery-stat"><strong>$5M → $736M</strong><span>Battery Atlanta Taxable<br>Property Values (2014–2022)</span></div>
+        <div class="rays-battery-stat"><strong>$38M / Year</strong><span>Annual Tax Revenue<br>to County, State &amp; Schools</span></div>
+        <div class="rays-battery-stat"><strong>10M Visitors</strong><span>Record Year in 2022 — Net<br>Positive for Cobb County Taxpayers</span></div>
       </div>
     </div>
   </div>
