@@ -421,12 +421,13 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
 .rays-battery-stat strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-light);font-weight:400;margin-bottom:0.2rem;}
 .rays-battery-stat span{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);}
 @media(max-width:1024px){.rays-stats{grid-template-columns:repeat(2,1fr);}.rays-details{grid-template-columns:1fr;}.rays-tl-items{grid-template-columns:repeat(3,1fr);}.rays-battery-stats{grid-template-columns:1fr;}}
-@media(max-width:900px){.rays{padding:4rem 1.5rem;}.rays-hero-grid{grid-template-columns:1fr;}}
-@media(max-width:640px){.rays-tl-items{grid-template-columns:1fr;}}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.75s ease,transform 0.75s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — TABLET
+   ═══════════════════════════════════════════════ */
 @media(max-width:1100px){
   .capital-layout,.exit-layout,.thesis-layout{grid-template-columns:1fr;gap:3rem;}
   .dr-grid{grid-template-columns:repeat(2,1fr);}
@@ -440,32 +441,160 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   .market-grid{grid-template-columns:1fr;}
   .vacancy-callout{grid-template-columns:1fr 1fr;}
 }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤900px)
+   ═══════════════════════════════════════════════ */
 @media(max-width:900px){
+  /* Global spacing */
   nav{padding:1.1rem 1.5rem;}
-  .hero{padding:8rem 1.5rem 4rem;min-height:auto;}
-  .hero-meta{width:100%;}
-  .hero-meta-item{padding:0.85rem 1rem;flex:1;min-width:90px;}
-  .presentation,.snapshot,.capital,.rentroll,.thesis,.exit,.market,.cta-section{padding:4rem 1.5rem;}
-  .vision-board{padding:3rem 1.5rem 1.5rem;}
   .divider{padding:0 1.5rem;}
   footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;}
+
+  /* Section padding */
+  .hero{padding:6rem 1.2rem 3rem;min-height:auto;}
+  .presentation,.snapshot,.capital,.rentroll,.thesis,.exit,.market,.cta-section{padding:3.5rem 1.2rem;}
+  .vision-board{padding:2.5rem 1.2rem 1.5rem;}
+
+  /* Hero mobile */
+  .hero-eyebrow{font-size:0.55rem;letter-spacing:0.2em;flex-wrap:wrap;}
+  .hero-eyebrow::before{width:24px;}
+  h1{font-size:clamp(2rem,8vw,3.2rem);margin-bottom:0.5rem;}
+  .hero-sub{font-size:0.92rem;margin-bottom:1.8rem;}
+  .hero-tag{font-size:0.55rem;letter-spacing:0.25em;padding:0.35rem 0.8rem;margin-bottom:1.2rem;}
+
+  /* Hero meta — 2-col grid on mobile */
+  .hero-meta{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);}
+  .hero-meta-item{padding:0.75rem 0.8rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .hero-meta-item:nth-child(2n){border-right:none;}
+  .hero-meta-item:nth-last-child(-n+2){border-bottom:none;}
+  .meta-label{font-size:0.5rem;letter-spacing:0.15em;}
+  .meta-value{font-size:1rem;}
+
+  /* Hero buttons — stack vertically */
+  .hero-actions{flex-direction:column;gap:0.7rem;padding-bottom:0;}
+  .btn-primary,.btn-secondary,.btn-sponsor{padding:0.85rem 1.4rem;font-size:0.62rem;letter-spacing:0.14em;text-align:center;width:100%;display:flex;justify-content:center;align-items:center;}
+  .btn-sponsor{gap:0.5rem;}
+
+  /* Section titles mobile */
+  .section-title{font-size:clamp(1.6rem,5vw,2.2rem);}
+  .section-eyebrow{font-size:0.58rem;letter-spacing:0.22em;}
+  .section-body{font-size:0.85rem;}
+
+  /* Vision board — stack */
+  .vb-layout{grid-template-columns:1fr;gap:1.5rem;}
+  .vb-desc{font-size:0.82rem;}
+
+  /* Presentation embed */
   .embed-inner{padding-bottom:80%;}
-  table{font-size:0.73rem;}
-  th,td{padding:0.65rem 0.8rem;}
-  .dscr-box{grid-template-columns:1fr;}
+  .embed-fullscreen-btn{font-size:0.55rem;padding:0.4rem 0.8rem;}
+
+  /* Table */
+  table{font-size:0.7rem;}
+  th,td{padding:0.55rem 0.7rem;}
+
+  /* NOI compare */
+  .noi-col{padding:1.6rem 1.2rem;}
+  .noi-amount{font-size:2.2rem;}
+  .noi-amount.big{font-size:2.6rem;}
+  .noi-detail{font-size:0.72rem;}
+
+  /* Capital stack */
+  .bar-name{font-size:0.62rem;}
+  .su-box{padding:1.2rem;}
+  .su-line-label{font-size:0.68rem;}
+  .su-line-val{font-size:0.7rem;}
+
+  /* Thesis */
+  .thesis-point{padding:1.2rem 1.4rem;}
+  .tp-body{font-size:0.8rem;}
+
+  /* Exit */
+  .exit-step{padding:1.2rem;flex-direction:column;align-items:flex-start;gap:0.4rem;}
+  .exit-step-val{text-align:left;font-size:1.3rem;}
+  .exit-step-val.big{font-size:1.6rem;}
   .exit-ranges{grid-template-columns:1fr;}
+  .dscr-box{grid-template-columns:1fr;}
+  .dscr-num{font-size:1.5rem;}
+
+  /* Market */
+  .market-card{padding:1.8rem 1.2rem;}
+  .market-point{font-size:0.78rem;}
+
+  /* CTA */
+  .cta-title{font-size:clamp(1.8rem,6vw,2.8rem);}
+  .cta-body{font-size:0.85rem;}
+  .cta-actions{flex-direction:column;align-items:center;}
+  .cta-actions .btn-primary,.cta-actions .btn-secondary{width:100%;text-align:center;display:flex;justify-content:center;}
+
+  /* Data Room */
   .dr-trigger{bottom:1.2rem;right:1.2rem;padding:0.7rem 1.2rem 0.7rem 1rem;font-size:0.6rem;}
-  .dr-overlay-inner{padding:2rem 1.5rem;}
+  .dr-overlay-inner{padding:2rem 1.2rem;}
   .dr-grid{grid-template-columns:1fr;}
-  .dr-card{padding:1.8rem 1.5rem;}
+  .dr-card{padding:1.6rem 1.2rem;}
+  .dr-card-title{font-size:0.85rem;}
+  .dr-card-desc{font-size:0.75rem;}
+
+  /* Rays Stadium */
+  .rays{padding:3.5rem 1.2rem;}
+  .rays-hero-grid{grid-template-columns:1fr;gap:1rem;margin-bottom:2.5rem;}
+  .rays-header{margin-bottom:2.5rem;}
+  .rays-intro{font-size:0.85rem;}
+  .rays-stats{grid-template-columns:1fr 1fr;}
+  .rays-stat{padding:1.4rem 1rem;}
+  .rays-stat-num{font-size:1.7rem;}
+  .rays-details{grid-template-columns:1fr;gap:1.2rem;}
+  .rays-detail-card{padding:1.4rem 1.2rem;}
+  .rays-detail-body{font-size:0.8rem;}
+  .rays-timeline{padding:1.5rem 1rem;}
+  .rays-tl-items{grid-template-columns:1fr 1fr;gap:0;}
+  .rays-tl-item{padding:0.8rem 0.4rem;}
+  .rays-tl-year{font-size:1.3rem;}
+  .rays-tl-desc{font-size:0.65rem;}
+  .rays-battery{padding:1.5rem 1.2rem;}
+  .rays-battery-stats{grid-template-columns:1fr;}
+  .rays-battery-stat{padding:1rem;}
+  .rays-battery-stat strong{font-size:1.2rem;}
+
+  /* Vacancy */
+  .vacancy-callout{grid-template-columns:1fr;}
+  .vac-card{padding:1.4rem 1.2rem;}
+  .vac-sf{font-size:1.5rem;}
+  .vac-total{padding:1.4rem 1.2rem;}
+  .vac-total-num{font-size:2rem;}
 }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤640px)
+   ═══════════════════════════════════════════════ */
 @media(max-width:640px){
-  .hero-meta{flex-direction:column;}
+  .hero{padding:5rem 1rem 2.5rem;}
+  .presentation,.snapshot,.capital,.rentroll,.thesis,.exit,.market,.cta-section{padding:3rem 1rem;}
+
+  .hero-meta{grid-template-columns:1fr;gap:0;}
   .hero-meta-item{border-right:none;border-bottom:1px solid var(--border);}
   .hero-meta-item:last-child{border-bottom:none;}
+  .hero-meta-item:nth-child(2n){border-right:none;}
+  .meta-value{font-size:1.05rem;}
+
   .stats-grid{grid-template-columns:1fr 1fr;}
-  .vacancy-callout{grid-template-columns:1fr;}
-  .embed-inner{padding-bottom:90%;}
+  .stat-num{font-size:1.8rem;}
+
+  .embed-inner{padding-bottom:100%;}
+
+  .noi-amount{font-size:1.8rem;}
+  .noi-amount.big{font-size:2.2rem;}
+
+  .rays-stats{grid-template-columns:1fr 1fr;}
+  .rays-stat-num{font-size:1.5rem;}
+  .rays-tl-items{grid-template-columns:1fr;}
+
+  .exit-step-val{font-size:1.1rem;}
+  .exit-step-val.big{font-size:1.3rem;}
+  .range-val{font-size:1.3rem;}
+
+  .sources-uses{gap:0.5rem;}
+  .su-box{padding:1rem 0.8rem;}
 }
 </style>
 </head>
@@ -608,8 +737,8 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <div class="hero-meta-item"><span class="meta-label">Building SF</span><span class="meta-value">45,560 SF</span></div>
       <div class="hero-meta-item"><span class="meta-label">All-In Basis</span><span class="meta-value">$5,250,000</span></div>
       <div class="hero-meta-item"><span class="meta-label">In-Place NOI</span><span class="meta-value">$169,313</span></div>
-      <div class="hero-meta-item"><span class="meta-label">Proforma NOI</span><span class="meta-value">$709,948</span></div>
-      <div class="hero-meta-item"><span class="meta-label">Est. Completed Value</span><span class="meta-value">$10,922,277</span></div>
+      <div class="hero-meta-item"><span class="meta-label">Proforma NOI</span><span class="meta-value">$848,637</span></div>
+      <div class="hero-meta-item"><span class="meta-label">Est. Completed Value</span><span class="meta-value">$13,055,538</span></div>
     </div>
     <div class="hero-actions">
       <a href="#presentation" class="btn-primary">📄 View Full Deck</a>
@@ -626,7 +755,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
     <div class="vb-text">
       <div class="section-eyebrow">Repositioning Vision</div>
       <h2 class="section-title">From Underperforming<br>to <em>Institutional-Grade.</em></h2>
-      <p class="vb-desc">The vision is clear — transform a 45,560 SF legacy industrial asset into a modern, fully leased multi-tenant facility positioned for institutional acquisition. Exterior upgrades include new metal paneling, fresh paint, updated signage, and improved curb appeal across all street-facing elevations. Interior repositioning targets Class A warehouse and flex finishes at $24/SF NNN — a standard Drew Park institutional buyers are actively pursuing.</p>
+      <p class="vb-desc">The vision is clear — transform a 45,560 SF legacy industrial asset into a modern, fully leased multi-tenant facility positioned for institutional acquisition. Exterior upgrades include new metal paneling, fresh paint, updated signage, and improved curb appeal across all street-facing elevations. Interior repositioning targets Class A warehouse and flex finishes at $25.42/SF Full Service Gross + 8% CAM ($27.46/SF effective) — a standard Drew Park institutional buyers are actively pursuing.</p>
     </div>
     <div class="vb-frame">
       <img src="https://www.suarezglobal.com/vaboard.png" alt="4214 W Virginia Ave — Industrial Repositioning Vision Board" loading="lazy">
@@ -688,9 +817,9 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
     <div class="stat-block"><div class="stat-num">4.52%</div><div class="stat-lbl">In-Place Cap Rate<br>On Purchase Price</div></div>
     <div class="stat-block"><div class="stat-num">16.8%</div><div class="stat-lbl">As-Is Stabilized Cap Rate<br>Yield on Purchase Price</div></div>
     <div class="stat-block"><div class="stat-num">$5.25M</div><div class="stat-lbl">All-In Project Basis<br>Purchase + $1.5M CapEx</div></div>
-    <div class="stat-block"><div class="stat-num">$10.9M</div><div class="stat-lbl">Est. Completed Value<br>@ 6.5% Exit Cap Rate</div></div>
-    <div class="stat-block"><div class="stat-num">50–65%</div><div class="stat-lbl">Cost-to-Value Ratio<br>Embedded Equity at Purchase</div></div>
-    <div class="stat-block"><div class="stat-num">1.39x</div><div class="stat-lbl">DSCR at Stabilization<br>$198K Annual Free Cash Flow</div></div>
+    <div class="stat-block"><div class="stat-num">$13.1M</div><div class="stat-lbl">Est. Completed Value<br>@ 6.5% Exit Cap Rate</div></div>
+    <div class="stat-block"><div class="stat-num">40.2%</div><div class="stat-lbl">Cost-to-Value Ratio<br>Embedded Equity at Purchase</div></div>
+    <div class="stat-block"><div class="stat-num">1.39x</div><div class="stat-lbl">DSCR at Stabilization<br>$237K Annual Free Cash Flow</div></div>
   </div>
   <div class="noi-compare">
     <div class="noi-col">
@@ -701,9 +830,9 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
     </div>
     <div class="noi-col highlight">
       <div class="noi-tag active">Proforma — Post Repositioning</div>
-      <div class="noi-label">Stabilized NOI @ $24/SF NNN</div>
-      <div class="noi-amount big">$709,948</div>
-      <div class="noi-detail">Revenue: <span>$1,030,560</span> (41,440 SF + parking)<br>Op. Expenses: <span>($320,612)</span> proforma<br>Yield on Cost: <span>13.5% on $5.25M all-in basis</span><br>Exit Value: <span>$10,922,277 @ 6.5% cap</span></div>
+      <div class="noi-label">Stabilized NOI @ $25.42/SF FSG + 8% CAM</div>
+      <div class="noi-amount big">$848,637</div>
+      <div class="noi-detail">Revenue: <span>$1,173,942</span> ($25.42/SF base + 8% CAM + parking)<br>Op. Expenses: <span>($325,305)</span> proforma<br>Yield on Cost: <span>16.2% on $5.25M all-in basis</span><br>Exit Value: <span>$13,055,538 @ 6.5% cap</span></div>
     </div>
   </div>
 </section>
@@ -802,9 +931,9 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
     <div class="thesis-points">
       <div class="thesis-point"><div class="tp-num">01</div><div class="tp-title">Below-Market Acquisition Basis</div><p class="tp-body">Contract price of $3.75M ($82.31/SF) vs. as-is stabilized market value of $7.18M+ ($157.68/SF). Buying at a $3.43M discount to as-is market value before any renovation upside. Embedded equity protection from day one.</p></div>
       <div class="thesis-point"><div class="tp-num">02</div><div class="tp-title">Lease Rollover Arbitrage — All Star</div><p class="tp-body">All Star Paper Goods holds 25,000 SF at $3.60/SF (Modified Gross) on a month-to-month lease, vacating April 2026. Tampa market rate is $15/SF+. Re-leasing this single space at market adds $283,500 in annual NOI — documented, not speculative.</p></div>
-      <div class="thesis-point"><div class="tp-num">03</div><div class="tp-title">Vacancy Monetization — 35,060 SF</div><p class="tp-body">10,060 SF currently vacant (VAC-1 unidentified space + VAC-2 Corner Loft). Combined with All Star's departure, total vacancy represents $525,900 in annual upside at $15/SF as-is rents. Repositioned at $24/SF NNN, potential gross revenue reaches $1,030,560.</p></div>
+      <div class="thesis-point"><div class="tp-num">03</div><div class="tp-title">Vacancy Monetization — 35,060 SF</div><p class="tp-body">10,060 SF currently vacant (VAC-1 unidentified space + VAC-2 Corner Loft). Combined with All Star's departure, total vacancy represents $525,900 in annual upside at $15/SF as-is rents. Repositioned at $25.42/SF Full Service Gross + 8% CAM ($27.46/SF effective), potential gross revenue reaches $1,173,942.</p></div>
       <div class="thesis-point"><div class="tp-num">04</div><div class="tp-title">Conservative Capital Structure</div><p class="tp-body">70% LTC senior bridge with 100% rehab funding provides downside protection while maximizing equity returns. $1.2M equity requirement keeps sponsor alignment strong. Lender-clean structure via Suarez Global Ventures LLC designed for fast approvals.</p></div>
-      <div class="thesis-point"><div class="tp-num">05</div><div class="tp-title">Flexible Exit — Dual Pathways</div><p class="tp-body">Sell stabilized to institutional buyer (Prologis, Basis Industrial, 1031 exchange buyers) at 6.5% cap → $10,922,277 estimated value. Or refinance to permanent at $7.1M loan, locking $198,748 free cash flow annually at 1.39x DSCR. Both pathways supported by current market data.</p></div>
+      <div class="thesis-point"><div class="tp-num">05</div><div class="tp-title">Flexible Exit — Dual Pathways</div><p class="tp-body">Sell stabilized to institutional buyer (Prologis, Basis Industrial, 1031 exchange buyers) at 6.5% cap → $13,055,538 estimated value. Or refinance to permanent at $8.5M loan, locking $237,045 free cash flow annually at 1.39x DSCR. Both pathways supported by current market data.</p></div>
     </div>
   </div>
 </section>
@@ -813,28 +942,28 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
 <!-- EXIT VALUATION -->
 <section class="exit reveal">
   <div class="section-eyebrow">Exit Valuation &amp; Returns</div>
-  <h2 class="section-title" style="margin-bottom:3rem;">The Path to<br><em>$10,922,277.</em></h2>
+  <h2 class="section-title" style="margin-bottom:3rem;">The Path to<br><em>$13,055,538.</em></h2>
   <div class="exit-layout">
     <div>
       <div class="exit-visual">
-        <div class="exit-step"><div class="exit-step-label">Full Lease-Up — Proforma Rent Roll<small>41,440 SF @ $24/SF NNN + $36,000 outdoor parking</small></div><div class="exit-step-val">$1,030,560<small>Gross Revenue</small></div></div>
-        <div class="exit-step"><div class="exit-step-label">Less Proforma Operating Expenses<small>Taxes · Insurance · Utilities · Mgmt · CAM · Marketing · Vacancy</small></div><div class="exit-step-val" style="color:#e2a97e;">($320,612)<small>Total ProForma OpEx</small></div></div>
-        <div class="exit-step"><div class="exit-step-label">Stabilized Net Operating Income</div><div class="exit-step-val gold">$709,948<small>Proforma NOI</small></div></div>
-        <div class="exit-step"><div class="exit-step-label">Apply Conservative 6.5% Cap Rate<small>Institutional pricing for airport-proximate Tampa industrial</small></div><div class="exit-step-val gold big">$10,922,277<small>Estimated Completed Value</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Full Lease-Up — Proforma Rent Roll<small>41,440 SF @ $25.42/SF FSG + 8% CAM + $36,000 parking</small></div><div class="exit-step-val">$1,173,942<small>Gross Revenue</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Less Proforma Operating Expenses<small>Taxes · Insurance · Utilities · Mgmt · CAM · Marketing · Vacancy</small></div><div class="exit-step-val" style="color:#e2a97e;">($325,305)<small>Total ProForma OpEx</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Stabilized Net Operating Income</div><div class="exit-step-val gold">$848,637<small>Proforma NOI</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Apply Conservative 6.5% Cap Rate<small>Institutional pricing for airport-proximate Tampa industrial</small></div><div class="exit-step-val gold big">$13,055,538<small>Estimated Completed Value</small></div></div>
       </div>
       <div class="exit-ranges">
-        <div class="range-box"><div class="range-label">Stabilized NOI Range</div><div class="range-val">$550K–$710K</div></div>
-        <div class="range-box"><div class="range-label">Conservative ARV Range</div><div class="range-val">$8.5M–$11M</div></div>
+        <div class="range-box"><div class="range-label">Stabilized NOI Range</div><div class="range-val">$710K–$850K</div></div>
+        <div class="range-box"><div class="range-label">Conservative ARV Range</div><div class="range-val">$10.9M–$13.1M</div></div>
       </div>
     </div>
     <div>
       <div class="section-eyebrow">Debt Service Analysis</div>
       <h3 class="section-title" style="font-size:1.8rem;">Stabilized<br><em>Cash Flow.</em></h3>
-      <p class="section-body">At stabilization, the permanent loan profile delivers healthy free cash flow with a DSCR of 1.39x — well above typical lender minimums — positioning the asset for either a clean institutional sale or a long-term cash-flowing hold.</p>
+      <p class="section-body">At stabilization, the permanent loan of $8.5M (65% LTV) delivers healthy free cash flow with a DSCR of 1.39x — well above typical lender minimums — positioning the asset for either a clean institutional sale or a long-term cash-flowing hold.</p>
       <div class="dscr-box">
-        <div class="dscr-item"><div class="dscr-num">$7.1M</div><div class="dscr-lbl">Permanent Loan<br>@ 6% Interest Rate</div></div>
+        <div class="dscr-item"><div class="dscr-num">$8.5M</div><div class="dscr-lbl">Permanent Loan<br>@ 6% Interest Rate</div></div>
         <div class="dscr-item"><div class="dscr-num">1.39x</div><div class="dscr-lbl">DSCR at<br>Full Stabilization</div></div>
-        <div class="dscr-item"><div class="dscr-num">$198K</div><div class="dscr-lbl">Annual Free<br>Cash Flow</div></div>
+        <div class="dscr-item"><div class="dscr-num">$237K</div><div class="dscr-lbl">Annual Free<br>Cash Flow</div></div>
       </div>
       <div style="border:1px solid var(--border);padding:2rem;margin-top:1.5rem;">
         <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);">Institutional Buyer Universe</div>
@@ -873,7 +1002,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <div class="market-card-title">Tampa Industrial Fundamentals</div>
       <div class="market-points">
         <div class="market-point">Overall vacancy: <strong>6.8–8.5%</strong> — tight supply with continued positive net absorption</div>
-        <div class="market-point">Market rents: <strong>$9+/PSF NNN</strong> with 6.5% YOY growth; our proforma targets $24/SF</div>
+        <div class="market-point">Market rents: <strong>$9+/PSF</strong> with 6.5% YOY growth; our proforma targets $25.42/SF FSG + 8% CAM</div>
         <div class="market-point"><strong>$727M in Tampa industrial sales</strong> YTD through Q3 2025 — Q3 alone: $337M</div>
         <div class="market-point">Premium stabilized assets trading in the <strong>low-6% cap range</strong> — our 6.5% target is positioned for upward valuation pressure</div>
         <div class="market-point">Industrial loan originations Q2 2025: <strong>+102% QoQ</strong> — lenders aggressively deploying capital into industrial</div>
