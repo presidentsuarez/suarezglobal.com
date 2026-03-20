@@ -13,24 +13,164 @@ body{font-family:'DM Sans',Georgia,sans-serif;background-color:#0d1f0f;color:#f8
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;background:rgba(13,31,15,0.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:padding 0.3s;}
 .logo{font-family:'Cinzel',Georgia,serif;font-size:1rem;font-weight:700;letter-spacing:0.22em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
 .logo span{color:#f8f3ea;opacity:0.7;}
-.nav-links{display:flex;gap:2.5rem;list-style:none;}
-.nav-links a{font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
-.nav-links a:hover{color:var(--gold-light);}
-.nav-cta{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#0d1f0f;background:var(--gold);padding:0.65rem 1.6rem;text-decoration:none;transition:background 0.3s;}
-.nav-cta:hover{background:var(--gold-light);}
 
-/* DATA ROOM BUTTON BAR */
-.data-room-bar{position:fixed;top:0;left:0;right:0;z-index:101;background:rgba(10,16,11,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0.65rem 4rem;gap:0.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.data-room-bar::-webkit-scrollbar{display:none;}
-.data-room-bar-label{font-family:'Cinzel',serif;font-size:0.56rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap;margin-right:0.6rem;padding-right:1rem;border-right:1px solid var(--border);flex-shrink:0;}
-.dr-btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:'DM Sans',sans-serif;font-size:0.64rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);background:transparent;border:1px solid var(--border);padding:0.45rem 1rem;text-decoration:none;white-space:nowrap;transition:all 0.3s ease;cursor:pointer;flex-shrink:0;}
-.dr-btn:hover{color:#f8f3ea;border-color:var(--gold);background:rgba(201,168,76,0.08);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,0.1);}
-.dr-btn:active{transform:translateY(0);}
-.dr-btn svg{flex-shrink:0;opacity:0.6;transition:opacity 0.3s;}
-.dr-btn:hover svg{opacity:1;}
+/* ═══════════════════════════════════════════════
+   DATA ROOM — FLOATING TRIGGER + OVERLAY
+   ═══════════════════════════════════════════════ */
 
-/* Shift nav down to make room for data room bar */
-nav{top:42px;}
+/* Floating trigger button */
+.dr-trigger{
+  position:fixed;bottom:2.2rem;right:2.2rem;z-index:200;
+  display:flex;align-items:center;gap:0.7rem;
+  font-family:'Cinzel',serif;font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--cream);background:rgba(13,31,15,0.88);
+  border:1px solid var(--gold);padding:0.85rem 1.6rem 0.85rem 1.3rem;
+  cursor:pointer;backdrop-filter:blur(16px);
+  transition:all 0.4s cubic-bezier(0.22,1,0.36,1);
+  box-shadow:0 8px 40px rgba(0,0,0,0.4),0 0 0 0 rgba(201,168,76,0);
+}
+.dr-trigger:hover{
+  background:var(--gold);color:#0d1f0f;
+  box-shadow:0 12px 50px rgba(201,168,76,0.35),0 0 60px rgba(201,168,76,0.15);
+  transform:translateY(-3px);
+}
+.dr-trigger-dot{
+  width:7px;height:7px;background:var(--gold);border-radius:50%;
+  animation:drPulse 2.5s ease-in-out infinite;flex-shrink:0;
+}
+.dr-trigger:hover .dr-trigger-dot{background:#0d1f0f;}
+@keyframes drPulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(201,168,76,0.5);}
+  50%{opacity:0.6;box-shadow:0 0 0 8px rgba(201,168,76,0);}
+}
+.dr-trigger-icon{display:flex;align-items:center;transition:transform 0.3s;}
+.dr-trigger:hover .dr-trigger-icon{transform:rotate(90deg);}
+
+/* Overlay */
+.dr-overlay{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(5,12,6,0.92);backdrop-filter:blur(30px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),visibility 0.5s;
+}
+.dr-overlay.active{opacity:1;visibility:visible;}
+
+.dr-overlay-inner{
+  width:90%;max-width:1200px;max-height:90vh;overflow-y:auto;
+  padding:3rem;position:relative;
+  scrollbar-width:none;
+}
+.dr-overlay-inner::-webkit-scrollbar{display:none;}
+
+/* Close button */
+.dr-close{
+  position:absolute;top:0;right:0;
+  width:48px;height:48px;border:1px solid var(--border);background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--text-muted);
+  transition:all 0.3s;z-index:2;
+}
+.dr-close:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.08);transform:rotate(90deg);}
+
+/* Overlay header */
+.dr-header{text-align:center;margin-bottom:3.5rem;}
+.dr-header-eyebrow{
+  font-size:0.6rem;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+  display:flex;align-items:center;justify-content:center;gap:1.2rem;
+}
+.dr-header-eyebrow::before,.dr-header-eyebrow::after{
+  content:'';display:block;width:40px;height:1px;background:var(--gold);opacity:0.4;
+}
+.dr-header-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;
+  color:#f8f3ea;line-height:1.15;
+}
+.dr-header-title em{font-style:italic;color:var(--gold-light);}
+.dr-header-sub{font-size:0.85rem;color:var(--text-muted);margin-top:0.8rem;max-width:500px;margin-left:auto;margin-right:auto;}
+
+/* Card grid */
+.dr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+
+.dr-card{
+  background:rgba(13,31,15,0.7);padding:2.5rem 2rem;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  text-decoration:none;
+  transition:all 0.5s cubic-bezier(0.22,1,0.36,1);
+  /* staggered entrance */
+  opacity:0;transform:translateY(30px);
+}
+.dr-overlay.active .dr-card{opacity:1;transform:translateY(0);}
+.dr-overlay.active .dr-card:nth-child(1){transition-delay:0.08s;}
+.dr-overlay.active .dr-card:nth-child(2){transition-delay:0.14s;}
+.dr-overlay.active .dr-card:nth-child(3){transition-delay:0.2s;}
+.dr-overlay.active .dr-card:nth-child(4){transition-delay:0.26s;}
+.dr-overlay.active .dr-card:nth-child(5){transition-delay:0.32s;}
+.dr-overlay.active .dr-card:nth-child(6){transition-delay:0.38s;}
+
+/* Gold corner accents on hover */
+.dr-card::before,.dr-card::after{
+  content:'';position:absolute;width:0;height:0;
+  border-color:var(--gold);border-style:solid;
+  transition:width 0.4s cubic-bezier(0.22,1,0.36,1),height 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.dr-card::before{top:0;left:0;border-width:2px 0 0 2px;border-color:transparent;}
+.dr-card::after{bottom:0;right:0;border-width:0 2px 2px 0;border-color:transparent;}
+.dr-card:hover::before,.dr-card:hover::after{width:28px;height:28px;border-color:var(--gold);}
+
+/* Bottom glow bar */
+.dr-card-glow{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:scaleX(0);transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.dr-card:hover .dr-card-glow{transform:scaleX(1);}
+
+.dr-card:hover{background:rgba(19,39,22,0.95);transform:translateY(-4px);}
+
+/* Card icon */
+.dr-card-icon{
+  width:52px;height:52px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.5rem;color:var(--gold);
+  transition:border-color 0.4s,background 0.4s,transform 0.4s;
+  position:relative;
+}
+.dr-card:hover .dr-card-icon{
+  border-color:var(--gold);background:rgba(201,168,76,0.08);
+  transform:scale(1.05);
+}
+
+/* Card number */
+.dr-card-num{
+  font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;
+  position:absolute;top:-0.8rem;right:0.8rem;color:rgba(201,168,76,0.06);
+  line-height:1;pointer-events:none;user-select:none;
+  transition:color 0.4s;
+}
+.dr-card:hover .dr-card-num{color:rgba(201,168,76,0.1);}
+
+.dr-card-title{
+  font-family:'Cinzel',serif;font-size:0.78rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;
+  transition:color 0.3s;
+}
+.dr-card:hover .dr-card-title{color:var(--gold-pale);}
+
+.dr-card-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.5rem;flex:1;}
+
+.dr-card-action{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.62rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--gold);
+  transition:gap 0.3s,color 0.3s;
+}
+.dr-card:hover .dr-card-action{gap:0.8rem;color:var(--gold-light);}
+.dr-card-action svg{transition:transform 0.3s;}
+.dr-card:hover .dr-card-action svg{transform:translateX(3px);}
+
+/* ═══════════════════════════════════════════════ */
 
 .hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:10rem 4rem 5rem;background:linear-gradient(155deg,#0d1f0f 0%,#0a1a0c 55%,#080f09 100%);}
 .hero-glow{position:absolute;right:0;top:0;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(45,107,53,0.18) 0%,transparent 60%);pointer-events:none;}
@@ -65,10 +205,21 @@ h1 em{font-style:italic;color:var(--gold-light);}
 .section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:#f8f3ea;margin-bottom:1.2rem;}
 .section-title em{font-style:italic;color:var(--gold-light);}
 .section-body{font-size:0.93rem;line-height:1.8;color:var(--text-muted);margin-bottom:2rem;}
+
+/* VISION BOARD */
+.vision-board{background:#0d1f0f;padding:4rem 4rem 2rem;position:relative;}
+.vb-frame{border:1px solid var(--border);padding:4px;position:relative;max-width:1200px;margin:0 auto;}
+.vb-frame::before,.vb-frame::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--gold);border-style:solid;z-index:2;}
+.vb-frame::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.vb-frame::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.vb-frame img{width:100%;display:block;opacity:0.95;transition:opacity 0.4s;}
+.vb-frame:hover img{opacity:1;}
+.vb-label{text-align:center;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);}
+
 /* PRESENTATION */
 .presentation{background:#132716;padding:6rem 4rem;position:relative;overflow:hidden;}
 .presentation-bg-text{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Cinzel',serif;font-size:11rem;font-weight:700;color:rgba(255,255,255,0.02);pointer-events:none;white-space:nowrap;user-select:none;}
-.presentation-layout{display:grid;grid-template-columns:1fr 1.7fr;gap:5rem;align-items:start;position:relative;z-index:1;}
+.presentation-layout{display:grid;grid-template-columns:1fr 2.2fr;gap:4rem;align-items:start;position:relative;z-index:1;}
 .presentation-sidebar{position:sticky;top:100px;}
 .deal-highlights{display:flex;flex-direction:column;gap:0;margin-bottom:2rem;border:1px solid var(--border);}
 .deal-highlight{display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.4rem;border-bottom:1px solid var(--border);transition:background 0.3s;}
@@ -84,14 +235,12 @@ h1 em{font-style:italic;color:var(--gold-light);}
 .embed-border::before,.embed-border::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid;z-index:2;}
 .embed-border::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
 .embed-border::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
-.embed-inner{position:relative;width:100%;padding-bottom:60%;overflow:hidden;background:#0d1f0f;}
+.embed-inner{position:relative;width:100%;padding-bottom:72%;overflow:hidden;background:#0d1f0f;}
 .embed-inner iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block;}
-/* Full-screen button — header bar */
 .embed-fullscreen-btn{display:inline-flex;align-items:center;gap:0.55rem;font-size:0.64rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:0.5rem 1.1rem;text-decoration:none;white-space:nowrap;transition:border-color 0.3s,color 0.3s,background 0.3s,transform 0.2s;flex-shrink:0;}
 .embed-fullscreen-btn:hover{border-color:var(--gold);color:#0d1f0f;background:var(--gold);transform:translateY(-1px);}
 .embed-fullscreen-btn svg{transition:transform 0.2s;}
 .embed-fullscreen-btn:hover svg{transform:translate(1px,-1px);}
-/* Hover overlay button on the embed frame */
 .embed-hover-overlay{position:absolute;bottom:14px;right:14px;z-index:10;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.62rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#f8f3ea;background:rgba(13,31,15,0.82);border:1px solid rgba(201,168,76,0.35);padding:0.5rem 1rem;text-decoration:none;backdrop-filter:blur(8px);opacity:0;transform:translateY(4px);transition:opacity 0.25s,transform 0.25s,border-color 0.2s,background 0.2s;}
 .embed-border:hover .embed-hover-overlay{opacity:1;transform:translateY(0);}
 .embed-hover-overlay:hover{background:var(--gold);color:#0d1f0f;border-color:var(--gold);}
@@ -224,6 +373,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
 .reveal.visible{opacity:1;transform:translateY(0);}
 @media(max-width:1100px){
   .capital-layout,.exit-layout,.thesis-layout{grid-template-columns:1fr;gap:3rem;}
+  .dr-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:1024px){
   .presentation-layout{grid-template-columns:1fr;gap:3rem;}
@@ -235,21 +385,23 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   .vacancy-callout{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:900px){
-  .data-room-bar{padding:0.55rem 1.5rem;gap:0.4rem;}
-  .data-room-bar-label{display:none;}
   nav{padding:1.1rem 1.5rem;}
-  .nav-links,.nav-cta{display:none;}
   .hero{padding:8rem 1.5rem 4rem;min-height:auto;}
   .hero-meta{width:100%;}
   .hero-meta-item{padding:0.85rem 1rem;flex:1;min-width:90px;}
   .presentation,.snapshot,.capital,.rentroll,.thesis,.exit,.market,.cta-section{padding:4rem 1.5rem;}
+  .vision-board{padding:3rem 1.5rem 1.5rem;}
   .divider{padding:0 1.5rem;}
   footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;}
-  .embed-inner{padding-bottom:70%;}
+  .embed-inner{padding-bottom:80%;}
   table{font-size:0.73rem;}
   th,td{padding:0.65rem 0.8rem;}
   .dscr-box{grid-template-columns:1fr;}
   .exit-ranges{grid-template-columns:1fr;}
+  .dr-trigger{bottom:1.2rem;right:1.2rem;padding:0.7rem 1.2rem 0.7rem 1rem;font-size:0.6rem;}
+  .dr-overlay-inner{padding:2rem 1.5rem;}
+  .dr-grid{grid-template-columns:1fr;}
+  .dr-card{padding:1.8rem 1.5rem;}
 }
 @media(max-width:640px){
   .hero-meta{flex-direction:column;}
@@ -257,45 +409,134 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   .hero-meta-item:last-child{border-bottom:none;}
   .stats-grid{grid-template-columns:1fr 1fr;}
   .vacancy-callout{grid-template-columns:1fr;}
-  .embed-inner{padding-bottom:80%;}
-  .dr-btn{padding:0.4rem 0.7rem;font-size:0.58rem;letter-spacing:0.08em;}
+  .embed-inner{padding-bottom:90%;}
 }
 </style>
 </head>
 <body>
 
-<!-- DATA ROOM BUTTON BAR -->
-<div class="data-room-bar">
-  <div class="data-room-bar-label">Data Room</div>
-  <a href="#" class="dr-btn">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1.5H3.5A1.5 1.5 0 0 0 2 3v10a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 14 13V6.5L9 1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 1.5V6.5H14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    PSA Documents
-  </a>
-  <a href="#" class="dr-btn">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 14a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Borrower PFS &amp; REO
-  </a>
-  <a href="#" class="dr-btn">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 3l6 5 6-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Borrower Resume/Website
-  </a>
-  <a href="#" class="dr-btn">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 12V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1Z" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h6M5 9.5h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-    Property Financials
-  </a>
-  <a href="#" class="dr-btn">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2v12h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10l3-3 2.5 2L14 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Business Plan
-  </a>
-  <a href="#" class="dr-btn">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 2.5l1 1-7 7-2.5.5.5-2.5 7-7Z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10v3h10v-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Renovation Scope
-  </a>
+<!-- ═══ DATA ROOM FLOATING TRIGGER ═══ -->
+<button class="dr-trigger" id="drTrigger" aria-label="Open Data Room">
+  <span class="dr-trigger-dot"></span>
+  <span>Data Room</span>
+  <span class="dr-trigger-icon">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span>
+</button>
+
+<!-- ═══ DATA ROOM OVERLAY ═══ -->
+<div class="dr-overlay" id="drOverlay">
+  <div class="dr-overlay-inner">
+    <button class="dr-close" id="drClose" aria-label="Close Data Room">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="dr-header">
+      <div class="dr-header-eyebrow">Investor Data Room</div>
+      <h2 class="dr-header-title">Due Diligence<br><em>Documents.</em></h2>
+      <p class="dr-header-sub">Full transparency. Every document verified. Click to access executed leases, financials, borrower credentials, and project scope.</p>
+    </div>
+
+    <div class="dr-grid">
+
+      <!-- 1 — PSA Documents -->
+      <a href="https://drive.google.com/file/d/1ksQ-PY_B4JE8DXfrWyJJwBE8dNBIBS1B/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="dr-card">
+        <div class="dr-card-glow"></div>
+        <div class="dr-card-num">01</div>
+        <div class="dr-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="dr-card-title">PSA Documents</div>
+        <div class="dr-card-desc">Executed Purchase &amp; Sale Agreement for 4214 W Virginia Ave. Full contract terms, contingencies, and closing timeline.</div>
+        <div class="dr-card-action">
+          View Document
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- 2 — Borrower PFS & REO -->
+      <a href="https://drive.google.com/drive/folders/118MAG2Uqcrg05IGkO6wHWwesA2XfrKdr?usp=sharing" target="_blank" rel="noopener noreferrer" class="dr-card">
+        <div class="dr-card-glow"></div>
+        <div class="dr-card-num">02</div>
+        <div class="dr-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <div class="dr-card-title">Borrower PFS &amp; REO</div>
+        <div class="dr-card-desc">Personal Financial Statement, Real Estate Owned schedule, and verified liquidity documentation for Javier A. Suarez.</div>
+        <div class="dr-card-action">
+          View Folder
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- 3 — Borrower Resume / Website -->
+      <a href="https://www.suarezglobal.com/javier.html" target="_blank" rel="noopener noreferrer" class="dr-card">
+        <div class="dr-card-glow"></div>
+        <div class="dr-card-num">03</div>
+        <div class="dr-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="dr-card-title">Borrower Resume / Website</div>
+        <div class="dr-card-desc">Full professional profile, institutional track record, and operating history. Suarez Global Ventures principal bio and portfolio.</div>
+        <div class="dr-card-action">
+          View Profile
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- 4 — Property Financials -->
+      <a href="https://drive.google.com/drive/folders/1NoYi9qdIShY3PFH1UOF_ICIytZxuQaJv?usp=sharing" target="_blank" rel="noopener noreferrer" class="dr-card">
+        <div class="dr-card-glow"></div>
+        <div class="dr-card-num">04</div>
+        <div class="dr-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="dr-card-title">Property Financials</div>
+        <div class="dr-card-desc">County tax records, insurance quotes, utility verification, operating expense breakdown, and proforma revenue projections.</div>
+        <div class="dr-card-action">
+          View Financials
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- 5 — Business Plan -->
+      <a href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b" target="_blank" rel="noopener noreferrer" class="dr-card">
+        <div class="dr-card-glow"></div>
+        <div class="dr-card-num">05</div>
+        <div class="dr-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16l5-5 4 4 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="dr-card-title">Business Plan</div>
+        <div class="dr-card-desc">Complete repositioning strategy including market analysis, lease-up timeline, capital expenditure schedule, and exit valuation modeling.</div>
+        <div class="dr-card-action">
+          View Presentation
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- 6 — Renovation Scope -->
+      <a href="https://docs.google.com/spreadsheets/d/1Q8iSpZIBkstxRbhT4UZny36XvEZc18w9/edit?usp=sharing&ouid=101261212487521750086&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="dr-card">
+        <div class="dr-card-glow"></div>
+        <div class="dr-card-num">06</div>
+        <div class="dr-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="dr-card-title">Renovation Scope</div>
+        <div class="dr-card-desc">Detailed scope of work spreadsheet — line-item CapEx budget, contractor estimates, and phased renovation timeline for all 45,560 SF.</div>
+        <div class="dr-card-action">
+          View Spreadsheet
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
 </div>
 
 <nav id="navbar">
   <a href="https://www.suarezglobal.com" class="logo">Suarez<span> Global</span></a>
 </nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div><div class="hero-glow2"></div><div class="hero-grid"></div>
@@ -320,6 +561,16 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
+<!-- VISION BOARD -->
+<section class="vision-board reveal">
+  <div class="vb-frame">
+    <img src="https://www.suarezglobal.com/vaboard.png" alt="4214 W Virginia Ave — Vision Board" loading="lazy">
+  </div>
+  <div class="vb-label">Value-Add Vision Board — 4214 W Virginia Ave Industrial Repositioning</div>
+</section>
+<div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- PRESENTATION -->
 <section class="presentation reveal" id="presentation">
   <div class="presentation-bg-text">INDUSTRIAL</div>
@@ -339,39 +590,19 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <a href="#contact" class="btn-primary">Request Investor Access</a>
     </div>
     <div>
-      <!-- Embed header row -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:1rem;flex-wrap:wrap;">
         <div class="embed-label" style="margin-bottom:0;">Interactive Investor Presentation — Tampa Development Group LLC</div>
-        <a
-          href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="embed-fullscreen-btn"
-          title="Open full presentation in a new tab"
-        >
-          <!-- Expand icon -->
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M8 1h4v4M12 1L7 6M5 12H1V8M1 12l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b" target="_blank" rel="noopener noreferrer" class="embed-fullscreen-btn" title="Open full presentation in a new tab">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1h4v4M12 1L7 6M5 12H1V8M1 12l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Open Full Screen
         </a>
       </div>
-      <!-- Embed frame -->
       <div class="embed-border" style="position:relative;">
         <div class="embed-inner">
           <iframe src="https://gamma.app/embed/r8a57yo991wgx0b" allow="fullscreen" title="West Virginia Ave Industrial Repositioning"></iframe>
         </div>
-        <!-- Hover overlay button on the frame itself -->
-        <a
-          href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="embed-hover-overlay"
-          title="Open full presentation"
-        >
-          <svg width="16" height="16" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M8 1h4v4M12 1L7 6M5 12H1V8M1 12l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <a href="https://gamma.app/docs/West-Virginia-Ave-Industrial-Repositioning-r8a57yo991wgx0b" target="_blank" rel="noopener noreferrer" class="embed-hover-overlay" title="Open full presentation">
+          <svg width="16" height="16" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1h4v4M12 1L7 6M5 12H1V8M1 12l5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Open Full Presentation
         </a>
       </div>
@@ -379,6 +610,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- DEAL SNAPSHOT -->
 <section class="snapshot reveal">
   <div class="snapshot-glow"></div>
@@ -407,11 +639,12 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <div class="noi-tag active">Proforma — Post Repositioning</div>
       <div class="noi-label">Stabilized NOI @ $24/SF NNN</div>
       <div class="noi-amount big">$709,948</div>
-      <div class="noi-detail">Revenue: <span>$1,030,560</span> (41,440 SF + parking)<br>Op. Expenses: <span>($320,612)</span> proforma<br>Yield on Basis: <span>16.8% stabilized on $5.25M all-in</span><br>Exit Value: <span>$10,922,277 @ 6.5% cap</span></div>
+      <div class="noi-detail">Revenue: <span>$1,030,560</span> (41,440 SF + parking)<br>Op. Expenses: <span>($320,612)</span> proforma<br>Yield on Cost: <span>13.5% on $5.25M all-in basis</span><br>Exit Value: <span>$10,922,277 @ 6.5% cap</span></div>
     </div>
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- RENT ROLL -->
 <section class="rentroll reveal">
   <div class="section-eyebrow">Verified Rent Roll</div>
@@ -419,63 +652,27 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   <p class="section-body" style="max-width:660px;">Four active tenants generating $256,200 annually on executed leases and license agreements — all verified via executed documents, county records, and utility bills. Three vacant spaces represent $525,900 in annualized upside at $15/SF market rates.</p>
   <div class="rr-table-wrap">
     <table>
-      <thead>
-        <tr>
-          <th>Tenant</th><th>Suite</th><th>SF</th><th>Lease Type</th><th>Monthly Rent</th><th>Annual Rent</th><th>$/SF/Yr</th><th>Expires</th><th>Status</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Tenant</th><th>Suite</th><th>SF</th><th>Lease Type</th><th>Monthly Rent</th><th>Annual Rent</th><th>$/SF/Yr</th><th>Expires</th><th>Status</th></tr></thead>
       <tbody>
-        <tr>
-          <td>All Star Paper Goods</td><td>Unit 1</td><td>25,000</td><td>Modified Gross</td><td>$7,500</td><td>$90,000</td><td>$3.60</td><td>Month-to-Month</td><td><span class="status-badge status-vacating">Vacating Apr 2026</span></td>
-        </tr>
-        <tr>
-          <td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 2</td><td>4,000</td><td>NNN</td><td>$4,000</td><td>$48,000</td><td>$12.00</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td>
-        </tr>
-        <tr>
-          <td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 3</td><td>4,200</td><td>NNN</td><td>$4,200</td><td>$50,400</td><td>$12.00</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td>
-        </tr>
-        <tr>
-          <td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 4</td><td>700</td><td>NNN</td><td>$650</td><td>$7,800</td><td>$11.14</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td>
-        </tr>
-        <tr>
-          <td>Metro Diner LLC</td><td>Unit 5</td><td>1,600</td><td>NNN</td><td>$2,000</td><td>$24,000</td><td>$15.00</td><td>Month-to-Month</td><td><span class="status-badge status-active">Active</span></td>
-        </tr>
-        <tr>
-          <td>Skyline Limousine of Tampa Bay</td><td>Unit 6 (Outdoor Parking)</td><td>—</td><td>License Agreement</td><td>$3,000</td><td>$36,000</td><td>—</td><td>Dec 31, 2025</td><td><span class="status-badge status-active">Active</span></td>
-        </tr>
-        <tr class="total-row">
-          <td>TOTAL IN-PLACE</td><td>—</td><td>35,500 SF</td><td>—</td><td>$21,350/mo</td><td>$256,200/yr</td><td>—</td><td>—</td><td>—</td>
-        </tr>
+        <tr><td>All Star Paper Goods</td><td>Unit 1</td><td>25,000</td><td>Modified Gross</td><td>$7,500</td><td>$90,000</td><td>$3.60</td><td>Month-to-Month</td><td><span class="status-badge status-vacating">Vacating Apr 2026</span></td></tr>
+        <tr><td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 2</td><td>4,000</td><td>NNN</td><td>$4,000</td><td>$48,000</td><td>$12.00</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td></tr>
+        <tr><td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 3</td><td>4,200</td><td>NNN</td><td>$4,200</td><td>$50,400</td><td>$12.00</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td></tr>
+        <tr><td>Kitchen Cabinet &amp; Stone Inc.</td><td>Unit 4</td><td>700</td><td>NNN</td><td>$650</td><td>$7,800</td><td>$11.14</td><td>Jul 31, 2026</td><td><span class="status-badge status-active">Active — Verified</span></td></tr>
+        <tr><td>Metro Diner LLC</td><td>Unit 5</td><td>1,600</td><td>NNN</td><td>$2,000</td><td>$24,000</td><td>$15.00</td><td>Month-to-Month</td><td><span class="status-badge status-active">Active</span></td></tr>
+        <tr><td>Skyline Limousine of Tampa Bay</td><td>Unit 6 (Outdoor Parking)</td><td>—</td><td>License Agreement</td><td>$3,000</td><td>$36,000</td><td>—</td><td>Dec 31, 2025</td><td><span class="status-badge status-active">Active</span></td></tr>
+        <tr class="total-row"><td>TOTAL IN-PLACE</td><td>—</td><td>35,500 SF</td><td>—</td><td>$21,350/mo</td><td>$256,200/yr</td><td>—</td><td>—</td><td>—</td></tr>
       </tbody>
     </table>
   </div>
   <div class="vacancy-callout">
-    <div class="vac-card">
-      <div class="vac-id">VAC-1</div>
-      <div class="vac-name">Unidentified Space(s)</div>
-      <div class="vac-sf">6,060 SF</div>
-      <div class="vac-rent">$90,900/yr potential · $15/SF · As-is, non-renovated</div>
-    </div>
-    <div class="vac-card">
-      <div class="vac-id">VAC-2</div>
-      <div class="vac-name">Corner Loft Unit</div>
-      <div class="vac-sf">4,000 SF</div>
-      <div class="vac-rent">$60,000/yr potential · $15/SF · Minor cleanup, previously Kennedy South Painting</div>
-    </div>
-    <div class="vac-card">
-      <div class="vac-id">VAC-3</div>
-      <div class="vac-name">All Star Paper Goods</div>
-      <div class="vac-sf">25,000 SF</div>
-      <div class="vac-rent">$375,000/yr potential · $15/SF · Vacating April 2026 — largest single upside lever</div>
-    </div>
-    <div class="vac-total">
-      <div class="vac-total-label">Total Vacancy Upside</div>
-      <div class="vac-total-num">$525,900</div>
-      <div class="vac-total-sub">35,060 SF · Annually at $15/SF market</div>
-    </div>
+    <div class="vac-card"><div class="vac-id">VAC-1</div><div class="vac-name">Unidentified Space(s)</div><div class="vac-sf">6,060 SF</div><div class="vac-rent">$90,900/yr potential · $15/SF · As-is, non-renovated</div></div>
+    <div class="vac-card"><div class="vac-id">VAC-2</div><div class="vac-name">Corner Loft Unit</div><div class="vac-sf">4,000 SF</div><div class="vac-rent">$60,000/yr potential · $15/SF · Minor cleanup, previously Kennedy South Painting</div></div>
+    <div class="vac-card"><div class="vac-id">VAC-3</div><div class="vac-name">All Star Paper Goods</div><div class="vac-sf">25,000 SF</div><div class="vac-rent">$375,000/yr potential · $15/SF · Vacating April 2026 — largest single upside lever</div></div>
+    <div class="vac-total"><div class="vac-total-label">Total Vacancy Upside</div><div class="vac-total-num">$525,900</div><div class="vac-total-sub">35,060 SF · Annually at $15/SF market</div></div>
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- CAPITAL STACK -->
 <section class="capital reveal">
   <div class="capital-watermark">CAPITAL</div>
@@ -485,18 +682,9 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <h2 class="section-title">Conservative<br><em>Leverage.</em> Full Protection.</h2>
       <p class="section-body">70% LTC senior bridge loan funds the acquisition. 100% of CapEx is separately funded through the rehab draw. Total equity requirement of ~$1.2M — sourced from the liquidity partner and internal JV capital — keeps sponsor alignment high and lender risk low.</p>
       <div class="stack-bars">
-        <div class="stack-bar-item">
-          <div class="bar-label"><span class="bar-name">Senior Bridge — Acquisition (70% LTC)</span><span class="bar-val">$2,625,000</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width:49%"></div></div>
-        </div>
-        <div class="stack-bar-item">
-          <div class="bar-label"><span class="bar-name">Senior Bridge — Rehab (100% Funded)</span><span class="bar-val">$1,500,000</span></div>
-          <div class="bar-track"><div class="bar-fill" style="width:28%"></div></div>
-        </div>
-        <div class="stack-bar-item">
-          <div class="bar-label"><span class="bar-name">Equity — Liquidity Partner + JV</span><span class="bar-val">$1,200,000</span></div>
-          <div class="bar-track"><div class="bar-fill equity" style="width:23%"></div></div>
-        </div>
+        <div class="stack-bar-item"><div class="bar-label"><span class="bar-name">Senior Bridge — Acquisition (70% LTC)</span><span class="bar-val">$2,625,000</span></div><div class="bar-track"><div class="bar-fill" style="width:49%"></div></div></div>
+        <div class="stack-bar-item"><div class="bar-label"><span class="bar-name">Senior Bridge — Rehab (100% Funded)</span><span class="bar-val">$1,500,000</span></div><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div></div>
+        <div class="stack-bar-item"><div class="bar-label"><span class="bar-name">Equity — Liquidity Partner + JV</span><span class="bar-val">$1,200,000</span></div><div class="bar-track"><div class="bar-fill equity" style="width:23%"></div></div></div>
       </div>
       <div style="border:1px solid var(--border);padding:1.8rem 2rem;margin-top:1rem;">
         <div style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border);">Sponsorship Structure — Suarez Global Ventures LLC</div>
@@ -536,6 +724,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- THESIS -->
 <section class="thesis reveal">
   <div class="thesis-watermark">THESIS</div>
@@ -547,35 +736,16 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
       <a href="#contact" class="btn-secondary" style="margin-top:1rem;display:inline-block;">Explore Partnership Options</a>
     </div>
     <div class="thesis-points">
-      <div class="thesis-point">
-        <div class="tp-num">01</div>
-        <div class="tp-title">Below-Market Acquisition Basis</div>
-        <p class="tp-body">Contract price of $3.75M ($82.31/SF) vs. as-is stabilized market value of $7.18M+ ($157.68/SF). Buying at a $3.43M discount to as-is market value before any renovation upside. Embedded equity protection from day one.</p>
-      </div>
-      <div class="thesis-point">
-        <div class="tp-num">02</div>
-        <div class="tp-title">Lease Rollover Arbitrage — All Star</div>
-        <p class="tp-body">All Star Paper Goods holds 25,000 SF at $3.60/SF (Modified Gross) on a month-to-month lease, vacating April 2026. Tampa market rate is $15/SF+. Re-leasing this single space at market adds $283,500 in annual NOI — documented, not speculative.</p>
-      </div>
-      <div class="thesis-point">
-        <div class="tp-num">03</div>
-        <div class="tp-title">Vacancy Monetization — 35,060 SF</div>
-        <p class="tp-body">10,060 SF currently vacant (VAC-1 unidentified space + VAC-2 Corner Loft). Combined with All Star's departure, total vacancy represents $525,900 in annual upside at $15/SF as-is rents. Repositioned at $24/SF NNN, potential gross revenue reaches $1,030,560.</p>
-      </div>
-      <div class="thesis-point">
-        <div class="tp-num">04</div>
-        <div class="tp-title">Conservative Capital Structure</div>
-        <p class="tp-body">70% LTC senior bridge with 100% rehab funding provides downside protection while maximizing equity returns. $1.2M equity requirement keeps sponsor alignment strong. Lender-clean structure via Suarez Global Ventures LLC designed for fast approvals.</p>
-      </div>
-      <div class="thesis-point">
-        <div class="tp-num">05</div>
-        <div class="tp-title">Flexible Exit — Dual Pathways</div>
-        <p class="tp-body">Sell stabilized to institutional buyer (Prologis, Basis Industrial, 1031 exchange buyers) at 6.5% cap → $10,922,277 estimated value. Or refinance to permanent at $7.1M loan, locking $198,748 free cash flow annually at 1.39x DSCR. Both pathways supported by current market data.</p>
-      </div>
+      <div class="thesis-point"><div class="tp-num">01</div><div class="tp-title">Below-Market Acquisition Basis</div><p class="tp-body">Contract price of $3.75M ($82.31/SF) vs. as-is stabilized market value of $7.18M+ ($157.68/SF). Buying at a $3.43M discount to as-is market value before any renovation upside. Embedded equity protection from day one.</p></div>
+      <div class="thesis-point"><div class="tp-num">02</div><div class="tp-title">Lease Rollover Arbitrage — All Star</div><p class="tp-body">All Star Paper Goods holds 25,000 SF at $3.60/SF (Modified Gross) on a month-to-month lease, vacating April 2026. Tampa market rate is $15/SF+. Re-leasing this single space at market adds $283,500 in annual NOI — documented, not speculative.</p></div>
+      <div class="thesis-point"><div class="tp-num">03</div><div class="tp-title">Vacancy Monetization — 35,060 SF</div><p class="tp-body">10,060 SF currently vacant (VAC-1 unidentified space + VAC-2 Corner Loft). Combined with All Star's departure, total vacancy represents $525,900 in annual upside at $15/SF as-is rents. Repositioned at $24/SF NNN, potential gross revenue reaches $1,030,560.</p></div>
+      <div class="thesis-point"><div class="tp-num">04</div><div class="tp-title">Conservative Capital Structure</div><p class="tp-body">70% LTC senior bridge with 100% rehab funding provides downside protection while maximizing equity returns. $1.2M equity requirement keeps sponsor alignment strong. Lender-clean structure via Suarez Global Ventures LLC designed for fast approvals.</p></div>
+      <div class="thesis-point"><div class="tp-num">05</div><div class="tp-title">Flexible Exit — Dual Pathways</div><p class="tp-body">Sell stabilized to institutional buyer (Prologis, Basis Industrial, 1031 exchange buyers) at 6.5% cap → $10,922,277 estimated value. Or refinance to permanent at $7.1M loan, locking $198,748 free cash flow annually at 1.39x DSCR. Both pathways supported by current market data.</p></div>
     </div>
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- EXIT VALUATION -->
 <section class="exit reveal">
   <div class="section-eyebrow">Exit Valuation &amp; Returns</div>
@@ -583,22 +753,10 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   <div class="exit-layout">
     <div>
       <div class="exit-visual">
-        <div class="exit-step">
-          <div class="exit-step-label">Full Lease-Up — Proforma Rent Roll<small>41,440 SF @ $24/SF NNN + $36,000 outdoor parking</small></div>
-          <div class="exit-step-val">$1,030,560<small>Gross Revenue</small></div>
-        </div>
-        <div class="exit-step">
-          <div class="exit-step-label">Less Proforma Operating Expenses<small>Taxes · Insurance · Utilities · Mgmt · CAM · Marketing · Vacancy</small></div>
-          <div class="exit-step-val" style="color:#e2a97e;">($320,612)<small>Total ProForma OpEx</small></div>
-        </div>
-        <div class="exit-step">
-          <div class="exit-step-label">Stabilized Net Operating Income</div>
-          <div class="exit-step-val gold">$709,948<small>Proforma NOI</small></div>
-        </div>
-        <div class="exit-step">
-          <div class="exit-step-label">Apply Conservative 6.5% Cap Rate<small>Institutional pricing for airport-proximate Tampa industrial</small></div>
-          <div class="exit-step-val gold big">$10,922,277<small>Estimated Completed Value</small></div>
-        </div>
+        <div class="exit-step"><div class="exit-step-label">Full Lease-Up — Proforma Rent Roll<small>41,440 SF @ $24/SF NNN + $36,000 outdoor parking</small></div><div class="exit-step-val">$1,030,560<small>Gross Revenue</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Less Proforma Operating Expenses<small>Taxes · Insurance · Utilities · Mgmt · CAM · Marketing · Vacancy</small></div><div class="exit-step-val" style="color:#e2a97e;">($320,612)<small>Total ProForma OpEx</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Stabilized Net Operating Income</div><div class="exit-step-val gold">$709,948<small>Proforma NOI</small></div></div>
+        <div class="exit-step"><div class="exit-step-label">Apply Conservative 6.5% Cap Rate<small>Institutional pricing for airport-proximate Tampa industrial</small></div><div class="exit-step-val gold big">$10,922,277<small>Estimated Completed Value</small></div></div>
       </div>
       <div class="exit-ranges">
         <div class="range-box"><div class="range-label">Stabilized NOI Range</div><div class="range-val">$550K–$710K</div></div>
@@ -627,6 +785,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- MARKET -->
 <section class="market reveal">
   <div class="market-watermark">TAMPA</div>
@@ -678,6 +837,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   </div>
 </section>
 <div class="divider"><div class="divider-line"></div><div class="divider-mark"></div><div class="divider-line"></div></div>
+
 <!-- CTA -->
 <section class="cta-section reveal" id="contact">
   <div class="cta-glow"></div>
@@ -691,6 +851,7 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
     </div>
   </div>
 </section>
+
 <footer>
   <div class="footer-logo">Suarez Global</div>
   <ul class="footer-links">
@@ -701,13 +862,43 @@ footer{background:#070e08;padding:2.5rem 4rem;border-top:1px solid var(--border)
   </ul>
   <div class="footer-copy">&copy; 2026 Tampa Development Group LLC — A Suarez Global Ventures Company. All rights reserved.</div>
 </footer>
+
 <script>
+  // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.05});
   reveals.forEach(el=>io.observe(el));
+
+  // Nav shrink
   window.addEventListener('scroll',()=>{
     const nav=document.getElementById('navbar');
     nav.style.padding=window.scrollY>60?(window.innerWidth>900?'0.85rem 4rem':'0.85rem 1.5rem'):(window.innerWidth>900?'1.4rem 4rem':'1.1rem 1.5rem');
+  });
+
+  // Data Room overlay
+  const trigger=document.getElementById('drTrigger');
+  const overlay=document.getElementById('drOverlay');
+  const closeBtn=document.getElementById('drClose');
+
+  trigger.addEventListener('click',()=>{
+    overlay.classList.add('active');
+    document.body.style.overflow='hidden';
+  });
+  closeBtn.addEventListener('click',()=>{
+    overlay.classList.remove('active');
+    document.body.style.overflow='';
+  });
+  overlay.addEventListener('click',(e)=>{
+    if(e.target===overlay){
+      overlay.classList.remove('active');
+      document.body.style.overflow='';
+    }
+  });
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='Escape'&&overlay.classList.contains('active')){
+      overlay.classList.remove('active');
+      document.body.style.overflow='';
+    }
   });
 </script>
 </body>
